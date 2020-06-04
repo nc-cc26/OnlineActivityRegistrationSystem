@@ -1,9 +1,20 @@
-<?php
+<?php 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db = "online_activity_registration_system";
-$conn = mysqli_connect($servername, $username, $password, $db) or die("Connection failed: " . mysqli_connect_error());
+$hostname = 'localhost';
+$dbname = 'online_activity_registration_system';
+$uname = 'root';
+$pw = '';
 
-// echo "Database connected!";
+try {
+
+    $pdo = new PDO("mysql:host={$hostname};dbname={$dbname}", $uname, $pw);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+    // echo "Database connected successfully";
+    
+} catch (PDOException $ex) {
+
+    die($ex->getMessage()());
+    
+}

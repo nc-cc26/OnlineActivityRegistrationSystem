@@ -26,7 +26,7 @@
                     <input class="toggle-btn" type="button" value="Log In" onclick="login()" />
                 </div>
 
-                <form id="register" method="post" action="../process.php" class="input-grp">
+                <form id="register" method="post" action="ProcessForm.php" class="input-grp">
                     <div class="d-flex justify-content-center"></div>
 
                     <div>
