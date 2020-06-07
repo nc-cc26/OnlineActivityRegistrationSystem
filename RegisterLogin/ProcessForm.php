@@ -53,10 +53,10 @@ if (isset($_POST['register'])) {
 
             try {
                 $idValidate = $pdo->prepare($sql);
-                $stmt3->execute();
+                $idValidate->execute();
 
                 echo "<div class='alert alert-success alert-dismissible'>
-            <h4><i class='icon fa fa-check'></i>Great, thanks for signing up!</h4>
+            <h4><i class='icon fa fa-check'></i> Great, thanks for signing up!</h4>
             Account created successfully! <a href='RegisterLogin.php'>Log In</a> now!
           </div>";
             } catch (Exception $e) {

@@ -88,9 +88,9 @@
                         <a href="RequestID.php">Forgot ID?</a>
                     </div>
 
-                    <div>
+                    <!-- <div>
                         <input id="checkbox" type="checkbox" class="checkbox" name="checkbox" /><label for="checkbox" class="checkbox-text ml-1">Keep me logged in</label>
-                    </div>
+                    </div> -->
 
                     <input id="login-btn" class="submit-btn text-light" type="submit" name="login" value="Log In" />
                 </form>
