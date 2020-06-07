@@ -17,8 +17,13 @@ include_once '../database.php';
 if (isset($_POST['register'])) {
     if (!empty($_POST['newID']) && $_POST['email'] && $_POST['newPW']) {
         $ID = $_POST['newID'];
+        $ID = strtoupper($ID);
         $Email = $_POST['email'];
-        $Password = $_POST['newPW'];
+        $pw = $_POST['newPW'];
+
+        $salt = "roA&h2u!PoaWr2u";
+
+        $hash = hash("sha256", $pw . $salt);
 
         $emailCheck = "SELECT * FROM `user` WHERE `Email` = '$Email'";
         $idCheck = "SELECT * FROM `user` WHERE `ID` = '$ID'";
@@ -49,7 +54,7 @@ if (isset($_POST['register'])) {
             }
         } else {
             $sql = "INSERT INTO `user` (`ID`, `Email`, `Password`) 
-        VALUES ('$ID', '$Email', '$Password')";
+        VALUES ('$ID', '$Email', '$hash')";
 
             try {
                 $idValidate = $pdo->prepare($sql);
@@ -74,20 +79,23 @@ if (isset($_POST['register'])) {
 
 
 if (isset($_POST['login'])) {
-    $ID = $_POST['ID'];
-    $Password = $_POST['pw'];
+    $ID = strtoupper($_POST['ID']);
+    $pw = $_POST['pw'];
 
-    $check = "SELECT * FROM `user` WHERE `ID`='$ID' AND `Password` = '$Password'";
+    $salt = "roA&h2u!PoaWr2u";
+
+    $hash = hash("sha256", $pw . $salt);
+
+    $check = "SELECT * FROM `user` WHERE `ID`='$ID' AND `Password` = '$hash'";
 
     $stmt = $pdo->prepare($check);
     $stmt->execute();
     $row = $stmt->fetch();
 
     if ($row) {
-        if (isset($_POST['checkbox'])) {
-            $_SESSION['id'] = $ID;
-            $_SESSION['pw'] = $Password;
-        }
+        extract($row);
+        $_SESSION['id'] = $ID;
+        $_SESSION['pw'] = $hash;
         header("Location:/Assignment/Activity/activity.html");
     } else {
         header('Location:RegisterLogin.php?msg=login_failed');
