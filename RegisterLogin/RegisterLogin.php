@@ -7,6 +7,12 @@
     <title>Login and Registration Form</title>
     <link rel="stylesheet" href="../css/style.css" />
 
+    <style>
+        .text-white {
+            color: white;
+        }
+    </style>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 
@@ -22,8 +28,8 @@
             <div class="form-box">
                 <div class="btn-box">
                     <div id="btn"></div>
-                    <input class="toggle-btn" type="button" value="Register" onclick="register()" />
-                    <input class="toggle-btn" type="button" value="Log In" onclick="login()" />
+                    <input id="rg-btn" class="toggle-btn text-light" type="button" value="Register" onclick="register()" />
+                    <input id="lg-btn" class="toggle-btn" type="button" value="Log In" onclick="login()" />
                 </div>
 
                 <form id="register" method="post" action="ProcessForm.php" class="input-grp">
@@ -51,10 +57,10 @@
                         <label for id="reg-checkbox" class="checkbox-text">I agree to the <a href="TermsAndConditions.php">terms & conditions</a>.</label>
                     </div>
 
-                    <input id="reg-btn" class="submit-btn" type="submit" name="register" value="Register" />
+                    <input id="reg-btn" class="submit-btn text-light" type="submit" name="register" value="Register" />
                 </form>
 
-                <form id="login" method="post" action="../Activity/Activity.html" class="input-grp">
+                <form id="login" method="post" action="ProcessForm.php" class="input-grp">
                     <div class="d-flex justify-content-center">
                         <span id="log-in-err" style="color: red; display: none;">Wrong ID or password, please try again!</span>
                     </div>
@@ -69,11 +75,15 @@
                         <input id="pw" name="pw" type="password" class="input-field" placeholder="Enter Password" required />
                     </div>
 
+                    <div class="mb-2">
+                        <a href="RequestID.php">Forgot ID?</a>
+                    </div>
+
                     <div>
                         <input id="checkbox" type="checkbox" class="checkbox" /><label for="checkbox" class="checkbox-text ml-1">Keep me logged in</label>
                     </div>
 
-                    <input id="login-btn" class="submit-btn" type="submit" name="login" value="Log In" />
+                    <input id="login-btn" class="submit-btn text-light" type="submit" name="login" value="Log In" />
                 </form>
             </div>
         </div>

@@ -74,6 +74,8 @@ if (isset($_POST['register'])) {
 
 
 if (isset($_POST['login'])) {
-    $ID = $_GET('ID');
-    $Password = $_GET('pw');
+    $ID = $_POST['ID'];
+    $Password = $_POST['pw'];
+    
+    $check = "SELECT * FROM `user` WHERE `ID`='$ID'";
 }
