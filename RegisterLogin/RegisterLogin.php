@@ -14,6 +14,7 @@
     </style>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="https://kit.fontawesome.com/5b8eaee5c3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -23,6 +24,14 @@
                 <img class="mr-1 mb-2" src="../imgs/8th.png" alt="college logo" width="45" height="45" />MyCollege
             </h1>
         </header>
+
+        <?php
+        if (isset($_GET["msg"])) {
+            if ($_GET["msg"] == "login_failed") {
+                echo "<div class='alert alert-danger alert-dismissible m-0'><h4><i class='fas fa-exclamation-circle'> Access Denied.</i></h4><br><p>Incorrect username or password, please try again.</p></div>";
+            }
+        }
+        ?>
 
         <div class="hero d-flex justify-content-center align-items-center">
             <div class="form-box">
@@ -80,7 +89,7 @@
                     </div>
 
                     <div>
-                        <input id="checkbox" type="checkbox" class="checkbox" /><label for="checkbox" class="checkbox-text ml-1">Keep me logged in</label>
+                        <input id="checkbox" type="checkbox" class="checkbox" name="checkbox" /><label for="checkbox" class="checkbox-text ml-1">Keep me logged in</label>
                     </div>
 
                     <input id="login-btn" class="submit-btn text-light" type="submit" name="login" value="Log In" />

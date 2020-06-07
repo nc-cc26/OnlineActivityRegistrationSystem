@@ -76,6 +76,20 @@ if (isset($_POST['register'])) {
 if (isset($_POST['login'])) {
     $ID = $_POST['ID'];
     $Password = $_POST['pw'];
-    
-    $check = "SELECT * FROM `user` WHERE `ID`='$ID'";
+
+    $check = "SELECT * FROM `user` WHERE `ID`='$ID' AND `Password` = '$Password'";
+
+    $stmt = $pdo->prepare($check);
+    $stmt->execute();
+    $row = $stmt->fetch();
+
+    if ($row) {
+        if (isset($_POST['checkbox'])) {
+            $_SESSION['id'] = $ID;
+            $_SESSION['pw'] = $Password;
+        }
+        header("Location:/Assignment/Activity/activity.html");
+    } else {
+        header('Location:RegisterLogin.php?msg=login_failed');
+    }
 }

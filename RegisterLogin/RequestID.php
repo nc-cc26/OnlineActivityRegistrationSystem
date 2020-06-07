@@ -26,11 +26,11 @@ if (isset($_GET['email'])) {
         extract($row);
 
         echo "<div class='alert alert-info alert-dismissible'>
-                    <h4><i class='fas fa-search'></i> Here's what we found!</i></h4><p>The ID for <strong>$email</strong> is <strong>$ID</strong>.</p>
+                    <h4><i class='fas fa-search'> Here's what we found!</i></i></h4><p>The ID for <strong>$email</strong> is <strong>$ID</strong>.</p>
                     <a href='RegisterLogin.php'>Log In</a> now or <a href='RegisterLogin.php'>register</a> using another email.";
     } else {
         echo "<div class='alert alert-danger alert-dismissible'>
-                    <h4><i class='fas fa-search'></i> The email is not registered.</i></h4><p>The <strong>$email</strong>  seems to be missing in the database.</p>
+                    <h4><i class='fas fa-question'> The email is not registered.</i></h4><p>The <strong>$email</strong>  seems to be missing in the database.</p>
                     <a href='RegisterLogin.php'>Register</a> now or <a href='RegisterLogin.php'>log in</a> using another email.";
     }
 } else { ?>
