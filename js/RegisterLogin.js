@@ -12,5 +12,5 @@ function register() {
 function login() {
   loginForm.css("left", "50px");
   regForm.style.left = "-400px";
-  btnBoxBGColor.style.left = "115px";
+  btnBoxBGColor.style.left = "120px";
 }
