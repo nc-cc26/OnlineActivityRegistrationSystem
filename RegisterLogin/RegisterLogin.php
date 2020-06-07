@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <header class="blog-header py-3">
             <h1 class="headingfont" align="center">
                 <img class="mr-1 mb-2" src="../imgs/8th.png" alt="college logo" width="45" height="45" />MyCollege
@@ -48,7 +48,7 @@
 
                     <div>
                         <input id="reg-checkbox" type="checkbox" class="checkbox" required />
-                        <label for id="reg-checkbox" class="checkbox-text">I agree to the <a href="">terms & conditions</a>.</label>
+                        <label for id="reg-checkbox" class="checkbox-text">I agree to the <a href="TermsAndConditions.php">terms & conditions</a>.</label>
                     </div>
 
                     <input id="reg-btn" class="submit-btn" type="submit" name="register" value="Register" />
@@ -70,7 +70,7 @@
                     </div>
 
                     <div>
-                        <input id="checkbox" type="checkbox" class="checkbox" /><label for="checkbox" class="checkbox-text">Keep me logged in</label>
+                        <input id="checkbox" type="checkbox" class="checkbox" /><label for="checkbox" class="checkbox-text ml-1">Keep me logged in</label>
                     </div>
 
                     <input id="login-btn" class="submit-btn" type="submit" name="login" value="Log In" />
