@@ -6,7 +6,7 @@ CREATE TABLE `contactTable` (
     `State` varchar(30) NULL,
     `Phone` int(11) NULL,
     `Email` varchar(9) NULL,
-    PRIMARY KEY (ID),
+    PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 ALTER TABLE `contacttable`
