@@ -74,46 +74,57 @@
                     </ul>
                 </div>
             </nav>
-            <div class="text-center">
-                <img id="picture" src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <p>Faculty</p>
-                    <p>Course</p>
-                    <p>Entry Year</p>
-                    <p>Duration</p>
-                    <p>Mode of Study</p>
+            <?php
+            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+            ?>
+                <div class="text-center">
+                    <img id="picture" src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
                 </div>
-                <div class="col-md-1">
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p>Faculty</p>
+                        <p>Course</p>
+                        <p>Entry Year</p>
+                        <p>Duration</p>
+                        <p>Mode of Study</p>
+                    </div>
+                    <div class="col-md-1">
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                    </div>
+                    <div class="col-md-9">
+                        <p id="faculty">unknown</p>
+                        <p id="course">unknown</p>
+                        <p id="entryYear">unknown</p>
+                        <p id="duration">unknown</p>
+                        <p id="modeOfStudy">unknown</p>
+                        <br />
+                    </div>
                 </div>
-                <div class="col-md-9">
-                    <p id="faculty">unknown</p>
-                    <p id="course">unknown</p>
-                    <p id="entryYear">unknown</p>
-                    <p id="duration">unknown</p>
-                    <p id="modeOfStudy">unknown</p>
-                    <br />
+                <div class="text-left">
+                    <button id="confirm" type="button" class="btn btn-primary btn-sm">
+                        Update Academic Information
+                    </button>
                 </div>
-            </div>
-            <div class="text-left">
-                <button id="confirm" type="button" class="btn btn-primary btn-sm">
-                    Update Academic Information
-                </button>
-            </div>
-            <script type="text/javascript">
-                var button = document.getElementById("confirm");
-                button.addEventListener("click", function() {
-                    var x = confirm("Are you sure to update academic information?");
-                    if (x) window.location.href = "updateAcademic.php";
-                    else return false;
-                });
-            </script>
+                <script type="text/javascript">
+                    var button = document.getElementById("confirm");
+                    button.addEventListener("click", function() {
+                        var x = confirm("Are you sure to update academic information?");
+                        if (x) window.location.href = "updateAcademic.php";
+                        else return false;
+                    });
+                </script>
+            <?php
+            } else { ?>
+                <div class="alert alert-info" role="alert">
+                    <h4>Sorry, only authenticated user can access this page.</h4>
+                    <p><a href="/Assignment/RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+                </div><?php
+                    }
+                        ?>
         </main>
 
         <footer class="container text-center font-italic py-2">

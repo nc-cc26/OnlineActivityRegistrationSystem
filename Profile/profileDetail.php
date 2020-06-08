@@ -74,61 +74,72 @@
                     </ul>
                 </div>
             </nav>
-            <div class="text-center">
-                <img id="picture" src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <p>Name</p>
-                    <p>Old Matrics No.</p>
-                    <p>New Matrics No.</p>
-                    <p>IC/Passport No.</p>
-                    <p>Nationality</p>
-                    <p>Gender</p>
-                    <p>Date of Birth</p>
-                    <p>Race</p>
-                    <p>Religion</p>
-                    <p>Marital Status</p>
+            <?php
+            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+            ?>
+                <div class="text-center">
+                    <img id="picture" src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
                 </div>
-                <div class="col-md-1">
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p>Name</p>
+                        <p>Old Matrics No.</p>
+                        <p>New Matrics No.</p>
+                        <p>IC/Passport No.</p>
+                        <p>Nationality</p>
+                        <p>Gender</p>
+                        <p>Date of Birth</p>
+                        <p>Race</p>
+                        <p>Religion</p>
+                        <p>Marital Status</p>
+                    </div>
+                    <div class="col-md-1">
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                    </div>
+                    <div class="col-md-9">
+                        <p id="name">unknown</p>
+                        <p id="oldMatriks">unknown</p>
+                        <p id="newMatrks">unknown</p>
+                        <p id="IC">unknown</p>
+                        <p id="nationality">unknown</p>
+                        <p id="gender">unknown</p>
+                        <p id="birthday">unknown</p>
+                        <p id="race">unknown</p>
+                        <p id="religion">unknown</p>
+                        <p id="marital">unknown</p>
+                        <br />
+                    </div>
                 </div>
-                <div class="col-md-9">
-                    <p id="name">unknown</p>
-                    <p id="oldMatriks">unknown</p>
-                    <p id="newMatrks">unknown</p>
-                    <p id="IC">unknown</p>
-                    <p id="nationality">unknown</p>
-                    <p id="gender">unknown</p>
-                    <p id="birthday">unknown</p>
-                    <p id="race">unknown</p>
-                    <p id="religion">unknown</p>
-                    <p id="marital">unknown</p>
-                    <br />
+                <div class="text-left">
+                    <button id="confirm" type="button" class="btn btn-primary btn-sm">
+                        Update Personal Information
+                    </button>
                 </div>
-            </div>
-            <div class="text-left">
-                <button id="confirm" type="button" class="btn btn-primary btn-sm">
-                    Update Personal Information
-                </button>
-            </div>
-            <script type="text/javascript">
-                var button = document.getElementById("confirm");
-                button.addEventListener("click", function() {
-                    var x = confirm("Are you sure to update personal information?");
-                    if (x) window.location.href = "updatePersonal.php";
-                    else return false;
-                });
-            </script>
+                <script type="text/javascript">
+                    var button = document.getElementById("confirm");
+                    button.addEventListener("click", function() {
+                        var x = confirm("Are you sure to update personal information?");
+                        if (x) window.location.href = "updatePersonal.php";
+                        else return false;
+                    });
+                </script>
+            <?php
+            } else { ?>
+                <div class="alert alert-info" role="alert">
+                    <h4>Sorry, only authenticated user can access this page.</h4>
+                    <p><a href="/Assignment/RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+                </div><?php
+                    }
+                        ?>
         </main>
 
         <footer class="container text-center font-italic py-2">

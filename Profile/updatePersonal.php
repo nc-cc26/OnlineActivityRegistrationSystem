@@ -79,154 +79,165 @@
 
         <main class="jumbotron mt-2">
             <h2>Update Personal Information</h2>
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="updatePersonal.php">Personal <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="updateAcademic.php">Academic</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="updateContact.php">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <form method="post" onsubmit="return validateForms()" class="jumbotron mt-3" id="form">
-                <div class="form-group row">
-                    <label for="picture" class="col-md-2 col-form-label"><b>*Profile Picture</b></label>
-                    <div class="col-md-3">
-                        <input style="background-color:red" type="file" class="form-control-file" id="picture" accept="image/jpeg,image/gif,image/png,application/pdf" required>
-                        <small id="pictureHelp" class="form-text text-muted">Insert only format <b>.jpg .jpeg .png .gif .pdf</b>
-                            with <b>size not exceeding 2MB</b></small>
+            <?php
+            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+            ?>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="updatePersonal.php">Personal <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="updateAcademic.php">Academic</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="updateContact.php">Contact</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-md-2">
-                        <button type="button" id="validatePicture" class="btn btn-outline-primary">Validate Picture</button>
+                </nav>
+                <form method="post" onsubmit="return validateForms()" class="jumbotron mt-3" id="form">
+                    <div class="form-group row">
+                        <label for="picture" class="col-md-2 col-form-label"><b>*Profile Picture</b></label>
+                        <div class="col-md-3">
+                            <input style="background-color:red" type="file" class="form-control-file" id="picture" accept="image/jpeg,image/gif,image/png,application/pdf" required>
+                            <small id="pictureHelp" class="form-text text-muted">Insert only format <b>.jpg .jpeg .png .gif .pdf</b>
+                                with <b>size not exceeding 2MB</b></small>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" id="validatePicture" class="btn btn-outline-primary">Validate Picture</button>
+                        </div>
+                        <div class="col-md-4" id="imagePreview">
+                            <img src="" alt="Image Preview" class="image-preview__image">
+                            <span class="image-preview__default-text">Image Preview</span>
+                        </div>
                     </div>
-                    <div class="col-md-4" id="imagePreview">
-                        <img src="" alt="Image Preview" class="image-preview__image">
-                        <span class="image-preview__default-text">Image Preview</span>
+                    <div class="form-group row">
+                        <label for="Name" class="col-md-2 col-form-label"><b>*Name</b></label>
+                        <div class="col-md-5">
+                            <input id="name" class="form-control" type="text" required placeholder="FULL NAME" />
+                            <small id="nameHelp" class="form-text text-muted">Enter your full name without any symbol or special
+                                characters.</small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="Name" class="col-md-2 col-form-label"><b>*Name</b></label>
-                    <div class="col-md-5">
-                        <input id="name" class="form-control" type="text" required placeholder="FULL NAME" />
-                        <small id="nameHelp" class="form-text text-muted">Enter your full name without any symbol or special
-                            characters.</small>
+                    <div class="form-group row">
+                        <label for="oldMatrics" class="col-md-2 col-form-label"><b>*Old Matrics No.</b></label>
+                        <div class="col-md-2">
+                            <input id="oldMatrics" class="form-control" type="text" pattern=".{9,9}" required />
+                            <small id="oldMatricsHelp" class="form-text text-muted">Eg. WIF181111 <br>(9 characters)</small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="oldMatrics" class="col-md-2 col-form-label"><b>*Old Matrics No.</b></label>
-                    <div class="col-md-2">
-                        <input id="oldMatrics" class="form-control" type="text" pattern=".{9,9}" required />
-                        <small id="oldMatricsHelp" class="form-text text-muted">Eg. WIF181111 <br>(9 characters)</small>
+                    <div class="form-group row">
+                        <label for="newMatrics" class="col-md-2 col-form-label"><b>*New Matrics No.</b></label>
+                        <div class="col-md-2">
+                            <input id="newMatrics" class="form-control" type="text" pattern=".{10,10}" required />
+                            <small id="newMatricsHelp" class="form-text text-muted">Eg. 17166000/1 <br>(10 characters)</small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="newMatrics" class="col-md-2 col-form-label"><b>*New Matrics No.</b></label>
-                    <div class="col-md-2">
-                        <input id="newMatrics" class="form-control" type="text" pattern=".{10,10}" required />
-                        <small id="newMatricsHelp" class="form-text text-muted">Eg. 17166000/1 <br>(10 characters)</small>
+                    <div class="form-group row">
+                        <label for="IC" class="col-md-2 col-form-label"><b>*IC/Passport No.</b></label>
+                        <div class="col-md-3">
+                            <input id="IC" class="form-control" type="text" placeholder="IC / PASSPORT NUMBER" required />
+                            <small id="passportHelp" class="form-text text-muted">Enter without "-" or any special character</small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="IC" class="col-md-2 col-form-label"><b>*IC/Passport No.</b></label>
-                    <div class="col-md-3">
-                        <input id="IC" class="form-control" type="text" placeholder="IC / PASSPORT NUMBER" required />
-                        <small id="passportHelp" class="form-text text-muted">Enter without "-" or any special character</small>
+                    <div class="form-group row">
+                        <label for="nationality" class="col-md-2 col-form-label"><b>*Nationality.</b></label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="malaysian" value="option1" required />
+                            <label class="form-check-label" for="inlineRadio1">Malaysian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="nonmalaysian" value="option2" />
+                            <label class="form-check-label" for="inlineRadio2">Non-Malaysian</label>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="nationality" class="col-md-2 col-form-label"><b>*Nationality.</b></label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="malaysian" value="option1" required />
-                        <label class="form-check-label" for="inlineRadio1">Malaysian</label>
+                    <div class="form-group row">
+                        <label for="gender" class="col-md-2 col-form-label"><b>*Gender.</b></label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="male" value="option1" required="" />
+                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="female" value="option2" />
+                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                        </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="nonmalaysian" value="option2" />
-                        <label class="form-check-label" for="inlineRadio2">Non-Malaysian</label>
+                    <div class="form-group row">
+                        <label for="birthday" class="col-md-2 col-form-label"><b>*Date of Birth</b></label>
+                        <div class="col-md-3">
+                            <input id="birthday" class="form-control" type="date" required />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="gender" class="col-md-2 col-form-label"><b>*Gender.</b></label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="male" value="option1" required="" />
-                        <label class="form-check-label" for="inlineRadio1">Male</label>
+                    <div class="form-group row">
+                        <label for="race" class="col-md-2 col-form-label">Race</label>
+                        <div class="col-md-2">
+                            <select id="race" class="form-control">
+                                <option selected disabled value="">Choose...</option>
+                                <option value="1">Bumiputera</option>
+                                <option value="2">Chinese</option>
+                                <option value="3">Indian</option>
+                                <option value="4">Others</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="female" value="option2" />
-                        <label class="form-check-label" for="inlineRadio2">Female</label>
+                    <div class="form-group row">
+                        <label for="religion" class="col-md-2 col-form-label">Religion</label>
+                        <div class="col-md-2">
+                            <select id="religion" class="form-control">
+                                <option selected disabled value="">Choose...</option>
+                                <option value="1">Islam</option>
+                                <option value="2">Buddhism</option>
+                                <option value="3">Christianity</option>
+                                <option value="4">Hinduism</option>
+                                <option value="5">Others</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="birthday" class="col-md-2 col-form-label"><b>*Date of Birth</b></label>
-                    <div class="col-md-3">
-                        <input id="birthday" class="form-control" type="date" required />
+                    <div class="form-group row">
+                        <label for="marital" class="col-md-2 col-form-label">Marital Status</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="single" value="option1" />
+                            <label class="form-check-label" for="inlineRadio1">Single</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="married" value="option2" />
+                            <label class="form-check-label" for="inlineRadio2">Married</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="widowed" value="option3" />
+                            <label class="form-check-label" for="inlineRadio3">Widowed</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="divorced" value="option4" />
+                            <label class="form-check-label" for="inlineRadio4">Divorced</label>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="race" class="col-md-2 col-form-label">Race</label>
-                    <div class="col-md-2">
-                        <select id="race" class="form-control">
-                            <option selected disabled value="">Choose...</option>
-                            <option value="1">Bumiputera</option>
-                            <option value="2">Chinese</option>
-                            <option value="3">Indian</option>
-                            <option value="4">Others</option>
-                        </select>
+                    <div class="form-group row">
+                        <div class="col-md-1">
+                            <button type="submit" class="btn btn-primary" id="updatePersonal">
+                                Update
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-primary" id="skipPersonal">Next</button>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="religion" class="col-md-2 col-form-label">Religion</label>
-                    <div class="col-md-2">
-                        <select id="religion" class="form-control">
-                            <option selected disabled value="">Choose...</option>
-                            <option value="1">Islam</option>
-                            <option value="2">Buddhism</option>
-                            <option value="3">Christianity</option>
-                            <option value="4">Hinduism</option>
-                            <option value="5">Others</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="marital" class="col-md-2 col-form-label">Marital Status</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="single" value="option1" />
-                        <label class="form-check-label" for="inlineRadio1">Single</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="married" value="option2" />
-                        <label class="form-check-label" for="inlineRadio2">Married</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="widowed" value="option3" />
-                        <label class="form-check-label" for="inlineRadio3">Widowed</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="divorced" value="option4" />
-                        <label class="form-check-label" for="inlineRadio4">Divorced</label>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-1">
-                        <button type="submit" class="btn btn-primary" id="updatePersonal">
-                            Update
-                        </button>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-primary" id="skipPersonal">Next</button>
-                    </div>
-                </div>
-                <p>#Form marked with asterisk (*) and bolded is required field. <br>#Please validate your profile picture before
-                    completing your updates.</p>
-            </form>
+                    <p>#Form marked with asterisk (*) and bolded is required field. <br>#Please validate your profile picture before
+                        completing your updates.</p>
+                </form>
+            <?php
+            } else { ?>
+                <div class="alert alert-info" role="alert">
+                    <h4>Sorry, only authenticated user can access this page.</h4>
+                    <p><a href="/Assignment/RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+                </div><?php
+                    }
+                        ?>
         </main>
 
         <footer class="container text-center font-italic py-2">

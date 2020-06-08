@@ -56,27 +56,38 @@
             </div>
         </nav>
         <main class="jumbotron mt-2">
-            <div class="text-center">
-                <img src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
-                <p></p>
-                <p id="name">unknown</p>
-                <p id="oldMatriks">unknown</p>
-                <p id="newMatriks">unknown</p>
-                <p>Helpdesk Access Level : User</p>
-            </div>
-            <div class="text-right">
-                <button id="confirm" type="button" class="btn btn-danger btn-sm">
-                    Delete Account
-                </button>
-            </div>
-            <script type="text/javascript">
-                var button = document.getElementById("confirm");
-                button.addEventListener("click", function() {
-                    var x = confirm("Are you sure to remove this account?");
-                    if (x) return true;
-                    else return false;
-                });
-            </script>
+            <?php
+            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+            ?>
+                <div class="text-center">
+                    <img src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
+                    <p></p>
+                    <p id="name">unknown</p>
+                    <p id="oldMatriks">unknown</p>
+                    <p id="newMatriks">unknown</p>
+                    <p>Helpdesk Access Level : User</p>
+                </div>
+                <div class="text-right">
+                    <button id="confirm" type="button" class="btn btn-danger btn-sm">
+                        Delete Account
+                    </button>
+                </div>
+                <script type="text/javascript">
+                    var button = document.getElementById("confirm");
+                    button.addEventListener("click", function() {
+                        var x = confirm("Are you sure to remove this account?");
+                        if (x) return true;
+                        else return false;
+                    });
+                </script>
+            <?php
+            } else { ?>
+                <div class="alert alert-info" role="alert">
+                    <h4>Sorry, only authenticated user can access this page.</h4>
+                    <p><a href="/Assignment/RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+                </div><?php
+                    }
+                        ?>
         </main>
 
         <footer class="container text-center font-italic py-2">

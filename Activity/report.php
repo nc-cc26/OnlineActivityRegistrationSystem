@@ -57,18 +57,16 @@
             </div>
         </nav>
         <main class="jumbotron mt-2">
+            <?php
+            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+            ?>
 
-
-            <div class="banner">
-                <h1 class="banner" align="center">
-                    <img class="banner" src="../imgs/report.png" alt="Report an Issue" width="1025" height="350">
-            </div>
+                <div class="banner">
+                    <h1 class="banner" align="center">
+                        <img class="banner" src="../imgs/report.png" alt="Report an Issue" width="1025" height="350">
+                </div>
 
         </main>
-
-
-
-
 
         <main class="jumbotron mt-2">
             <h2>Report an Issue</h2>
@@ -110,21 +108,28 @@
                     <input type="submit" value="Upload" />
 
 
-
                     <div>
                         <input type="submit" value="Submit" />
                     </div>
-
                 </form>
+            </form>
+        <?php
+            } else { ?>
+            <div class="alert alert-info" role="alert">
+                <h4>Sorry, only authenticated user can access this page.</h4>
+                <p><a href="/Assignment/RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+            </div><?php
+                }
+                    ?>
+        </main>
 
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-                <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-                <footer class="container text-center font-italic py-2">
-                    Copyright © 2020 - XXX Residential College.
-                </footer>
+        <footer class="container text-center font-italic py-2">
+            Copyright © 2020 - XXX Residential College.
+        </footer>
 
 </body>
 

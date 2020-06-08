@@ -57,182 +57,189 @@
 
         <main class="jumbotron mt-2">
             <h2>Accommodation during Semester Break</h2>
-            <a class="btn" id="appbtn" href="Application.php">
-                <h5><img class="mb-1" src="../imgs/plus.png" height="20" width="20">Make a new application</h5>
-            </a>
+            <?php
+            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+            ?>
+                <a class="btn" id="appbtn" href="Application.php">
+                    <h5><img class="mb-1" src="../imgs/plus.png" height="20" width="20">Make a new application</h5>
+                </a>
 
-            <h4>Application History</h4>
-            <div class="table-responsive">
-                <table class="table table-bordered ">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Application Date</th>
+                <h4>Application History</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered ">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Application Date</th>
 
-                            <th>Duration</th>
-                            <th>Stay From</th>
-                            <th>To</th>
-                            <th>Status</th>
-                        </tr>
-                    <tbody>
-                        <script type="text/javascript">
-                            var retrieve = localStorage.getItem("localapplication_arr");
-                            var application = JSON.parse(retrieve);
-
-
-                            /*Sample input*/
-                            var selectedApp = localStorage.getItem("selectedApp");
-
-                            if (selectedApp == null) {
-
-                                var application2 = [{
-                                    PK: "12",
-                                    Date: "2020-3-24",
-                                    Reason: "College ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollegeCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollegeCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege Activity",
-                                    Duration: 10,
-                                    From: "2020-07-06",
-                                    To: "2020-07-16",
-                                    Status: "Submitted"
-                                }, {
-                                    PK: "10",
-                                    Date: "2020-3-01",
-                                    Reason: "College Activity",
-                                    Duration: 3,
-                                    From: "2020-07-02",
-                                    To: "2020-07-05",
-                                    Status: "Rejected"
-                                }, {
-                                    PK: "7",
-                                    Date: "2019-5-13",
-                                    Reason: "College Activity",
-                                    Duration: 3,
-                                    From: "2019-07-02",
-                                    To: "2019-07-05",
-                                    Status: "Approved"
-                                }];
-                                if (application == null) {
-                                    application = application2;
-                                    localStorage.setItem("localapplication_arr", JSON.stringify(application));
-
-                                } else if (application.length == 1) {
-                                    Array.prototype.push.apply(application, application2);
-                                    localStorage.setItem("localapplication_arr", JSON.stringify(application));
-
-                                }
-
-                            }
-
-
-
-
-
-
-                            for (var i = 0; i <= application.length - 1; i++) {
-                                document.write("<tr>");
-                                document.write("<td>" + (i + 1) + "</td>");
-                                document.write("<td>" + application[i].Date + "</td>");
-
-                                document.write("<td>" + application[i].Duration + " Day(s)</td>");
-                                document.write("<td>" + application[i].From + "</td>");
-                                document.write("<td>" + application[i].To + "</td>");
-                                document.write("<td><a  class=' button' id='" + i + "' onclick='disp(" + i + ")' href='#popup1'>" +
-                                    application[i].Status + "</a></td>");
-                                document.write("</tr>");
-                            }
-                        </script>
-
-                    </tbody>
-                    </thead>
-                </table>
-
-                <!-- pop out application details -->
-                <div id="popup1" class="overlay">
-
-                    <div class="popup">
-                        <h2>Application Details</h2>
-                        <a class="close" href="#">&times;</a>
-                        <div class="content">
-                            <br>
-                            <p id="application_details">Application Date: <br>
-                                <p id="Date"></p>
-                            </p>
-                            <p id="application_details">Reason: <br><textarea class="w-100" style="border: none; resize: none;" id="Reason"></textarea></p>
-                            <p id="application_details">Duration: <br>
-                                <p id="Duration"></p>
-                            </p>
-                            <p id="application_details">Stay From: <br>
-                                <p id="From"></p>
-                            </p>
-                            <p id="application_details">To: <br>
-                                <p id="To"></p>
-                            </p>
-                            <p id="application_details">Status: <br>
-                                <p id="Status"></p>
-                            </p>
-                            <a href='#popup2'>
-                                <p align="right" id="cancel"></p>
-                            </a>
-                            <a href="EditApplication.php">
-                                <p align="right" id="edit"></p>
-                            </a>
-
+                                <th>Duration</th>
+                                <th>Stay From</th>
+                                <th>To</th>
+                                <th>Status</th>
+                            </tr>
+                        <tbody>
                             <script type="text/javascript">
-                                var clicked;
+                                var retrieve = localStorage.getItem("localapplication_arr");
+                                var application = JSON.parse(retrieve);
 
-                                function disp(no) {
-                                    clicked = no;
-                                    localStorage.setItem("selectedApp", no);
-                                    console.log(no);
-                                    document.getElementById("Date").textContent = application[clicked].Date;
-                                    document.getElementById("Reason").textContent = application[clicked].Reason;
-                                    document.getElementById("Duration").textContent = application[clicked].Duration + " Day(s)";
-                                    document.getElementById("From").textContent = application[clicked].From;
-                                    document.getElementById("To").textContent = application[clicked].To;
-                                    document.getElementById("Status").textContent = application[clicked].Status;
-                                    var edit = document.querySelector("#edit");
-                                    var cancel = document.querySelector("#cancel")
-                                    if (application[clicked].Status == "Submitted") {
-                                        edit.textContent = "Edit";
-                                        cancel.textContent = "Cancel Application";
-                                    } else {
-                                        edit.textContent = "";
-                                        cancel.textContent = "";
+
+                                /*Sample input*/
+                                var selectedApp = localStorage.getItem("selectedApp");
+
+                                if (selectedApp == null) {
+
+                                    var application2 = [{
+                                        PK: "12",
+                                        Date: "2020-3-24",
+                                        Reason: "College ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollegeCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollegeCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege ActivityCollege Activity",
+                                        Duration: 10,
+                                        From: "2020-07-06",
+                                        To: "2020-07-16",
+                                        Status: "Submitted"
+                                    }, {
+                                        PK: "10",
+                                        Date: "2020-3-01",
+                                        Reason: "College Activity",
+                                        Duration: 3,
+                                        From: "2020-07-02",
+                                        To: "2020-07-05",
+                                        Status: "Rejected"
+                                    }, {
+                                        PK: "7",
+                                        Date: "2019-5-13",
+                                        Reason: "College Activity",
+                                        Duration: 3,
+                                        From: "2019-07-02",
+                                        To: "2019-07-05",
+                                        Status: "Approved"
+                                    }];
+                                    if (application == null) {
+                                        application = application2;
+                                        localStorage.setItem("localapplication_arr", JSON.stringify(application));
+
+                                    } else if (application.length == 1) {
+                                        Array.prototype.push.apply(application, application2);
+                                        localStorage.setItem("localapplication_arr", JSON.stringify(application));
+
                                     }
 
                                 }
+
+
+
+
+
+
+                                for (var i = 0; i <= application.length - 1; i++) {
+                                    document.write("<tr>");
+                                    document.write("<td>" + (i + 1) + "</td>");
+                                    document.write("<td>" + application[i].Date + "</td>");
+
+                                    document.write("<td>" + application[i].Duration + " Day(s)</td>");
+                                    document.write("<td>" + application[i].From + "</td>");
+                                    document.write("<td>" + application[i].To + "</td>");
+                                    document.write("<td><a  class=' button' id='" + i + "' onclick='disp(" + i + ")' href='#popup1'>" +
+                                        application[i].Status + "</a></td>");
+                                    document.write("</tr>");
+                                }
                             </script>
 
+                        </tbody>
+                        </thead>
+                    </table>
+
+                    <!-- pop out application details -->
+                    <div id="popup1" class="overlay">
+
+                        <div class="popup">
+                            <h2>Application Details</h2>
+                            <a class="close" href="#">&times;</a>
+                            <div class="content">
+                                <br>
+                                <p id="application_details">Application Date: <br>
+                                    <p id="Date"></p>
+                                </p>
+                                <p id="application_details">Reason: <br><textarea class="w-100" style="border: none; resize: none;" id="Reason"></textarea></p>
+                                <p id="application_details">Duration: <br>
+                                    <p id="Duration"></p>
+                                </p>
+                                <p id="application_details">Stay From: <br>
+                                    <p id="From"></p>
+                                </p>
+                                <p id="application_details">To: <br>
+                                    <p id="To"></p>
+                                </p>
+                                <p id="application_details">Status: <br>
+                                    <p id="Status"></p>
+                                </p>
+                                <a href='#popup2'>
+                                    <p align="right" id="cancel"></p>
+                                </a>
+                                <a href="EditApplication.php">
+                                    <p align="right" id="edit"></p>
+                                </a>
+
+                                <script type="text/javascript">
+                                    var clicked;
+
+                                    function disp(no) {
+                                        clicked = no;
+                                        localStorage.setItem("selectedApp", no);
+                                        console.log(no);
+                                        document.getElementById("Date").textContent = application[clicked].Date;
+                                        document.getElementById("Reason").textContent = application[clicked].Reason;
+                                        document.getElementById("Duration").textContent = application[clicked].Duration + " Day(s)";
+                                        document.getElementById("From").textContent = application[clicked].From;
+                                        document.getElementById("To").textContent = application[clicked].To;
+                                        document.getElementById("Status").textContent = application[clicked].Status;
+                                        var edit = document.querySelector("#edit");
+                                        var cancel = document.querySelector("#cancel")
+                                        if (application[clicked].Status == "Submitted") {
+                                            edit.textContent = "Edit";
+                                            cancel.textContent = "Cancel Application";
+                                        } else {
+                                            edit.textContent = "";
+                                            cancel.textContent = "";
+                                        }
+
+                                    }
+                                </script>
+
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
 
 
+                    <!-- pop out cancel application confirmation -->
+                    <div id="popup2" class="overlay">
+                        <div class="popup" id="yesno">
+                            <h2></h2>
 
-                <!-- pop out cancel application confirmation -->
-                <div id="popup2" class="overlay">
-                    <div class="popup" id="yesno">
-                        <h2></h2>
+                            <div class="content">
+                                <br>
+                                </p></a>
+                                <p class="mb-5" align="center">Are you sure that you want to cancel this application?
+                                </p>
+                                <p align="right">
+                                    <a class="btn no" id="no" href="#">No</a>&nbsp;&nbsp;
+                                    <a class="btn" onclick="cancelapp()" id="yes">Yes</a></p>
 
-                        <div class="content">
-                            <br>
-                            </p></a>
-                            <p class="mb-5" align="center">Are you sure that you want to cancel this application?
-                            </p>
-                            <p align="right">
-                                <a class="btn no" id="no" href="#">No</a>&nbsp;&nbsp;
-                                <a class="btn" onclick="cancelapp()" id="yes">Yes</a></p>
-
+                            </div>
                         </div>
                     </div>
                 </div>
 
-
-
-
-
-            </div>
+            <?php
+            } else { ?>
+                <div class="alert alert-info" role="alert">
+                    <h4>Sorry, only authenticated user can access this page.</h4>
+                    <p><a href="/Assignment/RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+                </div><?php
+                    }
+                        ?>
 
         </main>
 

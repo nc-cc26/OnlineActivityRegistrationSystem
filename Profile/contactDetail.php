@@ -74,49 +74,60 @@
                     </ul>
                 </div>
             </nav>
-            <div class="text-center">
-                <img id="picture" src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <p>Address</p>
-                    <p>Postcode</p>
-                    <p>City</p>
-                    <p>State</p>
-                    <p>Telephone No.</p>
-                    <p>Email</p>
+            <?php
+            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+            ?>
+                <div class="text-center">
+                    <img id="picture" src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
                 </div>
-                <div class="col-md-1">
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p>Address</p>
+                        <p>Postcode</p>
+                        <p>City</p>
+                        <p>State</p>
+                        <p>Telephone No.</p>
+                        <p>Email</p>
+                    </div>
+                    <div class="col-md-1">
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                    </div>
+                    <div class="col-md-9">
+                        <p id="address">unknown</p>
+                        <p id="postcode">unknown</p>
+                        <p id="city">unknown</p>
+                        <p id="state">unknown</p>
+                        <p id="telephone">unknown</p>
+                        <p id="email">unknown</p>
+                        <br />
+                    </div>
                 </div>
-                <div class="col-md-9">
-                    <p id="address">unknown</p>
-                    <p id="postcode">unknown</p>
-                    <p id="city">unknown</p>
-                    <p id="state">unknown</p>
-                    <p id="telephone">unknown</p>
-                    <p id="email">unknown</p>
-                    <br />
+                <div class="text-left">
+                    <button id="confirm" type="button" class="btn btn-primary btn-sm">
+                        Update Contact Information
+                    </button>
                 </div>
-            </div>
-            <div class="text-left">
-                <button id="confirm" type="button" class="btn btn-primary btn-sm">
-                    Update Contact Information
-                </button>
-            </div>
-            <script type="text/javascript">
-                var button = document.getElementById("confirm");
-                button.addEventListener("click", function() {
-                    var x = confirm("Are you sure to update  contact account?");
-                    if (x) window.location.href = "updateContact.php";
-                    else return false;
-                });
-            </script>
+                <script type="text/javascript">
+                    var button = document.getElementById("confirm");
+                    button.addEventListener("click", function() {
+                        var x = confirm("Are you sure to update  contact account?");
+                        if (x) window.location.href = "updateContact.php";
+                        else return false;
+                    });
+                </script>
+            <?php
+            } else { ?>
+                <div class="alert alert-info" role="alert">
+                    <h4>Sorry, only authenticated user can access this page.</h4>
+                    <p><a href="/Assignment/RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+                </div><?php
+                    }
+                        ?>
         </main>
 
         <footer class="container text-center font-italic py-2">

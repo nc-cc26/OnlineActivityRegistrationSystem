@@ -55,61 +55,72 @@
         </nav>
         <main class="jumbotron mt-2">
             <h2 class="font-weight-bold">Registration for Activities</h2>
-            <div class="jumbotron mt-8">
-                <form action="#" method="post" id="form_id">
-                    <div>
-                        <label for="Name">Name:</label><br />
-                        <input type="text" class="form-control" id="name" />
-                    </div>
+            <?php
+            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+            ?>
+                <div class="jumbotron mt-8">
+                    <form action="#" method="post" id="form_id">
+                        <div>
+                            <label for="Name">Name:</label><br />
+                            <input type="text" class="form-control" id="name" />
+                        </div>
 
-                    <div>
-                        <br /><label for="Matricnumber">Matric Number:</label><br />
-                        <input type="text" class="form-control" id="matricnumber" />
-                    </div>
+                        <div>
+                            <br /><label for="Matricnumber">Matric Number:</label><br />
+                            <input type="text" class="form-control" id="matricnumber" />
+                        </div>
 
-                    <div>
-                        <br /><label for="Year">Year:</label><br />
-                        <input type="text" class="form-control" id="year" />
-                    </div>
+                        <div>
+                            <br /><label for="Year">Year:</label><br />
+                            <input type="text" class="form-control" id="year" />
+                        </div>
 
-                    <div>
-                        <br /><label for="Semester">Semester:</label><br />
-                        <input type="text" class="form-control" id="semester" />
-                    </div>
+                        <div>
+                            <br /><label for="Semester">Semester:</label><br />
+                            <input type="text" class="form-control" id="semester" />
+                        </div>
 
-                    <div>
-                        <br /><label for="activities">Select your activities:</label><br />
-                        <input type="checkbox" id="olympics" name="olympics" value="Olympics" required />
-                        <label for="olympics"> MyCollege Olympics</label>
-                        <p></p>
-                        <br />
+                        <div>
+                            <br /><label for="activities">Select your activities:</label><br />
+                            <input type="checkbox" id="olympics" name="olympics" value="Olympics" required />
+                            <label for="olympics"> MyCollege Olympics</label>
+                            <p></p>
+                            <br />
 
-                        <input type="checkbox" id="game" name="game" value="Game" />
-                        <label for="game"> Gamers Guild</label>
-                        <p></p>
-                        <br />
+                            <input type="checkbox" id="game" name="game" value="Game" />
+                            <label for="game"> Gamers Guild</label>
+                            <p></p>
+                            <br />
 
-                        <input type="checkbox" id="language" name="language" value="Language" />
-                        <label for="language"> Language and Culture Class</label><br />
-                        <p></p>
-                        <br />
+                            <input type="checkbox" id="language" name="language" value="Language" />
+                            <label for="language"> Language and Culture Class</label><br />
+                            <p></p>
+                            <br />
 
-                        <input type="checkbox" id="talent" name="talent" value="Talent" />
-                        <label for="talent"> MyCollege Got Talent</label><br />
-                        <p></p>
-                        <br />
+                            <input type="checkbox" id="talent" name="talent" value="Talent" />
+                            <label for="talent"> MyCollege Got Talent</label><br />
+                            <p></p>
+                            <br />
 
-                        <input type="checkbox" id="photography" name="photography" value="Photography" />
-                        <label for="photography"> Photography Club</label><br />
-                        <p></p>
-                        <br />
-                    </div>
-                    <div style="text-align:center">
-                        <input type="button" class="btn btn-success" id="submit" value="Submit" />
-                        <input type="button" class="btn btn-danger" id="cancel" value="Cancel" />
-                    </div>
-                </form>
-            </div>
+                            <input type="checkbox" id="photography" name="photography" value="Photography" />
+                            <label for="photography"> Photography Club</label><br />
+                            <p></p>
+                            <br />
+                        </div>
+                        <div style="text-align:center">
+                            <input type="button" class="btn btn-success" id="submit" value="Submit" />
+                            <input type="button" class="btn btn-danger" id="cancel" value="Cancel" />
+                        </div>
+                    </form>
+                </div>
+            <?php
+            } else { ?>
+                <div class="alert alert-info" role="alert">
+                    <h4>Sorry, only authenticated user can access this page.</h4>
+                    <p><a href="/Assignment/RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+                </div><?php
+                    }
+                        ?>
         </main>
 
         <footer class="container text-center font-italic py-2">

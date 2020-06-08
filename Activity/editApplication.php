@@ -150,18 +150,10 @@
                     <p align="right">
                         <a class="btn no" id="no" href="#">No</a>&nbsp;&nbsp;
                         <a class="btn" href="Sembreak.php" id="yes">Yes</a></p>
-
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -63,62 +63,66 @@
         </nav>
         <main class="jumbotron mt-2">
 
-            <div class="col-25">
-                <div class="container">
-                    <h4>Activities Registered</h4>
-                    <table class="table table-bordered ">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Name</th>
-                                <th>Matric Number</th>
+            <?php
+            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+            ?>
 
-                                <th>Year</th>
-                                <th>Semester</th>
-                                <th>Activities</th>
-                                <th>Status</th>
-                            </tr>
-                        <tbody>
-                            <tr>
-                                <th>1</th>
-                                <th>Mark Clarence</th>
-                                <th>WIF200001</th>
-                                <th>1</th>
-                                <th>1</th>
-                                <th><a href="Activity.php#olympics">MyCollege Olympics</a><br><a href="Activity.php#game">Gamers
-                                        Guild</a></th>
-                                <th><a onclick="confirmed()" href="#">Confirmed</a></button></th>
-                            </tr>
-                            <tr>
-                                <th>2</th>
-                                <th>Mark Clarence</th>
-                                <th>WIF200001</th>
-                                <th>1</th>
-                                <th>2</th>
-                                <th><a href="Activity.php#talent">MyCollege Got Talent</a></th>
-                                <th><a onclick="deleted()" href="#">Failed</a></th>
-                            </tr>
+                <div class="col-25">
+                    <div class="container">
+                        <h4>Activities Registered</h4>
+                        <table class="table table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Name</th>
+                                    <th>Matric Number</th>
 
-                            <tr>
-                                <th>3</th>
-                                <th>Mark Clarence</th>
-                                <th>WIF200001</th>
-                                <th>1</th>
-                                <th>2</th>
-                                <th><a href="Activity.php#photo">Photography Club</a></th>
-                                <th><a id="click" href="#">Click to confirm</a><button id="delete" style="margin-left: 1.5em" id="delete"><img src="../imgs/bin.jpg" height="20" width="20"></button></th>
-                            </tr>
-                        </tbody>
-                        </thead>
-                    </table>
+                                    <th>Year</th>
+                                    <th>Semester</th>
+                                    <th>Activities</th>
+                                    <th>Status</th>
+                                </tr>
+                            <tbody>
+                                <tr>
+                                    <th>1</th>
+                                    <th>Mark Clarence</th>
+                                    <th>WIF200001</th>
+                                    <th>1</th>
+                                    <th>1</th>
+                                    <th><a href="Activity.php#olympics">MyCollege Olympics</a><br><a href="Activity.php#game">Gamers
+                                            Guild</a></th>
+                                    <th><a onclick="confirmed()" href="#">Confirmed</a></button></th>
+                                </tr>
+                                <tr>
+                                    <th>2</th>
+                                    <th>Mark Clarence</th>
+                                    <th>WIF200001</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th><a href="Activity.php#talent">MyCollege Got Talent</a></th>
+                                    <th><a onclick="deleted()" href="#">Failed</a></th>
+                                </tr>
+
+                                <tr>
+                                    <th>3</th>
+                                    <th>Mark Clarence</th>
+                                    <th>WIF200001</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th><a href="Activity.php#photo">Photography Club</a></th>
+                                    <th><a id="click" href="#">Click to confirm</a><button id="delete" style="margin-left: 1.5em" id="delete"><img src="../imgs/bin.jpg" height="20" width="20"></button></th>
+                                </tr>
+                            </tbody>
+                            </thead>
+                        </table>
 
 
 
 
 
 
+                    </div>
                 </div>
-            </div>
     </div>
 
     <script>
@@ -148,7 +152,6 @@
             }
         });
 
-
         delButton.addEventListener("click", function() {
             var deletemou = window.confirm("Are you sure to delete this registration?");
             if (deletemou) {
@@ -160,30 +163,36 @@
             }
         });
     </script>
+<?php
+            } else { ?>
+    <div class="alert alert-info" role="alert">
+        <h4>Sorry, only authenticated user can access this page.</h4>
+        <p><a href="/Assignment/RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+    </div><?php
+            }
+            ?>
+</main>
+
+<footer class="container text-center font-italic py-2">
+    Copyright © 2020 - XXX Residential College.
+</footer>
+</div>
 
 
-    </main>
-
-    <footer class="container text-center font-italic py-2">
-        Copyright © 2020 - XXX Residential College.
-    </footer>
-    </div>
 
 
 
 
 
 
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
 </body>
 
 </html>
