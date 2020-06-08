@@ -1,15 +1,15 @@
 CREATE TABLE `personalTable` (
   `ID` varchar(9) NOT NULL,
-  `NewMatrics` varchar(10) NULL,
+  `NewMatrics` varchar(10) NOT NULL DEFAULT 'Null',
   `ProfilePicture` longblob NULL,
-  `Name` varchar(254) NULL,
-  `IC` varchar(20) NULL,
-  `Nationality` varchar(13) NULL,
-  `Gender` varchar(6) NULL,
-  `Birthday` varchar(254) NULL,
-  `Race` varchar(10) NULL,
-  `Religion` varchar(12) NULL,
-  `Marital` varchar(10) NULL,
+  `Name` varchar(254) NOT NULL DEFAULT 'Null',
+  `IC` varchar(20) NOT NULL DEFAULT 'Null',
+  `Nationality` varchar(13) NOT NULL DEFAULT 'Null',
+  `Gender` varchar(6) NOT NULL DEFAULT 'Null',
+  `Birthday` varchar(254) NOT NULL DEFAULT 'Null',
+  `Race` varchar(10) NOT NULL DEFAULT 'Null',
+  `Religion` varchar(12) NOT NULL DEFAULT 'Null',
+  `Marital` varchar(10) NOT NULL DEFAULT 'Null',
   PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

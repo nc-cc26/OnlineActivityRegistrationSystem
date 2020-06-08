@@ -1,11 +1,11 @@
 CREATE TABLE `contactTable` (
     `ID` varchar(9) NOT NULL,
-    `Address` varchar(254) NULL,
-    `Postcode` int(5) NULL,
-    `City` varchar(20) NULL,
-    `State` varchar(30) NULL,
-    `Phone` int(11) NULL,
-    `Email` varchar(9) NULL,
+    `Address` varchar(254) NOT NULL DEFAULT 'Null',
+    `Postcode` int(5) NOT NULL DEFAULT 'Null',
+    `City` varchar(20) NOT NULL DEFAULT 'Null',
+    `State` varchar(30) NOT NULL DEFAULT 'Null',
+    `Phone` int(11) NOT NULL DEFAULT 'Null',
+    `Email` varchar(9) NOT NULL DEFAULT 'Null', 
     PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
