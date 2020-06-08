@@ -41,12 +41,12 @@
                     <input id="lg-btn" class="toggle-btn" type="button" value="Log In" onclick="login()" />
                 </div>
 
-                <form id="register" method="post" action="ProcessForm.php" class="input-grp">
+                <form onsubmit="return checkForm(this);" id="register" method="post" action="ProcessForm.php" class="input-grp">
                     <div class="d-flex justify-content-center"></div>
 
                     <div>
                         <label for="new-ID">ID: </label>
-                        <input id="new-ID" name="newID" type="text" class="input-field" placeholder="Enter ID" required />
+                        <input id="new-ID" name="newID" type="text" class="input-field" placeholder="Non-empty ID" required />
                     </div>
 
                     <div>
@@ -78,7 +78,7 @@
 
                 <form id="login" method="post" action="ProcessForm.php" class="input-grp">
                     <div>
-                        <label for="ID">ID: </label>
+                        <label for=" ID">ID: </label>
                         <input id="ID" name="ID" type="text" class="input-field" placeholder="Non-empty ID" required />
                     </div>
 
@@ -89,7 +89,8 @@
                     </div>
 
                     <div class="mb-2">
-                        <a href="RequestID.php">Forgot ID?</a>
+                        <p class="m-0">Forgot ID?</p>
+                        <a href="RequestID.php">Click Me</a>
                     </div>
 
                     <!-- <div>
@@ -140,12 +141,12 @@
         }
 
         // When the user clicks on the password field, show the message box
-        myInput.onfocus = function() {
+        myInput.onmouseover = function() {
             document.getElementById("message").style.display = "block";
         }
 
         // When the user clicks outside of the password field, hide the message box
-        myInput.onblur = function() {
+        myInput.onmouseout = function() {
             document.getElementById("message").style.display = "none";
         }
 
@@ -188,6 +189,14 @@
                 length.classList.remove("valid");
                 length.classList.add("invalid");
             }
+        }
+
+        function checkForm() {
+            let allValid = capital.classList.contains('valid') && letter.classList.contains('valid') && number.classList.contains('valid') && length.classList.contains('valid');
+            if (!allValid) {
+                alert('Please follow the password format.');
+            }
+            return capital.classList.contains('valid') && letter.classList.contains('valid') && number.classList.contains('valid') && length.classList.contains('valid');
         }
     </script>
 
