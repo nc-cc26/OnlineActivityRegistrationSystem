@@ -105,7 +105,7 @@ if (isset($_POST['login'])) {
         extract($row);
         $_SESSION['id'] = $ID;
         $_SESSION['pw'] = $hash;
-        header("Location:/Assignment/Activity/activity.html");
+        header("Location:../Activity/activity.php");
     } else {
         header('Location:RegisterLogin.php?msg=login_failed');
     }
