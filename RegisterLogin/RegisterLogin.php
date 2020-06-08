@@ -76,7 +76,7 @@
 
                     <div>
                         <label for="ID">ID: </label>
-                        <input id="ID" name="ID" type="text" class="input-field" placeholder="Enter ID" required />
+                        <input id="ID" name="ID" type="text" class="input-field" placeholder="Non-empty ID" required />
                     </div>
 
                     <div>

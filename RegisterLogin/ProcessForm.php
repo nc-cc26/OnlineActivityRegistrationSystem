@@ -15,7 +15,7 @@
 include_once '../database.php';
 
 if (isset($_POST['register'])) {
-    if (!empty($_POST['newID']) && $_POST['email'] && $_POST['newPW']) {
+    if (!empty(trim($_POST['newID'])) && !empty(trim($_POST['email'])) && !empty(trim($_POST['newPW']))) {
         $ID = $_POST['newID'];
         $ID = strtoupper($ID);
         $Email = $_POST['email'];

@@ -30,14 +30,14 @@
             <div class="collapse navbar-collapse " id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto ">
                     <li class="nav-item ">
-                        <a class="nav-link" href="Activity.html">Activity</a>
+                        <a class="nav-link" href="Activity.php">Activity</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link " href="Sembreak.html">Semester Break <span class="sr-only">(current)</span></a>
+                        <a class="nav-link " href="Sembreak.php">Semester Break <span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Report.html">Report an Issue</a>
+                        <a class="nav-link" href="Report.php">Report an Issue</a>
                     </li>
 
                 </ul>
@@ -47,7 +47,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../imgs/profile.png" width="18" height="18">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="../Profile/profile.html">My Profile</a>
+                            <a class="dropdown-item" href="../Profile/profile.php">My Profile</a>
                             <a class="dropdown-item" href="../RegisterLogin/Logout.php">Logout</a>
                         </div>
                     </li>
@@ -57,7 +57,7 @@
 
         <main class="jumbotron mt-2">
             <h2>Accommodation during Semester Break</h2>
-            <a class="btn" id="appbtn" href="Application.html">
+            <a class="btn" id="appbtn" href="Application.php">
                 <h5><img class="mb-1" src="../imgs/plus.png" height="20" width="20">Make a new application</h5>
             </a>
 
@@ -172,7 +172,7 @@
                             <a href='#popup2'>
                                 <p align="right" id="cancel"></p>
                             </a>
-                            <a href="EditApplication.html">
+                            <a href="EditApplication.php">
                                 <p align="right" id="edit"></p>
                             </a>
 
@@ -261,7 +261,7 @@
         function cancelapp() {
             application.splice(clicked, 1);
             localStorage.setItem("localapplication_arr", JSON.stringify(application));
-            window.location.href = "Sembreak.html";
+            window.location.href = "Sembreak.php";
         }
     </script>
 </body>

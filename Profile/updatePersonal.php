@@ -46,7 +46,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="profile.html">My Profile</a>
+                    <a class="nav-link" href="profile.php">My Profile</a>
                 </li>
             </ul>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -55,10 +55,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="profileDetail.html">Detail</a>
+                        <a class="nav-link" href="profileDetail.php">Detail</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="updatePersonal.html">Update <span class="sr-only">(current)</span>
+                        <a class="nav-link" href="updatePersonal.php">Update <span class="sr-only">(current)</span>
                         </a>
                     </li>
                 </ul>
@@ -67,9 +67,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../imgs/profile.png" width="18" height="18" />
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="../Activity/Activity.html">Activity</a>
-                            <a class="dropdown-item" href="../Activity/Sembreak.html">Semester Break</a>
-                            <a class="dropdown-item" href="../Activity/Report.html">Report an Issue</a>
+                            <a class="dropdown-item" href="../Activity/Activity.php">Activity</a>
+                            <a class="dropdown-item" href="../Activity/Sembreak.php">Semester Break</a>
+                            <a class="dropdown-item" href="../Activity/Report.php">Report an Issue</a>
                             <a class="dropdown-item" href="../RegisterLogin/Logout.php">Logout</a>
                         </div>
                     </li>
@@ -86,13 +86,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="updatePersonal.html">Personal <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="updatePersonal.php">Personal <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="updateAcademic.html">Academic</a>
+                            <a class="nav-link" href="updateAcademic.php">Academic</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="updateContact.html">Contact</a>
+                            <a class="nav-link" href="updateContact.php">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -332,7 +332,7 @@
         document.getElementById("skipPersonal").addEventListener("click", function() {
             var confirm = window.confirm("Proceed to update academic detail?");
             if (confirm) {
-                window.location.href = "updateAcademic.html";
+                window.location.href = "updateAcademic.php";
             } else {
                 return true;
             }

@@ -31,14 +31,14 @@
             <div class="collapse navbar-collapse " id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto ">
                     <li class="nav-item active">
-                        <a class="nav-link" href="Activity.html">Activity<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="Activity.php">Activity<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="Sembreak.html">Semester Break</a>
+                        <a class="nav-link " href="Sembreak.php">Semester Break</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Report.html">Report an Issue</a>
+                        <a class="nav-link" href="Report.php">Report an Issue</a>
                     </li>
 
                 </ul>
@@ -48,7 +48,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../imgs/profile.png" width="18" height="18">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="../Profile/profile.html">My Profile</a>
+                            <a class="dropdown-item" href="../Profile/profile.php">My Profile</a>
                             <a class="dropdown-item" href="../RegisterLogin/Logout.php">Logout</a>
                         </div>
                     </li>
@@ -149,7 +149,7 @@
 
         <p class="spaceP">
             <div style="text-align:center">
-                <a href="register.html"><button class="btn btn-primary">Register Now</button></a> or <a href="history.html"><button class="btn btn-primary">View Register History</button></a>
+                <a href="register.php"><button class="btn btn-primary">Register Now</button></a> or <a href="history.php"><button class="btn btn-primary">View Register History</button></a>
             </div>
         </p>
 

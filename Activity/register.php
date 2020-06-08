@@ -31,14 +31,14 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="Activity.html">Activity<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="Activity.php">Activity<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Sembreak.html">Semester Break</a>
+                        <a class="nav-link" href="Sembreak.php">Semester Break</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Report.html">Report an Issue</a>
+                        <a class="nav-link" href="Report.php">Report an Issue</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-1">
@@ -46,7 +46,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../imgs/profile.png" width="18" height="18" />
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="../Profile/profile.html">My Profile</a>
+                            <a class="dropdown-item" href="../Profile/profile.php">My Profile</a>
                             <a class="dropdown-item" href="../RegisterLogin/Logout.php">Logout</a>
                         </div>
                     </li>
@@ -124,7 +124,7 @@
         sub.addEventListener("click", function() {
             var yes = window.confirm("Are you sure to submit the registration?");
             if (yes) {
-                window.location.href = "history.html";
+                window.location.href = "history.php";
             } else {
                 return true;
             }
@@ -134,7 +134,7 @@
         can.addEventListener("click", function() {
             var no = window.confirm("Are you sure to cancel the registration?");
             if (no) {
-                window.location.href = "Activity.html";
+                window.location.href = "Activity.php";
             } else {
                 return true;
             }

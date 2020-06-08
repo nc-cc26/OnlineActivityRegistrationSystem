@@ -37,14 +37,14 @@
             <div class="collapse navbar-collapse " id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto ">
                     <li class="nav-item active">
-                        <a class="nav-link" href="Activity.html">Activity</a>
+                        <a class="nav-link" href="Activity.php">Activity</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="Sembreak.html">Semester Break</a>
+                        <a class="nav-link " href="Sembreak.php">Semester Break</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Report.html">Report an Issue</a>
+                        <a class="nav-link" href="Report.php">Report an Issue</a>
                     </li>
 
                 </ul>
@@ -54,7 +54,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../imgs/profile.png" width="18" height="18">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="../Profile/profile.html">My Profile</a>
+                            <a class="dropdown-item" href="../Profile/profile.php">My Profile</a>
                             <a class="dropdown-item" href="../RegisterLogin/Logout.php">Logout</a>
                         </div>
                     </li>
@@ -85,7 +85,7 @@
                                 <th>WIF200001</th>
                                 <th>1</th>
                                 <th>1</th>
-                                <th><a href="Activity.html#olympics">MyCollege Olympics</a><br><a href="Activity.html#game">Gamers
+                                <th><a href="Activity.php#olympics">MyCollege Olympics</a><br><a href="Activity.php#game">Gamers
                                         Guild</a></th>
                                 <th><a onclick="confirmed()" href="#">Confirmed</a></button></th>
                             </tr>
@@ -95,7 +95,7 @@
                                 <th>WIF200001</th>
                                 <th>1</th>
                                 <th>2</th>
-                                <th><a href="Activity.html#talent">MyCollege Got Talent</a></th>
+                                <th><a href="Activity.php#talent">MyCollege Got Talent</a></th>
                                 <th><a onclick="deleted()" href="#">Failed</a></th>
                             </tr>
 
@@ -105,7 +105,7 @@
                                 <th>WIF200001</th>
                                 <th>1</th>
                                 <th>2</th>
-                                <th><a href="Activity.html#photo">Photography Club</a></th>
+                                <th><a href="Activity.php#photo">Photography Club</a></th>
                                 <th><a id="click" href="#">Click to confirm</a><button id="delete" style="margin-left: 1.5em" id="delete"><img src="../imgs/bin.jpg" height="20" width="20"></button></th>
                             </tr>
                         </tbody>

@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="profile.html">My Profile</a>
+                    <a class="nav-link" href="profile.php">My Profile</a>
                 </li>
             </ul>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -35,10 +35,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="profileDetail.html">Detail<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="profileDetail.php">Detail<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="updatePersonal.html">Update</a>
+                        <a class="nav-link" href="updatePersonal.php">Update</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-1">
@@ -46,9 +46,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../imgs/profile.png" width="18" height="18" />
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="../Activity/Activity.html">Activity</a>
-                            <a class="dropdown-item" href="../Activity/Sembreak.html">Semester Break</a>
-                            <a class="dropdown-item" href="../Activity/Report.html">Report an Issue</a>
+                            <a class="dropdown-item" href="../Activity/Activity.php">Activity</a>
+                            <a class="dropdown-item" href="../Activity/Sembreak.php">Semester Break</a>
+                            <a class="dropdown-item" href="../Activity/Report.php">Report an Issue</a>
                             <a class="dropdown-item" href="../RegisterLogin/Logout.php">Logout</a>
                         </div>
                     </li>
@@ -63,13 +63,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="profileDetail.html">Personal</a>
+                            <a class="nav-link" href="profileDetail.php">Personal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="academicDetail.html">Academic</a>
+                            <a class="nav-link" href="academicDetail.php">Academic</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="contactDetail.html">Contact <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="contactDetail.php">Contact <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
                 </div>
@@ -113,7 +113,7 @@
                 var button = document.getElementById("confirm");
                 button.addEventListener("click", function() {
                     var x = confirm("Are you sure to update  contact account?");
-                    if (x) window.location.href = "updateContact.html";
+                    if (x) window.location.href = "updateContact.php";
                     else return false;
                 });
             </script>
