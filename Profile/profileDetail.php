@@ -76,51 +76,41 @@
             </nav>
             <?php
             session_start();
+            include_once '../database.php';
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+                $id = $_SESSION['user_id'];
+                $sql = "SELECT * FROM personaltable WHERE id='$id'";
+                $result = $pdo->prepare($sql);
+                $result -> execute();
+
+                while ($res = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $ID = $res['ID'];
+                    $ProfilePicture = $res['ProfilePicture'];
+                    $Name = $res['Name'];
+                    $IC = $res['IC'];
+                    $Nationality = $res['Nationality'];
+                    $Gender = $res['Gender'];
+                    $Birthday = $res['Birthday'];
+                    $Race = $res['Race'];
+                    $Religion = $res['Religion'];
+                    $Marital = $res['Marital'];
+                }
             ?>
                 <div class="text-center">
-                    <img id="picture" src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
+                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($ProfilePicture); ?>" alt="User profile picture" style="width: 200px; height: 200px; border: 1px solid Gray;"/>
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <p>Name</p>
-                        <p>Old Matrics No.</p>
-                        <p>New Matrics No.</p>
-                        <p>IC/Passport No.</p>
-                        <p>Nationality</p>
-                        <p>Gender</p>
-                        <p>Date of Birth</p>
-                        <p>Race</p>
-                        <p>Religion</p>
-                        <p>Marital Status</p>
-                    </div>
-                    <div class="col-md-1">
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                    </div>
-                    <div class="col-md-9">
-                        <p id="name">unknown</p>
-                        <p id="oldMatriks">unknown</p>
-                        <p id="newMatrks">unknown</p>
-                        <p id="IC">unknown</p>
-                        <p id="nationality">unknown</p>
-                        <p id="gender">unknown</p>
-                        <p id="birthday">unknown</p>
-                        <p id="race">unknown</p>
-                        <p id="religion">unknown</p>
-                        <p id="marital">unknown</p>
-                        <br />
-                    </div>
-                </div>
+                <table class="table table-striped">
+                    <tr><th scope="row" class="w-25 p-3">ID:</th><td><?php echo $ID; ?> </td></tr>
+        <tr><th scope="row" class="w-25 p-3">Name:</th><td><?php echo $Name; ?> </td></tr>
+        <tr><th scope="row" class="w-25 p-3">IC:</th><td><?php echo $IC; ?></td></tr>
+        <tr><th scope="row" class="w-25 p-3">Nationality:</th><td><?php echo $Nationality; ?></td></tr>
+        <tr><th scope="row" class="w-25 p-3">Gender:</th><td><?php echo $Gender; ?></td></tr>
+        <tr><th scope="row" class="w-25 p-3">Birthday:</th><td><?php echo $Birthday; ?> </td></tr>
+        <tr><th scope="row" class="w-25 p-3">Race:</th><td><?php echo $Race; ?> </td></tr>
+        <tr><th scope="row" class="w-25 p-3">Religion:</th><td><?php echo $Religion; ?> </td></tr>
+        <tr><th scope="row" class="w-25 p-3">Marital:</th><td><?php echo $Marital; ?> </td></tr>
+    </table>
                 <div class="text-left">
                     <button id="confirm" type="button" class="btn btn-primary btn-sm">
                         Update Personal Information

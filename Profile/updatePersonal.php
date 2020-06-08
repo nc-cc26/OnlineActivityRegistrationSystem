@@ -84,6 +84,7 @@
             session_start();
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+                $id = $_SESSION['user_id'];
             ?>
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,6 +92,9 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="updateProfilePicture.php">Profile Picture</a>
+                            </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="updatePersonal.php">Personal <span class="sr-only">(current)</span></a>
                             </li>
@@ -107,11 +111,11 @@
                 $action=isset($_GET['action']) ? $_GET['action'] : "";
                 if($action == "updatePersonalSuccessful"){
                     echo "<div class='alert alert-success alert-dismissible'>
-            <h4><i class='icon fa fa-check'></i> Personal information is updated successfully! <br><a href='profile.html'>View updated information</a> now!
+            <h4><i class='icon fa fa-check'></i> Personal information is updated successfully! <br><a href='profile.php'>View updated information</a> now!
             </div>";
                 }
             ?>
-                <form method="post" action="processPersonal.php" name="personal" onsubmit="return validateForms()" class="jumbotron mt-3">
+                <form method="post" action="processPersonal.php" name="personal" onsubmit="return validateForms()" class="jumbotron mt-3" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label for="picture" class="col-md-2 col-form-label"><b>*Profile Picture</b></label>
                         <div class="col-md-3">
@@ -138,8 +142,8 @@
                     <div class="form-group row">
                         <label for="oldMatrics" class="col-md-2 col-form-label"><b>*Old Matrics No.</b></label>
                         <div class="col-md-2">
-                            <input id="oldMatrics" name="OldMatrics" class="form-control" type="text" pattern=".{9,9}" required />
-                            <small id="oldMatricsHelp" class="form-text text-muted">Eg. WIF181111 <br>(9 characters)</small>
+                            <input id="oldMatrics" name="OldMatrics" class="form-control" type="text" pattern=".{9,9}" value="<?php echo $id; ?>" readonly />
+                            <small id="oldMatricsHelp" class="form-text text-muted">Fixed user id. <br>Not changeable.</small>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -306,11 +310,11 @@
 
         document.getElementById("form").addEventListener("change", function() {
             var name = document.getElementById("name");
-            var oldMatrics = document.getElementById("oldMatrics");
+            //var oldMatrics = document.getElementById("oldMatrics");
             var newMatrics = document.getElementById("newMatrics");
             var IC = document.getElementById("IC");
             name.value = name.value.toUpperCase();
-            oldMatrics.value = oldMatrics.value.toUpperCase();
+            //oldMatrics.value = oldMatrics.value.toUpperCase();
             newMatrics.value = newMatrics.value.toUpperCase();
             IC.value = IC.value.toUpperCase();
         })
@@ -319,10 +323,10 @@
 
         function ICfunction() {
             var name = document.getElementById("name");
-            var oldMatrics = document.getElementById("oldMatrics");
+            //var oldMatrics = document.getElementById("oldMatrics");
             var IC = document.getElementById("IC");
             specialSymbol(name);
-            specialSymbol(oldMatrics);
+            //specialSymbol(oldMatrics);
             specialSymbol(IC);
         }
 
@@ -362,7 +366,7 @@
             var confirm = window.confirm("Confirm to update information of personal?");
             var picture = document.getElementById("picture");
             var name = document.getElementById("name");
-            var oldMatrics = document.getElementById("oldMatrics");
+            //var oldMatrics = document.getElementById("oldMatrics");
             var newMatrics = document.getElementById("newMatrics");
             var IC = document.getElementById("IC");
 
@@ -374,10 +378,10 @@
                 alert("The input at red-colored border form is invalid.")
                 return false;
             }
-            if (oldMatrics.style.borderColor == "red") {
-                alert("The input at red-colored border form is invalid.")
-                return false;
-            }
+            //if (oldMatrics.style.borderColor == "red") {
+            //    alert("The input at red-colored border form is invalid.")
+            //    return false;
+            //}
             if (newMatrics.style.borderColor == "red") {
                 alert("The input at red-colored border form is invalid.")
                 return false;
