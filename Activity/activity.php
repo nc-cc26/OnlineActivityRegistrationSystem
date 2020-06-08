@@ -59,7 +59,7 @@
 
             <h2 class="font-weight-bold ">Activities of MyCollege</h2>
 
-            <?
+            <?php
             session_start();
 
             if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
