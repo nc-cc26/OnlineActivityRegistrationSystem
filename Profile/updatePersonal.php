@@ -92,9 +92,6 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="updateProfilePicture.php">Profile Picture</a>
-                            </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="updatePersonal.php">Personal <span class="sr-only">(current)</span></a>
                             </li>

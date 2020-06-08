@@ -88,6 +88,7 @@
                     $ID = $res['ID'];
                     $ProfilePicture = $res['ProfilePicture'];
                     $Name = $res['Name'];
+                    $NewMatrics = $res['NewMatrics'];
                     $IC = $res['IC'];
                     $Nationality = $res['Nationality'];
                     $Gender = $res['Gender'];
@@ -102,15 +103,16 @@
                 </div>
                 <table class="table table-striped">
                     <tr><th scope="row" class="w-25 p-3">ID:</th><td><?php echo $ID; ?> </td></tr>
-        <tr><th scope="row" class="w-25 p-3">Name:</th><td><?php echo $Name; ?> </td></tr>
-        <tr><th scope="row" class="w-25 p-3">IC:</th><td><?php echo $IC; ?></td></tr>
-        <tr><th scope="row" class="w-25 p-3">Nationality:</th><td><?php echo $Nationality; ?></td></tr>
-        <tr><th scope="row" class="w-25 p-3">Gender:</th><td><?php echo $Gender; ?></td></tr>
-        <tr><th scope="row" class="w-25 p-3">Birthday:</th><td><?php echo $Birthday; ?> </td></tr>
-        <tr><th scope="row" class="w-25 p-3">Race:</th><td><?php echo $Race; ?> </td></tr>
-        <tr><th scope="row" class="w-25 p-3">Religion:</th><td><?php echo $Religion; ?> </td></tr>
-        <tr><th scope="row" class="w-25 p-3">Marital:</th><td><?php echo $Marital; ?> </td></tr>
-    </table>
+                    <tr><th scope="row" class="w-25 p-3">Name:</th><td><?php echo $Name; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">New Matrics:</th><td><?php echo $NewMatrics; ?></td></tr>
+                    <tr><th scope="row" class="w-25 p-3">IC:</th><td><?php echo $IC; ?></td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Nationality:</th><td><?php echo $Nationality; ?></td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Gender:</th><td><?php echo $Gender; ?></td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Birthday:</th><td><?php echo $Birthday; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Race:</th><td><?php echo $Race; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Religion:</th><td><?php echo $Religion; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Marital:</th><td><?php echo $Marital; ?> </td></tr>
+                </table>
                 <div class="text-left">
                     <button id="confirm" type="button" class="btn btn-primary btn-sm">
                         Update Personal Information

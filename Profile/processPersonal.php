@@ -2,10 +2,8 @@
 session_start();
 include_once('../database.php');
 
-//$targetDir = "uploads/";
-$fileType = pathinfo($fileName,PATHINFO_EXTENSION);
-$image = $_FILES["ProfilePicture"]["name"];
-$imgContent = addslashes(file_get_contents($image));
+//$image = $_FILES["ProfilePicture"]["name"];
+//$imgContent = addslashes(file_get_contents($image));
 
 if(isset($_SESSION['logged_in']) && $_SESSION['user_id'] 
 && $_SESSION['user_email'] && $_SESSION['logged_in'] == true){
@@ -14,10 +12,15 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
         if(!empty($_FILES["ProfilePicture"]["name"]) && 
         isset($_POST['Name']) && isset($_POST['NewMatrics']) && 
         isset($_POST['IC']) && isset($_POST['Nationality']) && 
-        isset($_POST['Gender']) && isset($_POST['Birthday']) ){
+        isset($_POST['Gender']) && isset($_POST['Birthday']) &&
+        isset($_POST['Race']) && isset($_POST['Religion']) &&
+        isset($_POST['Marital'])) {
             //$ProfilePicture = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
 
             //$ProfilePicture = $_POST['ProfilePicture'];
+            $image = $_FILES["ProfilePicture"]["tmp_name"];
+            $imgContent = addslashes(file_get_contents($image));
+            echo $imgContent;
             $Name = $_POST['Name'];
             $NewMatrics = $_POST['NewMatrics'];
             $IC = $_POST['IC'];
@@ -32,12 +35,13 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
             `IC`='$IC', `Nationality`='$Nationality', 
             `Gender`='$Gender', `Birthday`='$Birthday', 
             `Race`='$Race', `Religion`='$Religion', 
-            `Marital`='$Marital' WHERE `ID`='$ID'";
+            `Marital`='$Marital', `NewMatrics`='$NewMatrics' 
+            WHERE `ID`='$ID'";
 
             try{
             $updateValue = $pdo->prepare($sql);
             $updateValue -> execute();
-            header("Location:../Profile/updatePersonal.php?action=updatePersonalSuccessful");
+            //header("Location:../Profile/updatePersonal.php?action=updatePersonalSuccessful");
             
 
             }catch (Exception $e){

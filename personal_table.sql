@@ -1,6 +1,7 @@
 CREATE TABLE `personalTable` (
   `ID` varchar(9) NOT NULL,
-  `ProfilePicture` varbinary(2147483648) NULL,
+  `NewMatrics` varchar(10) NULL,
+  `ProfilePicture` longblob NULL,
   `Name` varchar(254) NULL,
   `IC` varchar(20) NULL,
   `Nationality` varchar(13) NULL,
