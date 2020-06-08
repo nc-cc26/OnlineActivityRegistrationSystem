@@ -76,36 +76,38 @@
             </nav>
             <?php
             session_start();
+            include_once '../database.php';
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
-            ?>
+                $id = $_SESSION['user_id'];
+                $sqlPicture = "SELECT ProfilePicture FROM personaltable WHERE id='$id'";
+                $resultPicture = $pdo->prepare($sqlPicture);
+                $resultPicture -> execute();
+                while($resPicture = $resultPicture->fetch()){
+                    $ProfilePicture = $resPicture['ProfilePicture'];
+                }
+                $sql = "SELECT * FROM academictable WHERE id='$id'";
+                $result = $pdo->prepare($sql);
+                $result -> execute();
+
+                while($res = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $Faculty = $res['Faculty'];
+                    $Course = $res['Course'];
+                    $EntryYear = $res['EntryYear'];
+                    $Duration = $res['Duration'];
+                    $Mode = $res['Mode'];
+                }
+                ?>
                 <div class="text-center">
-                    <img id="picture" src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
+                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($ProfilePicture); ?>" alt="User profile picture" style="width: 200px; height: 200px; border: 1px solid Gray;"/>
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <p>Faculty</p>
-                        <p>Course</p>
-                        <p>Entry Year</p>
-                        <p>Duration</p>
-                        <p>Mode of Study</p>
-                    </div>
-                    <div class="col-md-1">
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                    </div>
-                    <div class="col-md-9">
-                        <p id="faculty">unknown</p>
-                        <p id="course">unknown</p>
-                        <p id="entryYear">unknown</p>
-                        <p id="duration">unknown</p>
-                        <p id="modeOfStudy">unknown</p>
-                        <br />
-                    </div>
-                </div>
+                <table class="table table-striped">
+                    <tr><th scope="row" class="w-25 p-3">Faculty:</th><td><?php echo $Faculty; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Course:</th><td><?php echo $Course; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Entry Year:</th><td><?php echo $EntryYear; ?></td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Duration:</th><td><?php echo $Duration . " years"; ?></td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Mode:</th><td><?php echo $Mode; ?></td></tr>
+                </table>
                 <div class="text-left">
                     <button id="confirm" type="button" class="btn btn-primary btn-sm">
                         Update Academic Information

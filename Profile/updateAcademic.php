@@ -81,39 +81,47 @@
 
       if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
       ?>
-        <form method="post" onsubmit="return validateForms()" class="jumbotron mt-3">
+      <?php
+                $action=isset($_GET['action']) ? $_GET['action'] : "";
+                if($action == "updateAcademicSuccessful"){
+                    echo "<div class='alert alert-success alert-dismissible'>
+            <h4><i class='icon fa fa-check'></i> Academic information is updated successfully! <br><a href='academicDetail.php'>View updated information</a> now!
+            </div>";
+                }
+            ?>
+        <form method="post" action="processAcademic.php" onsubmit="return validateForms()" class="jumbotron mt-3">
           <div class="form-group row">
             <label for="faculty" class="col-md-2 col-form-label"><b>*Faculty</b></label>
             <div class="col-md-4">
-              <select id="faculty" class="form-control" required>
+              <select id="faculty" name="Faculty" class="form-control" required>
                 <option selected disabled value="">Choose...</option>
-                <option value="1">Faculty Of Arts & Social Science</option>
-                <option value="2">Faculty Of Built Enviromnet</option>
-                <option value="3">Faculty Of Business & Accountancy</option>
-                <option value="4">Faculty Of Computer Science & Information Technology</option>
-                <option value="5">Faculty Of Dentistry</option>
-                <option value="6">Faculty Of Economics & Administration</option>
-                <option value="7">Faculty Of Education</option>
-                <option value="8">Faculty Of Engineering</option>
-                <option value="9">Faculty Of Law</option>
-                <option value="10">Faculty Of Languages & Linguistic</option>
-                <option value="11">Faculty Of Medicine</option>
-                <option value="12">Faculty Of Pharmacy</option>
-                <option value="13">Faculty Of Science</option>
+                <option value="Faculty Of Arts & Social Science">Faculty Of Arts & Social Science</option>
+                <option value="Faculty Of Built Environmet">Faculty Of Built Environmet</option>
+                <option value="Faculty Of Business & Accountancy">Faculty Of Business & Accountancy</option>
+                <option value="Faculty Of Computer Science & Information Technology">Faculty Of Computer Science & Information Technology</option>
+                <option value="Faculty Of Dentistry">Faculty Of Dentistry</option>
+                <option value="Faculty Of Economics & Administration">Faculty Of Economics & Administration</option>
+                <option value="Faculty Of Education">Faculty Of Education</option>
+                <option value="Faculty Of Engineering">Faculty Of Engineering</option>
+                <option value="Faculty Of Law">Faculty Of Law</option>
+                <option value="Faculty Of Languages & Linguistic">Faculty Of Languages & Linguistic</option>
+                <option value="Faculty Of Medicine">Faculty Of Medicine</option>
+                <option value="Faculty Of Pharmacy">Faculty Of Pharmacy</option>
+                <option value="Faculty Of Science">Faculty Of Science</option>
               </select>
             </div>
           </div>
           <div class="form-group row">
             <label for="course" class="col-md-2 col-form-label"><b>*Course</b></label>
             <div class="col-md-4">
-              <input id="course" class="form-control" type="text" placeholder="COURSE" required />
+              <input id="course" name="Course" class="form-control" type="text" placeholder="COURSE" required />
               <small id="courseHelp" class="form-text text-muted">Eg. SOFTWARE ENGINEERING</small>
             </div>
           </div>
           <div class="form-group row">
             <label for="entryYear" class="col-md-2 col-form-label"><b>*Entry Year</b></label>
             <div class="col-md-2">
-              <select id="faculty" class="form-control" requried>
+              <select id="entryYear" name="EntryYear" class="form-control" requried>
                 <script>
                   document.write(
                     "<option selected disabled value=''>Choose...</option>"
@@ -122,7 +130,7 @@
                   currentYear = currentYear - 9;
                   for (var i = 1; i <= 10; i++) {
                     document.write(
-                      "<option value='" + i + "'>" + currentYear + "</option>"
+                      "<option value='" + currentYear + "'>" + currentYear + "</option>"
                     );
                     currentYear++;
                   }
@@ -133,7 +141,7 @@
           <div class="form-group row">
             <label for="duration" class="col-md-2 col-form-label"><b>*Duration</b></label>
             <div class="col-md-2">
-              <select id="duration" class="form-control" required="">
+              <select id="duration" name="Duration" class="form-control" required="">
                 <script>
                   document.write(
                     "<option selected disabled value=''>Choose...</option>"
@@ -142,7 +150,7 @@
                   for (var i = 1; i <= 7; i++) {
                     var dur = dur1.toFixed(1);
                     document.write(
-                      "<option value='" + i + "'>" + dur + " years</option>"
+                      "<option value='" + dur + "'>" + dur + " years</option>"
                     );
                     dur1 = dur1 + 0.5;
                   }
@@ -153,11 +161,11 @@
           <div class="form-group row">
             <label for="modeStudy" class="col-md-2 col-form-label"><b>*Mode Of Study</b></label>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="undergraduate" value="option1" required="" />
+              <input class="form-check-input" type="radio" name="Mode" id="undergraduate" value="Undergraduate" required="" />
               <label class="form-check-label" for="inlineRadio1">Undergraduate</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="postgraduate" value="option2" />
+              <input class="form-check-input" type="radio" name="Mode" id="postgraduate" value="Postgraduate" />
               <label class="form-check-label" for="inlineRadio2">Postgraduate</label>
             </div>
           </div>

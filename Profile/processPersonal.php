@@ -20,7 +20,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
             //$ProfilePicture = $_POST['ProfilePicture'];
             $image = $_FILES["ProfilePicture"]["tmp_name"];
             $imgContent = addslashes(file_get_contents($image));
-            echo $imgContent;
+            //echo $imgContent;
             $Name = $_POST['Name'];
             $NewMatrics = $_POST['NewMatrics'];
             $IC = $_POST['IC'];
@@ -41,7 +41,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
             try{
             $updateValue = $pdo->prepare($sql);
             $updateValue -> execute();
-            //header("Location:../Profile/updatePersonal.php?action=updatePersonalSuccessful");
+            header("Location:../Profile/updatePersonal.php?action=updatePersonalSuccessful");
             
 
             }catch (Exception $e){
