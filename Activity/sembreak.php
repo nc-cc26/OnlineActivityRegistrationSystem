@@ -59,8 +59,8 @@
             <h2>Accommodation during Semester Break</h2>
             <?php
             session_start();
-            
-            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+
+            if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
             ?>
                 <a class="btn" id="appbtn" href="Application.php">
                     <h5><img class="mb-1" src="../imgs/plus.png" height="20" width="20">Make a new application</h5>

@@ -59,10 +59,9 @@
         <main class="jumbotron mt-2">
             <?php
             session_start();
-            
-            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
-            ?>
 
+            if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+            ?>
                 <div class="banner">
                     <h1 class="banner" align="center">
                         <img class="banner" src="../imgs/report.png" alt="Report an Issue" width="1025" height="350">

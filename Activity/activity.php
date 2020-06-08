@@ -62,7 +62,7 @@
             <?php
             session_start();
 
-            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+            if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
             ?>
                 <p class="spaceP">
                     <a name="olympics" class="font-weight-bold ">
@@ -155,14 +155,11 @@
         </main>
 
         </div>
-    <?php
-            } else { ?>
+    <?php } else { ?>
         <div class="alert alert-info" role="alert">
             <h4>Sorry, only authenticated user can access this page.</h4>
             <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
-        </div><?php
-            }
-                ?>
+        </div><?php } ?>
 
     <footer class="container text-center font-italic py-2">
         Copyright © 2020 - XXX Residential College.

@@ -57,8 +57,8 @@
             <h2 class="font-weight-bold">Registration for Activities</h2>
             <?php
             session_start();
-            
-            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+
+            if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
             ?>
                 <div class="jumbotron mt-8">
                     <form action="#" method="post" id="form_id">

@@ -60,8 +60,8 @@
             <h2>Update Academic Information</h2>
             <?php
             session_start();
-            
-            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+
+            if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
             ?>
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

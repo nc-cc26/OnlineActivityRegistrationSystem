@@ -62,13 +62,11 @@
             </div>
         </nav>
         <main class="jumbotron mt-2">
-
             <?php
             session_start();
-            
-            if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
-            ?>
 
+            if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+            ?>
                 <div class="col-25">
                     <div class="container">
                         <h4>Activities Registered</h4>

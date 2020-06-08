@@ -103,8 +103,11 @@ if (isset($_POST['login'])) {
 
     if ($row) {
         extract($row);
-        $_SESSION['id'] = $ID;
-        $_SESSION['pw'] = $hash;
+        session_start();
+        $_SESSION['logged_in'] = true;
+        $_SESSION['user_id'] = $ID;
+        $_SESSION['user_email'] = $Email;
+
         header("Location:../Activity/activity.php");
     } else {
         header('Location:RegisterLogin.php?msg=login_failed');

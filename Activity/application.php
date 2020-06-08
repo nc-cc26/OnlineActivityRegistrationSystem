@@ -56,13 +56,11 @@
 
     <main class="jumbotron mt-2">
       <h2>Application to Stay during Semester Break</h2>
-
       <?php
       session_start();
 
-      if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
+      if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
       ?>
-
         <form method="post" class="jumbotron mt-3" <div class="form-group w-25">
           <label for="Staying From">Staying From:</label>
           <input type="date" class="form-control" id="From" required />
@@ -144,7 +142,7 @@
       }
         ?>
 
-  </main>
+</main>
 
 <footer class="container text-center font-italic py-2">
   Copyright © 2020 - XXX Residential College.
