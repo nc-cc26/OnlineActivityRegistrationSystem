@@ -47,17 +47,16 @@
                     <div>
                         <label for="new-ID">ID: </label>
                         <input id="new-ID" name="newID" type="text" class="input-field" placeholder="Enter ID" required />
-                        <span id="new-ID-err" style="color: red;"></span>
                     </div>
 
                     <div>
                         <label for="email">Email: </label>
                         <input id="email" name="email" type="email" class="input-field" placeholder="Enter email" required />
-                        <span id="new-email-err" style="color: red;"></span>
                     </div>
 
                     <div>
                         <label for="new-pw">Password: </label>
+                        <span id="register-eye" class="slashed"></span>
                         <input id="new-pw" name="newPW" type="password" class="input-field" placeholder="Enter Password" required />
                     </div>
 
@@ -78,10 +77,6 @@
                 </form>
 
                 <form id="login" method="post" action="ProcessForm.php" class="input-grp">
-                    <div class="d-flex justify-content-center">
-                        <span id="log-in-err" style="color: red; display: none;">Wrong ID or password, please try again!</span>
-                    </div>
-
                     <div>
                         <label for="ID">ID: </label>
                         <input id="ID" name="ID" type="text" class="input-field" placeholder="Non-empty ID" required />
@@ -89,6 +84,7 @@
 
                     <div>
                         <label for="pw">Password: </label>
+                        <span id="login-eye" class="slashed"></span>
                         <input id="pw" name="pw" type="password" class="input-field" placeholder="Enter Password" required />
                     </div>
 
@@ -109,11 +105,39 @@
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 
     <script>
-        var myInput = document.getElementById("new-pw");
-        var letter = document.getElementById("letter");
-        var capital = document.getElementById("capital");
-        var number = document.getElementById("number");
-        var length = document.getElementById("length");
+        let registerEye = document.querySelector('#register-eye');
+        let loginEye = document.querySelector('#login-eye');
+
+        let myInput = document.querySelector("#new-pw");
+        let myInput1 = document.querySelector("#pw");
+        let letter = document.querySelector("#letter");
+        let capital = document.querySelector("#capital");
+        let number = document.querySelector("#number");
+        let length = document.querySelector("#length");
+
+        registerEye.onclick = function() {
+            if (this.classList.contains('slashed')) {
+                this.classList.remove('slashed');
+                this.classList.add('unslashed');
+                myInput.type = "text";
+            } else {
+                this.classList.remove('unslashed');
+                this.classList.add('slashed');
+                myInput.type = "password";
+            }
+        }
+
+        loginEye.onclick = function() {
+            if (this.classList.contains('slashed')) {
+                this.classList.remove('slashed');
+                this.classList.add('unslashed');
+                myInput1.type = "text";
+            } else {
+                this.classList.remove('unslashed');
+                this.classList.add('slashed');
+                myInput1.type = "password";
+            }
+        }
 
         // When the user clicks on the password field, show the message box
         myInput.onfocus = function() {

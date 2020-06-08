@@ -316,8 +316,35 @@ button.clear {
 
 .invalid:before {
   font-family: "Font Awesome 5 Free";
+  cursor: pointer;
   font-weight: 900;
   position: relative;
   left: -35px;
   content: "\f00d";
+}
+
+.slashed {
+  color: #999;
+}
+
+.slashed:before {
+  font-family: "Font Awesome 5 Free";
+  cursor: pointer;
+  position: relative;
+  left: 180px;
+  top: 23px;
+  content: '\f070';
+}
+
+.unslashed {
+  color: #333;
+}
+
+.unslashed:before {
+  font-family: "Font Awesome 5 Free";
+  cursor: pointer;
+  position: relative;
+  left: 180px;
+  top: 23px;
+  content: '\f06e';
 }
