@@ -58,6 +58,8 @@
         <main class="jumbotron mt-2">
             <h2>Edit Application Details</h2>
             <?php
+            session_start();
+            
             if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
             ?>
                 <form method="post" class="jumbotron mt-3">

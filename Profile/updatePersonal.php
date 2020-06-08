@@ -80,6 +80,8 @@
         <main class="jumbotron mt-2">
             <h2>Update Personal Information</h2>
             <?php
+            session_start();
+            
             if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
             ?>
                 <nav class="navbar navbar-expand-lg navbar-light">

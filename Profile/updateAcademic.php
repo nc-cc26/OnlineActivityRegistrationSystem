@@ -77,6 +77,8 @@
         </div>
       </nav>
       <?php
+      session_start();
+      
       if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
       ?>
         <form method="post" onsubmit="return validateForms()" class="jumbotron mt-3">

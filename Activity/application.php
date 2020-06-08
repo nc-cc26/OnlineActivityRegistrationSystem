@@ -58,6 +58,8 @@
       <h2>Application to Stay during Semester Break</h2>
 
       <?php
+      session_start();
+
       if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
       ?>
 

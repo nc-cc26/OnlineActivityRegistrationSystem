@@ -56,6 +56,8 @@
         <main class="jumbotron mt-2">
             <h2 class="font-weight-bold">Registration for Activities</h2>
             <?php
+            session_start();
+            
             if (isset($_SESSION['id']) && isset($_SESSION['pw'])) {
             ?>
                 <div class="jumbotron mt-8">
