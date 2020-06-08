@@ -169,7 +169,7 @@
             } else { ?>
     <div class="alert alert-info" role="alert">
         <h4>Sorry, only authenticated user can access this page.</h4>
-        <p><a href="/Assignment/RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+        <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
     </div><?php
             }
             ?>
