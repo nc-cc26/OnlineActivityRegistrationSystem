@@ -66,7 +66,7 @@
                         <label for id="reg-checkbox" class="checkbox-text">I agree to the <a href="TermsAndConditions.php">terms & conditions</a>.</label>
                     </div>
 
-                    <input id="reg-btn" class="submit-btn text-light" type="submit" name="register" value="Register" />
+                    <input id="reg-btn" class="submit-btn text-light fas fa-key" type="submit" name="register" value="&#xf084 Register" />
                 </form>
 
                 <form id="login" method="post" action="ProcessForm.php" class="input-grp">
@@ -92,7 +92,7 @@
                         <input id="checkbox" type="checkbox" class="checkbox" name="checkbox" /><label for="checkbox" class="checkbox-text ml-1">Keep me logged in</label>
                     </div> -->
 
-                    <input id="login-btn" class="submit-btn text-light" type="submit" name="login" value="Log In" />
+                    <input id="login-btn" class="submit-btn text-light fas fa-sign-in-alt" type="submit" name="login" value="&#xf2f6 Log In" />
                 </form>
             </div>
         </div>
