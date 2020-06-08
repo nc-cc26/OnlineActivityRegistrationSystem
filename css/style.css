@@ -6,6 +6,7 @@
 header {
   background-color: #00adb7;
 }
+
 .headingfont {
   font-family: "Times New Roman", Times, serif;
   font-style: italic;
@@ -15,9 +16,10 @@ footer {
   background-color: #00adb7;
 }
 
-.navbar-nav li.active > a {
+.navbar-nav li.active>a {
   background-color: #e1e1e1;
 }
+
 .mr-auto a.nav-link:hover {
   background-color: #eeeeee;
 }
@@ -25,20 +27,25 @@ footer {
 nav.navbar {
   padding: 0;
 }
-table.table-bordered > thead > tr {
+
+table.table-bordered>thead>tr {
   border: 1px solid grey;
   background-color: #a2a2a2;
 }
-table.table-bordered > tbody > tr {
+
+table.table-bordered>tbody>tr {
   border: 1px solid grey;
   background-color: white;
 }
 
 /* Styled buttons for new application */
 #appbtn {
-  background-color: #00adb7; /* Blue background */
-  border: none; /* Remove borders */
-  color: white; /* White text */
+  background-color: #00adb7;
+  /* Blue background */
+  border: none;
+  /* Remove borders */
+  color: white;
+  /* White text */
   padding-top: 20px;
   padding-bottom: 10px;
   padding-right: 20px;
@@ -51,10 +58,12 @@ table.table-bordered > tbody > tr {
   border: none;
   color: white;
 }
+
 #no {
   border-style: solid;
   border-color: #00adb7;
 }
+
 #yesno {
   margin-top: 250px;
 }
@@ -63,6 +72,7 @@ table.table-bordered > tbody > tr {
   background-color: #eee;
   color: black;
 }
+
 #acancel:hover {
   background-color: #0275d8;
 
@@ -85,6 +95,7 @@ button.clear {
   border: none;
   color: blue;
 }
+
 #application_details {
   margin-bottom: 0;
   font-weight: bold;
@@ -113,6 +124,7 @@ button.clear {
   visibility: hidden;
   opacity: 0;
 }
+
 .overlay:target {
   visibility: visible;
   opacity: 1;
@@ -139,9 +151,11 @@ button.clear {
   text-decoration: none;
   color: #333;
 }
+
 .popup .close:hover {
   color: #06d85f;
 }
+
 .popup .content {
   max-height: 30%;
   overflow: auto;
@@ -151,6 +165,7 @@ button.clear {
   .box {
     width: 70%;
   }
+
   .popup {
     width: 70%;
   }
@@ -163,34 +178,31 @@ button.clear {
 .hero {
   height: 100%;
   width: 100%;
-  background-image: linear-gradient(
-      rgba(82, 8, 255, 0.4),
-      rgba(34, 247, 229, 0.4)
-    ),
+  background-image: linear-gradient(rgba(82, 8, 255, 0.4),
+      rgba(34, 247, 229, 0.4)),
     url(../imgs/RegisterLogin.jpg);
   background-position: center;
   background-size: cover;
 }
 
 .uigradients {
-  background: #feac5e; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #4bc0c8,
-    #c779d0,
-    #feac5e
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #4bc0c8,
-    #c779d0,
-    #feac5e
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #feac5e;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right,
+      #4bc0c8,
+      #c779d0,
+      #feac5e);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right,
+      #4bc0c8,
+      #c779d0,
+      #feac5e);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .form-box {
   width: 380px;
-  height: 420px;
+  height: 100%;
   position: relative;
   background-color: #fdfefe;
   overflow: hidden;
@@ -274,4 +286,38 @@ button.clear {
 
 #register {
   left: 50px;
+}
+
+#message {
+  display: none;
+}
+
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+.valid {
+  color: green;
+}
+
+.valid:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: relative;
+  left: -35px;
+  content: "\f00c";
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: relative;
+  left: -35px;
+  content: "\f00d";
 }
