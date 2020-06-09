@@ -74,7 +74,17 @@
                 }
             ?>
                 <div class="text-center">
+                    <?php
+                        if(empty($ProfilePicture)){
+                    ?>
+                            <img src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px; border: 1px solid Gray;"/>
+                    <?php
+                        }else{
+                    ?>
                     <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($ProfilePicture); ?>" alt="User profile picture" style="width: 200px; height: 200px; border: 1px solid Gray;"/>
+                    <?php
+                        }
+                    ?>
                 
                 <table class="table table-striped">
                     <tr><th scope="row" class="w-25 p-3">ID:</th><td><?php echo $id; ?> </td></tr>
