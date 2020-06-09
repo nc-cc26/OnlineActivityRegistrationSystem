@@ -76,39 +76,44 @@
             </nav>
             <?php
             session_start();
+            include_once '../database.php';
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
-            ?>
+                $id = $_SESSION['user_id'];
+                $Email = $_SESSION['user_email'];
+
+                $sqlPicture = "SELECT ProfilePicture FROM personaltable WHERE id='$id'";
+                $resultPicture = $pdo->prepare($sqlPicture);
+                $resultPicture -> execute();
+                while($resPicture = $resultPicture->fetch()){
+                    $ProfilePicture = $resPicture['ProfilePicture'];
+                }
+
+                $sql = "SELECT * FROM contacttable WHERE id='$id'";
+                $result = $pdo->prepare($sql);
+                $result -> execute();
+
+                while($res = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $Address1 = $res['Address1'];
+                    $Address2 = $res['Address2'];
+                    $Address3 = $res['Address3'];
+                    $Postcode = $res['Postcode'];
+                    $City = $res['City'];
+                    $State = $res['State'];
+                    $Phone = $res['Phone'];
+                }
+                ?>
                 <div class="text-center">
-                    <img id="picture" src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
+                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($ProfilePicture); ?>" alt="User profile picture" style="width: 200px; height: 200px; border: 1px solid Gray;"/>
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <p>Address</p>
-                        <p>Postcode</p>
-                        <p>City</p>
-                        <p>State</p>
-                        <p>Telephone No.</p>
-                        <p>Email</p>
-                    </div>
-                    <div class="col-md-1">
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                    </div>
-                    <div class="col-md-9">
-                        <p id="address">unknown</p>
-                        <p id="postcode">unknown</p>
-                        <p id="city">unknown</p>
-                        <p id="state">unknown</p>
-                        <p id="telephone">unknown</p>
-                        <p id="email">unknown</p>
-                        <br />
-                    </div>
-                </div>
+                <table class="table table-striped">
+                    <tr><th scope="row" class="w-25 p-3">Address:</th><td><?php echo $Address1; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Postcode:</th><td><?php echo $Postcode; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">City:</th><td><?php echo $City; ?></td></tr>
+                    <tr><th scope="row" class="w-25 p-3">State:</th><td><?php echo $State; ?></td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Phone:</th><td><?php echo $Phone; ?></td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Email:</th><td><?php echo $Email; ?></td></tr>
+                </table>
                 <div class="text-left">
                     <button id="confirm" type="button" class="btn btn-primary btn-sm">
                         Update Contact Information

@@ -62,6 +62,15 @@
             session_start();
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+            	$user_email = $_SESSION['user_email'];
+            ?>
+             <?php
+                $action=isset($_GET['action']) ? $_GET['action'] : "";
+                if($action == "updateContactSuccessful"){
+                    echo "<div class='alert alert-success alert-dismissible'>
+            <h4><i class='icon fa fa-check'></i> Contact information is updated successfully! <br><a href='contactDetail.php'>View updated information</a> now!
+            </div>";
+                }
             ?>
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,69 +90,67 @@
                         </ul>
                     </div>
                 </nav>
-                <form method="post" onsubmit="return validateForms()" id="form" class="jumbotron mt-3">
+                <form method="post" action="processContact.php" onsubmit="return validateForms()" id="form" class="jumbotron mt-3">
                     <div class="form-group row">
                         <label for="address" class="col-md-2 col-form-label"><b>*Address</b></label>
                         <div class="col-md-3">
-                            <input id="address1" class="form-control" type="text" placeholder="ADDRESS LINE 1" required>
-                            <input id="address2" class="form-control" type="text" placeholder="ADDRESS LINE 2">
-                            <input id="address3" class="form-control" type="text" placeholder="ADDRESS LINE 3">
+                            <input id="address1" name="Address1" class="form-control" type="text" placeholder="ADDRESS LINE 1" required>
+                            <input id="address2" name="Address2" class="form-control" type="text" placeholder="ADDRESS LINE 2">
+                            <input id="address3" name="Address3" class="form-control" type="text" placeholder="ADDRESS LINE 3">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="postcode" class="col-md-2 col-form-label"><b>*Postcode</b></label>
                         <div class="col-md-2">
-                            <input id="postcode" class="form-control" type="number" min="10000" max="100000" placeholder="POSTCODE" required>
+                            <input id="postcode" name="Postcode" class="form-control" type="number" min="10000" max="100000" placeholder="POSTCODE" required>
                             <small id="postcodeHelp" class="form-text text-muted">With 5 digits only.</small>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="city" class="col-md-2 col-form-label"><b>*City</b></label>
                         <div class="col-md-3">
-                            <input id="city" class="form-control" type="text" placeholder="CITY" required>
+                            <input id="city" name="City" class="form-control" type="text" placeholder="CITY" required>
                             <small id="cityHelp" class="form-text text-muted">Eg. KUANTAN</small>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="state" class="col-md-2 col-form-label"><b>*State</b></label>
                         <div class="col-md-3">
-                            <select id="faculty" class="form-control" required="">
+                            <select id="faculty" name="State" class="form-control" required="">
                                 <option selected disabled value="">Choose...</option>
-                                <option value="1">Johor</option>
-                                <option value="2">Kedah</option>
-                                <option value="3">Kelantan</option>
-                                <option value="4">Melaka</option>
-                                <option value="5">Negeri Sembilan</option>
-                                <option value="6">Pahang</option>
-                                <option value="7">Pulau Pinang</option>
-                                <option value="8">Perak</option>
-                                <option value="9">Perlis</option>
-                                <option value="10">Sabah</option>
-                                <option value="11">Sarawak</option>
-                                <option value="12">Selangor</option>
-                                <option value="13">Terengganu</option>
-                                <option value="14">Wilayah Persekutuan (Kuala Lumpur)</option>
-                                <option value="15">Wilayah Persekutuan (Labuan)</option>
-                                <option value="16">Wilayah Persekutuan (Putrajaya)</option>
+                                <option value="Johor">Johor</option>
+                                <option value="Kedah">Kedah</option>
+                                <option value="Kelantan">Kelantan</option>
+                                <option value="Melaka">Melaka</option>
+                                <option value="Negeri Sembilan">Negeri Sembilan</option>
+                                <option value="Pahang">Pahang</option>
+                                <option value="Pulau Pinang">Pulau Pinang</option>
+                                <option value="Perak">Perak</option>
+                                <option value="Perlis">Perlis</option>
+                                <option value="Sabah">Sabah</option>
+                                <option value="Sarawak">Sarawak</option>
+                                <option value="Selangor">Selangor</option>
+                                <option value="Terengganu">Terengganu</option>
+                                <option value="Wilayah Persekutuan (Kuala Lumpur)">Wilayah Persekutuan (Kuala Lumpur)</option>
+                                <option value="Wilayah Persekutuan (Labuan)">Wilayah Persekutuan (Labuan)</option>
+                                <option value="Wilayah Persekutuan (Putrajaya)">Wilayah Persekutuan (Putrajaya)</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="phoneNo" class="col-md-2 col-form-label"><b>*Telephone No.</b></label>
                         <div class="col-md-3">
-                            <input id="phoneNo" class="form-control" type="number" placeholder="PHONE NUMBER" min="100000000" max="99999999999" required>
+                            <input id="phoneNo" name="Phone" class="form-control" type="number" placeholder="PHONE NUMBER" min="100000000" max="99999999999" required>
                             <small id="phoneNoHelp" class="form-text text-muted">Numbers with 10 or 11 digits only without "-"</small>
                         </div>
                         <div class="col-md-3"></div>
                     </div>
                     <div class="form-group row">
-                        <label for="email" class="col-md-2 col-form-label"><b>*Email</b></label>
+                        <label for="email" class="col-md-2 col-form-label">Email</label>
                         <div class="col-md-3">
-                            <input id="email" class="form-control" type="text" pattern=".{9,9}" placeholder="STUDENT EMAIL" required>
-                            <small id="emailHelp" class="form-text text-muted">Eg. wif181111 (9 characters)</small>
+                            <input id="email" name="Email" class="form-control" type="text" pattern=".{9,9}" placeholder="STUDENT EMAIL" value="<?php echo $user_email; ?>" readonly>
+                            <small id="emailHelp" class="form-text text-muted">Siswamail id cannot be changed.</small>
                         </div>
-                        <div class="col-md-0"></div>
-                        <p>@um.siswa.edu.my</p>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-1">

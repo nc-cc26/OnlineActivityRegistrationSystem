@@ -58,17 +58,32 @@
         <main class="jumbotron mt-2">
             <?php
             session_start();
+            include_once '../database.php';
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+                $id = $_SESSION['user_id'];
+                $Email = $_SESSION['user_email'];
+
+                $sqlPer = "SELECT ProfilePicture,Name,NewMatrics FROM personaltable WHERE id='$id'";
+                $resultPer = $pdo->prepare($sqlPer);
+                $resultPer -> execute();
+                while($resPer = $resultPer->fetch(PDO::FETCH_ASSOC)) {
+                    $ProfilePicture = $resPer['ProfilePicture'];
+                    $Name = $resPer['Name'];
+                    $NewMatrics = $resPer['NewMatrics'];
+                }
             ?>
                 <div class="text-center">
-                    <img src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px;" />
-                    <p></p>
-                    <p id="name">unknown</p>
-                    <p id="oldMatriks">unknown</p>
-                    <p id="newMatriks">unknown</p>
-                    <p>Helpdesk Access Level : User</p>
-                </div>
+                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($ProfilePicture); ?>" alt="User profile picture" style="width: 200px; height: 200px; border: 1px solid Gray;"/>
+                
+                <table class="table table-striped">
+                    <tr><th scope="row" class="w-25 p-3">ID:</th><td><?php echo $id; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Name:</th><td><?php echo $Name; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">New Matrics No:</th><td><?php echo $NewMatrics; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Email:</th><td><?php echo $Email; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">User Access Level:</th><td>Student</td></tr>
+                </table>
+                    </div>
                 <div class="text-right">
                     <button id="confirm" type="button" class="btn btn-danger btn-sm">
                         Delete Account
