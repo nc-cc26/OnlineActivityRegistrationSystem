@@ -201,11 +201,11 @@
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script type="text/javascript">
     document.getElementById("skipAcademic").addEventListener("click", function() {
-      var confirm = window.confirm("Confirm to update information of academic?");
-      if (confirm) {
+      var skip = window.confirm("Confirm to update information of academic?");
+      if (skip) {
         window.location.href = "updateContact.php";
       } else {
-        return true;
+        return false;
       }
     })
     document.getElementById("course").addEventListener("change", function() {
@@ -217,7 +217,9 @@
       var confirm = window.confirm("Confirm to update information of academic?");
 
       if (confirm) {
-        alert("Information entered is saved successfully.");
+        return true;
+      }else{
+        return false;
       }
     }
   </script>

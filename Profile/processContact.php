@@ -7,19 +7,17 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $ID = $_SESSION['user_id'];
         $Email = $_SESSION['user_email'];
-        if(isset($_POST['Address1']) && isset($_POST['Postcode']) && 
+        if(isset($_POST['Address']) && isset($_POST['Postcode']) && 
         isset($_POST['City']) && isset($_POST['State']) && 
         isset($_POST['Phone']) ) {
 
-            $Address1 = $_POST['Address1'];
-            $Address2 = $_POST['Address2'];
-            $Address3 = $_POST['Address3'];
+            $Address = $_POST['Address'];
             $Postcode = $_POST['Postcode'];
             $City = $_POST['City'];
             $State = $_POST['State'];
             $Phone = $_POST['Phone'];
 
-            $sql = "UPDATE `contacttable` SET `Address1`='$Address1', `Postcode`='$Postcode', 
+            $sql = "UPDATE `contacttable` SET `Address`='$Address', `Postcode`='$Postcode', 
             `City`='$City', `State`='$State', 
             `Phone`='$Phone' WHERE `ID`='$ID'";
 

@@ -93,10 +93,8 @@
                 <form method="post" action="processContact.php" onsubmit="return validateForms()" id="form" class="jumbotron mt-3">
                     <div class="form-group row">
                         <label for="address" class="col-md-2 col-form-label"><b>*Address</b></label>
-                        <div class="col-md-3">
-                            <input id="address1" name="Address1" class="form-control" type="text" placeholder="ADDRESS LINE 1" required>
-                            <input id="address2" name="Address2" class="form-control" type="text" placeholder="ADDRESS LINE 2">
-                            <input id="address3" name="Address3" class="form-control" type="text" placeholder="ADDRESS LINE 3">
+                        <div class="col-md-5">
+                            <input id="address" name="Address" class="form-control" type="text" placeholder="ADDRESS " required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -189,7 +187,7 @@
                 alert("All information to be update is updated successfully.")
                 window.location.href = "profile.php";
             } else {
-                return true;
+                return false;
             }
         })
 
@@ -213,7 +211,9 @@
             var confirm = window.confirm("Confirm to update information of contact?");
 
             if (confirm) {
-                alert("Information entered is saved successfully.");
+                return true;
+            }else{
+                return false;
             }
         }
     </script>

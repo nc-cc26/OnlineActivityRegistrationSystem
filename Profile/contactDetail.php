@@ -94,9 +94,7 @@
                 $result -> execute();
 
                 while($res = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $Address1 = $res['Address1'];
-                    $Address2 = $res['Address2'];
-                    $Address3 = $res['Address3'];
+                    $Address = $res['Address'];
                     $Postcode = $res['Postcode'];
                     $City = $res['City'];
                     $State = $res['State'];
@@ -107,7 +105,7 @@
                     <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($ProfilePicture); ?>" alt="User profile picture" style="width: 200px; height: 200px; border: 1px solid Gray;"/>
                 </div>
                 <table class="table table-striped">
-                    <tr><th scope="row" class="w-25 p-3">Address:</th><td><?php echo $Address1; ?> </td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Address:</th><td><?php echo $Address; ?> </td></tr>
                     <tr><th scope="row" class="w-25 p-3">Postcode:</th><td><?php echo $Postcode; ?> </td></tr>
                     <tr><th scope="row" class="w-25 p-3">City:</th><td><?php echo $City; ?></td></tr>
                     <tr><th scope="row" class="w-25 p-3">State:</th><td><?php echo $State; ?></td></tr>

@@ -108,7 +108,7 @@
                 $action=isset($_GET['action']) ? $_GET['action'] : "";
                 if($action == "updatePersonalSuccessful"){
                     echo "<div class='alert alert-success alert-dismissible'>
-            <h4><i class='icon fa fa-check'></i> Personal information is updated successfully! <br><a href='profile.php'>View updated information</a> now!
+            <h4><i class='icon fa fa-check'></i> Personal information is updated successfully! <br><a href='profileDetail.php'>View updated information</a> now!
             </div>";
                 }
             ?>
@@ -351,11 +351,11 @@
         }
 
         document.getElementById("skipPersonal").addEventListener("click", function() {
-            var confirm = window.confirm("Proceed to update academic detail?");
-            if (confirm) {
+            var skip = window.confirm("Proceed to update academic detail?");
+            if (skip) {
                 window.location.href = "updateAcademic.php";
             } else {
-                return true;
+                return false;
             }
         })
 
@@ -388,7 +388,9 @@
                 return false;
             }
             if (confirm) {
-                alert("Information entered is saved successfully.");
+                return true;
+            }else{
+            	return false;
             }
         }
     </script>
