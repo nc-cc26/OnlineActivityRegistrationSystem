@@ -7,12 +7,6 @@
     <title>Login and Registration Form</title>
     <link rel="stylesheet" href="../css/style.css" />
 
-    <style>
-        .text-white {
-            color: white;
-        }
-    </style>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/5b8eaee5c3.js" crossorigin="anonymous"></script>
 </head>
@@ -46,12 +40,22 @@
 
                     <div>
                         <label for="new-ID">ID: </label>
-                        <input id="new-ID" name="newID" type="text" class="input-field" placeholder="Non-empty ID" required />
+                        <input id="new-ID" name="newID" type="text" class="input-field" placeholder="Enter Matric Number" required />
+                    </div>
+
+                    <div id="msg">
+                        <p style="font-size: small;" class="valid">Example: <strong>WIF180049</strong></p>
+                        <p style="font-size: small;" id="matric" class="invalid"><strong>Validity of ID input</strong></p>
                     </div>
 
                     <div>
                         <label for="email">Email: </label>
-                        <input id="email" name="email" type="email" class="input-field" placeholder="Enter email" required />
+                        <input id="email" name="email" type="email" class="input-field" placeholder="Enter Siswamail" required />
+                    </div>
+
+                    <div id="check">
+                        <p style="font-size: small;" class="valid">Example: <strong>wif180049@siswa.um.edu.my</strong></p>
+                        <p style="font-size: small;" id="matric" class="invalid"><strong>Validity of siswamail input</strong></p>
                     </div>
 
                     <div>
@@ -105,100 +109,7 @@
 
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 
-    <script>
-        let registerEye = document.querySelector('#register-eye');
-        let loginEye = document.querySelector('#login-eye');
-
-        let myInput = document.querySelector("#new-pw");
-        let myInput1 = document.querySelector("#pw");
-        let letter = document.querySelector("#letter");
-        let capital = document.querySelector("#capital");
-        let number = document.querySelector("#number");
-        let length = document.querySelector("#length");
-
-        registerEye.onclick = function() {
-            if (this.classList.contains('slashed')) {
-                this.classList.remove('slashed');
-                this.classList.add('unslashed');
-                myInput.type = "text";
-            } else {
-                this.classList.remove('unslashed');
-                this.classList.add('slashed');
-                myInput.type = "password";
-            }
-        }
-
-        loginEye.onclick = function() {
-            if (this.classList.contains('slashed')) {
-                this.classList.remove('slashed');
-                this.classList.add('unslashed');
-                myInput1.type = "text";
-            } else {
-                this.classList.remove('unslashed');
-                this.classList.add('slashed');
-                myInput1.type = "password";
-            }
-        }
-
-        // When the user clicks on the password field, show the message box
-        myInput.onmouseover = function() {
-            document.getElementById("message").style.display = "block";
-        }
-
-        // When the user clicks outside of the password field, hide the message box
-        myInput.onmouseout = function() {
-            document.getElementById("message").style.display = "none";
-        }
-
-        // When the user starts to type something inside the password field
-        myInput.onkeyup = function() {
-            // Validate lowercase letters
-            var lowerCaseLetters = /[a-z]/g;
-            if (myInput.value.match(lowerCaseLetters)) {
-                letter.classList.remove("invalid");
-                letter.classList.add("valid");
-            } else {
-                letter.classList.remove("valid");
-                letter.classList.add("invalid");
-            }
-            // Validate capital letters
-            var upperCaseLetters = /[A-Z]/g;
-            if (myInput.value.match(upperCaseLetters)) {
-                capital.classList.remove("invalid");
-                capital.classList.add("valid");
-            } else {
-                capital.classList.remove("valid");
-                capital.classList.add("invalid");
-            }
-
-            // Validate numbers
-            var numbers = /[0-9]/g;
-            if (myInput.value.match(numbers)) {
-                number.classList.remove("invalid");
-                number.classList.add("valid");
-            } else {
-                number.classList.remove("valid");
-                number.classList.add("invalid");
-            }
-
-            // Validate length
-            if (myInput.value.length >= 8) {
-                length.classList.remove("invalid");
-                length.classList.add("valid");
-            } else {
-                length.classList.remove("valid");
-                length.classList.add("invalid");
-            }
-        }
-
-        function checkForm() {
-            let allValid = capital.classList.contains('valid') && letter.classList.contains('valid') && number.classList.contains('valid') && length.classList.contains('valid');
-            if (!allValid) {
-                alert('Please follow the password format.');
-            }
-            return capital.classList.contains('valid') && letter.classList.contains('valid') && number.classList.contains('valid') && length.classList.contains('valid');
-        }
-    </script>
+    <script src="../js/InputsValidation.js"></script>
 
     <script src="../js/RegisterLogin.js"></script>
 </body>

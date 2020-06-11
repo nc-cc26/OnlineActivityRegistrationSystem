@@ -288,6 +288,24 @@ button.clear {
   left: 50px;
 }
 
+#msg {
+  display: none;
+}
+
+#msg p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+#check {
+  display: none;
+}
+
+#check p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
 #message {
   display: none;
 }
