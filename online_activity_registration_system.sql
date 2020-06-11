@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2020 at 03:58 AM
+-- Generation Time: Jun 11, 2020 at 07:07 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -24,25 +24,114 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `academictable`
+--
+
+CREATE TABLE `academictable` (
+  `ID` varchar(9) NOT NULL,
+  `Faculty` varchar(254) DEFAULT NULL,
+  `Course` varbinary(254) DEFAULT NULL,
+  `EntryYear` int(4) DEFAULT NULL,
+  `Duration` varchar(9) DEFAULT NULL,
+  `Mode` varchar(13) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `academictable`
+--
+
+INSERT INTO `academictable` (`ID`, `Faculty`, `Course`, `EntryYear`, `Duration`, `Mode`) VALUES
+('NATOYT99', NULL, NULL, NULL, NULL, NULL),
+('WIF180049', NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacttable`
+--
+
+CREATE TABLE `contacttable` (
+  `ID` varchar(9) NOT NULL,
+  `Address` varchar(254) DEFAULT NULL,
+  `Postcode` int(5) DEFAULT NULL,
+  `City` varchar(20) DEFAULT NULL,
+  `State` varchar(30) DEFAULT NULL,
+  `Phone` int(11) DEFAULT NULL,
+  `Email` varchar(9) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contacttable`
+--
+
+INSERT INTO `contacttable` (`ID`, `Address`, `Postcode`, `City`, `State`, `Phone`, `Email`) VALUES
+('NATOYT99', NULL, NULL, NULL, NULL, NULL, NULL),
+('WIF180049', NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personaltable`
+--
+
+CREATE TABLE `personaltable` (
+  `ID` varchar(9) NOT NULL,
+  `ProfilePicture` longblob DEFAULT NULL,
+  `Name` varchar(254) DEFAULT NULL,
+  `IC` varchar(20) DEFAULT NULL,
+  `Nationality` varchar(13) DEFAULT NULL,
+  `Gender` varchar(6) DEFAULT NULL,
+  `Birthday` varchar(254) DEFAULT NULL,
+  `Race` varchar(10) DEFAULT NULL,
+  `Religion` varchar(12) DEFAULT NULL,
+  `Marital` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `personaltable`
+--
+
+INSERT INTO `personaltable` (`ID`, `ProfilePicture`, `Name`, `IC`, `Nationality`, `Gender`, `Birthday`, `Race`, `Religion`, `Marital`) VALUES
+('NATOYT99', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('WIF180049', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `ID` varchar(9) NOT NULL,
   `Email` varchar(254) NOT NULL,
+  `Name` varchar(255) NOT NULL,
   `Password` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`ID`, `Email`, `Password`) VALUES
-('WIF180049', 'wif180049@siswa.um.edu.my', 'asd');
-
---
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `academictable`
+--
+ALTER TABLE `academictable`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `UA_ID` (`ID`);
+
+--
+-- Indexes for table `contacttable`
+--
+ALTER TABLE `contacttable`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `UCON_ID` (`ID`);
+
+--
+-- Indexes for table `personaltable`
+--
+ALTER TABLE `personaltable`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `UP_ID` (`ID`);
 
 --
 -- Indexes for table `user`

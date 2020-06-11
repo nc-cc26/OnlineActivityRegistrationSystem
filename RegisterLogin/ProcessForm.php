@@ -20,6 +20,7 @@ if (isset($_POST['register'])) {
         $ID = strtoupper($ID);
         $Email = $_POST['email'];
         $pw = $_POST['newPW'];
+        $name = $_POST['name'];
 
         $salt = "roA&h2u!PoaWr2u";
 
@@ -53,7 +54,7 @@ if (isset($_POST['register'])) {
             </div>";
             }
         } else {
-            $sql = "INSERT INTO `user` (`ID`, `Email`, `Password`) 
+            $sql = "INSERT INTO `user` (`ID`, `Email`, `Name`, `Password`) 
         VALUES ('$ID', '$Email', '$hash')";
             $sql1 = "INSERT INTO `personaltable`(`ID`) VALUES ('$ID')";
             $sql2 = "INSERT INTO `contacttable`(`ID`) VALUES ('$ID')";

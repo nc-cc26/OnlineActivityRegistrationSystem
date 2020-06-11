@@ -59,6 +59,11 @@
                     </div>
 
                     <div>
+                        <label for="new-name">Name: </label>
+                        <input id="new-name" name="newName" type="text" class="input-field" placeholder="Enter Name" required />
+                    </div>
+
+                    <div>
                         <label for="new-pw">Password: </label>
                         <span id="register-eye" class="slashed"></span>
                         <input id="new-pw" name="newPW" type="password" class="input-field" placeholder="Enter Password" required />
