@@ -55,7 +55,7 @@
 
                     <div id="check">
                         <p style="font-size: small;" class="valid">Example: <strong>wif180049@siswa.um.edu.my</strong></p>
-                        <p style="font-size: small;" id="matric" class="invalid"><strong>Validity of siswamail input</strong></p>
+                        <p style="font-size: small;" id="siswamail" class="invalid"><strong>Validity of siswamail input</strong></p>
                     </div>
 
                     <div>

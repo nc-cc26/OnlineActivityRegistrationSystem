@@ -1,6 +1,9 @@
 let matricInput = document.querySelector("#new-ID");
 let matric = document.querySelector("#matric");
 
+let siswamailInput = document.querySelector("#email");
+let siswamail = document.querySelector("#siswamail");
+
 let registerEye = document.querySelector('#register-eye');
 let loginEye = document.querySelector('#login-eye');
 let myInput = document.querySelector("#new-pw");
@@ -31,6 +34,29 @@ matricInput.onkeyup = function () {
     } else {
         matric.classList.remove("valid");
         matric.classList.add("invalid");
+    }
+}
+
+// When the user moves cursor onto the Email field, show the message box
+siswamailInput.onmouseover = function () {
+    document.getElementById("msg").style.display = "block";
+}
+
+// When the user moves cursor outside of the Email field, hide the message box
+siswamailInput.onmouseout = function () {
+    document.getElementById("msg").style.display = "none";
+}
+
+// When the user starts to type something inside the Email field
+siswamailInput.onkeyup = function () {
+    // Validate siswamail format
+    var siswamailFormat = /[a-zA-Z]{3}[0-9]{6}/;
+    if (siswamailInput.value.match(siswamailFormat)) {
+        siswamail.classList.remove("invalid");
+        siswamail.classList.add("valid");
+    } else {
+        siswamail.classList.remove("valid");
+        siswamail.classList.add("invalid");
     }
 }
 

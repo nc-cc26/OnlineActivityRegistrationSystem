@@ -15,12 +15,12 @@
 include_once '../database.php';
 
 if (isset($_POST['register'])) {
-    if (!empty(trim($_POST['newID'])) && !empty(trim($_POST['email'])) && !empty(trim($_POST['newPW']))) {
+    if (!empty(trim($_POST['newID'])) && !empty(trim($_POST['email'])) && !empty(trim($_POST['newName'])) & !empty(trim($_POST['newPW']))) {
         $ID = $_POST['newID'];
         $ID = strtoupper($ID);
         $Email = $_POST['email'];
         $pw = $_POST['newPW'];
-        $name = $_POST['name'];
+        $name = $_POST['newName'];
 
         $salt = "roA&h2u!PoaWr2u";
 
@@ -55,7 +55,7 @@ if (isset($_POST['register'])) {
             }
         } else {
             $sql = "INSERT INTO `user` (`ID`, `Email`, `Name`, `Password`) 
-        VALUES ('$ID', '$Email', '$hash')";
+        VALUES ('$ID', '$Email', '$name', '$hash')";
             $sql1 = "INSERT INTO `personaltable`(`ID`) VALUES ('$ID')";
             $sql2 = "INSERT INTO `contacttable`(`ID`) VALUES ('$ID')";
             $sql3 = "INSERT INTO `academictable`(`ID`) VALUES ('$ID')";
