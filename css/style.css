@@ -288,33 +288,6 @@ button.clear {
   left: 50px;
 }
 
-#msg {
-  display: none;
-}
-
-#msg p {
-  padding: 10px 35px;
-  font-size: 18px;
-}
-
-#check {
-  display: none;
-}
-
-#check p {
-  padding: 10px 35px;
-  font-size: 18px;
-}
-
-#message {
-  display: none;
-}
-
-#message p {
-  padding: 10px 35px;
-  font-size: 18px;
-}
-
 .valid {
   color: green;
 }
@@ -334,7 +307,6 @@ button.clear {
 
 .invalid:before {
   font-family: "Font Awesome 5 Free";
-  cursor: pointer;
   font-weight: 900;
   position: relative;
   left: -35px;

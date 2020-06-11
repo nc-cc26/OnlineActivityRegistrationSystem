@@ -43,9 +43,10 @@
                         <input id="new-ID" name="newID" type="text" class="input-field" placeholder="Enter Matric Number" required />
                     </div>
 
-                    <div id="msg">
-                        <p style="font-size: small;" class="valid">Example: <strong>WIF180049</strong></p>
-                        <p style="font-size: small;" id="matric" class="invalid"><strong>Validity of ID input</strong></p>
+                    <div id="msg" style="display: none;">
+                        <h4 style="font-size: medium;">Please follow matric number's format.</h4>
+                        <p style="font-size: small;" class="valid pl-5"><strong>Example: WIF180049</strong></p>
+                        <p style="font-size: small;" id="matric" class="invalid pl-5"><strong>Validity of ID input</strong></p>
                     </div>
 
                     <div>
@@ -53,9 +54,10 @@
                         <input id="email" name="email" type="email" class="input-field" placeholder="Enter Siswamail" required />
                     </div>
 
-                    <div id="check">
-                        <p style="font-size: small;" class="valid">Example: <strong>wif180049@siswa.um.edu.my</strong></p>
-                        <p style="font-size: small;" id="siswamail" class="invalid"><strong>Validity of siswamail input</strong></p>
+                    <div id="check" style="display: none;">
+                        <h4 style="font-size: medium;">Please follow siswamail's format.</h4>
+                        <p style="font-size: small;" class="valid pl-5">Example: <strong>wif180049@siswa.um.edu.my</strong></p>
+                        <p style="font-size: small;" id="siswamail" class="invalid pl-5"><strong>Validity of siswamail input</strong></p>
                     </div>
 
                     <div>
@@ -69,12 +71,12 @@
                         <input id="new-pw" name="newPW" type="password" class="input-field" placeholder="Enter Password" required />
                     </div>
 
-                    <div id="message">
+                    <div id="message" style="display: none;">
                         <h4 style="font-size: medium;">Password must contain the following:</h4>
-                        <p style="font-size: small;" id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                        <p style="font-size: small;" id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                        <p style="font-size: small;" id="number" class="invalid">A <b>number</b></p>
-                        <p style="font-size: small;" id="length" class="invalid">Minimum <b>8 characters</b></p>
+                        <p style="font-size: small;" id="letter" class="invalid pl-5">A <b>lowercase</b> letter</p>
+                        <p style="font-size: small;" id="capital" class="invalid pl-5">A <b>capital (uppercase)</b> letter</p>
+                        <p style="font-size: small;" id="number" class="invalid pl-5">A <b>number</b></p>
+                        <p style="font-size: small;" id="length" class="invalid pl-5">Minimum <b>8 characters</b></p>
                     </div>
 
                     <div>

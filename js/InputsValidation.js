@@ -27,8 +27,8 @@ matricInput.onmouseout = function () {
 // When the user starts to type something inside the ID field
 matricInput.onkeyup = function () {
     // Validate matric number format
-    var matricFormat = /[a-zA-Z]{3}[0-9]{6}/;
-    if (matricInput.value.match(matricFormat)) {
+    var matricFormat = /\b[a-zA-Z]{3}[0-9]{6}\b/;
+    if (this.value.match(matricFormat) && this.value.length == 9) {
         matric.classList.remove("invalid");
         matric.classList.add("valid");
     } else {
@@ -50,8 +50,12 @@ siswamailInput.onmouseout = function () {
 // When the user starts to type something inside the Email field
 siswamailInput.onkeyup = function () {
     // Validate siswamail format
-    var siswamailFormat = /[a-zA-Z]{3}[0-9]{6}/;
-    if (siswamailInput.value.match(siswamailFormat)) {
+    var matricFormat = /\b[a-zA-Z]{3}[0-9]{6}\b/;
+    var matricNumber = this.value.substring(0, 9);
+    var siswamailDomain = this.value.substring(9, this.value.length);
+    console.log(matricNumber);
+    console.log(siswamailDomain);
+    if (matricNumber.match(matricFormat) && matricNumber.length == 9 && siswamailDomain == "@siswa.um.edu.my") {
         siswamail.classList.remove("invalid");
         siswamail.classList.add("valid");
     } else {
@@ -100,7 +104,7 @@ myInput.onmouseout = function () {
 myInput.onkeyup = function () {
     // Validate lowercase letters
     var lowerCaseLetters = /[a-z]/g;
-    if (myInput.value.match(lowerCaseLetters)) {
+    if (this.value.match(lowerCaseLetters)) {
         letter.classList.remove("invalid");
         letter.classList.add("valid");
     } else {
@@ -109,7 +113,7 @@ myInput.onkeyup = function () {
     }
     // Validate capital letters
     var upperCaseLetters = /[A-Z]/g;
-    if (myInput.value.match(upperCaseLetters)) {
+    if (this.value.match(upperCaseLetters)) {
         capital.classList.remove("invalid");
         capital.classList.add("valid");
     } else {
