@@ -39,12 +39,12 @@ matricInput.onkeyup = function () {
 
 // When the user moves cursor onto the Email field, show the message box
 siswamailInput.onmouseover = function () {
-    document.getElementById("msg").style.display = "block";
+    document.getElementById("check").style.display = "block";
 }
 
 // When the user moves cursor outside of the Email field, hide the message box
 siswamailInput.onmouseout = function () {
-    document.getElementById("msg").style.display = "none";
+    document.getElementById("check").style.display = "none";
 }
 
 // When the user starts to type something inside the Email field
