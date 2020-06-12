@@ -142,6 +142,11 @@ myInput.onkeyup = function () {
 }
 
 function checkForm() {
+    let sameEmail = siswamailInput.value.substring(0, 9).toUpperCase() == matricInput.value.toUpperCase();
+    if (!sameEmail) {
+        alert('ID and siswamail do not match. Please try again.')
+        return false;
+    }
     let allValid = matric.classList.contains('valid') && capital.classList.contains('valid') && letter.classList.contains('valid') && number.classList.contains('valid') && length.classList.contains('valid');
     if (!allValid) {
         alert('Please follow the requested formats, thank you.');
