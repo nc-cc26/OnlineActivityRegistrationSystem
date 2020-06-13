@@ -59,20 +59,17 @@ if (isset($_POST['register'])) {
             $sql1 = "INSERT INTO `personaltable`(`ID`) VALUES ('$ID')";
             $sql2 = "INSERT INTO `contacttable`(`ID`) VALUES ('$ID')";
             $sql3 = "INSERT INTO `academictable`(`ID`) VALUES ('$ID')";
-            $sql3 = "INSERT INTO `activitytable`(`ID`) VALUES ('$ID')";
             
             try {
                 $idValidate = $pdo->prepare($sql);
                 $idValidate1 = $pdo->prepare($sql1);
                 $idValidate2 = $pdo->prepare($sql2);
                 $idValidate3 = $pdo->prepare($sql3);
-                $idValidate4 = $pdo->prepare($sql4);
                 
                 $idValidate->execute();
                 $idValidate1->execute();
                 $idValidate2->execute();
                 $idValidate3->execute();
-                $idValidate4->execute();
 
                 echo "<div class='alert alert-success alert-dismissible'>
             <h4><i class='icon fa fa-check'></i> Great, thanks for signing up!</h4>
