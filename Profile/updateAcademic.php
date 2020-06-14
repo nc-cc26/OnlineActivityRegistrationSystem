@@ -78,8 +78,17 @@
       </nav>
       <?php
       session_start();
+      include_once '../database.php';
 
       if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+        $id = $_SESSION['user_id'];
+        $sql = "SELECT `Course` FROM academictable WHERE id='$id'";
+                $result = $pdo->prepare($sql);
+                $result -> execute();
+
+                while($res = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $Course = $res['Course'];
+                }
       ?>
       <?php
                 $action=isset($_GET['action']) ? $_GET['action'] : "";
@@ -114,7 +123,7 @@
           <div class="form-group row">
             <label for="course" class="col-md-2 col-form-label">Course</label>
             <div class="col-md-4">
-              <input id="course" name="Course" class="form-control" type="text" placeholder="COURSE"  />
+              <input id="course" name="Course" class="form-control" type="text"  <?php if(isEmpty($Course)==false){ echo "value= '$Course'";} ?> placeholder="COURSE"  />
               <small id="courseHelp" class="form-text text-muted">Eg. SOFTWARE ENGINEERING</small>
             </div>
           </div>
@@ -222,6 +231,16 @@
         return false;
       }
     }
+    <?php
+      function isEmpty($variable){
+        if($variable == ""){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+    ?>
   </script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
   </script>

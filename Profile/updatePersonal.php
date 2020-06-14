@@ -82,9 +82,26 @@
             <h2>Update Personal Information</h2>
             <?php
             session_start();
+            include_once '../database.php';
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
                 $id = $_SESSION['user_id'];
+                $sql = "SELECT * FROM personaltable WHERE id='$id'";
+                $result = $pdo->prepare($sql);
+                $result -> execute();
+
+                while ($res = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $ID = $res['ID'];
+                    $NewMatrics = $res['NewMatrics'];
+                    $IC = $res['IC'];
+                    $Birthday = $res['Birthday'];
+                }
+                $sql1 = "SELECT Name FROM user WHERE id='$id'";
+                $result1 = $pdo->prepare($sql1);
+                $result1 -> execute();
+                while ($res1 = $result1->fetch(PDO::FETCH_ASSOC)) {
+                    $Name = $res1['Name'];
+                }
             ?>
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,7 +129,7 @@
             </div>";
                 }
             ?>
-                <form method="post" action="processPersonal.php" name="personal" onsubmit="return validateForms()" class="jumbotron mt-3" enctype="multipart/form-data">
+                <form method="post" action="processPersonal.php" onsubmit="return validateForms()" class="jumbotron mt-3" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label for="picture" class="col-md-2 col-form-label"><b>*Profile Picture</b></label>
                         <div class="col-md-3">
@@ -131,7 +148,7 @@
                     <div class="form-group row">
                         <label for="Name" class="col-md-2 col-form-label"><b>*Name</b></label>
                         <div class="col-md-5">
-                            <input id="name" name="Name" class="form-control" type="text" required placeholder="FULL NAME" />
+                            <input id="name" name="Name" class="form-control" type="text" <?php if(isEmpty($Name)==false){ echo "value= '$Name'";} ?> required placeholder="FULL NAME" />
                             <small id="nameHelp" class="form-text text-muted">Enter your full name without any symbol or special
                                 characters.</small>
                         </div>
@@ -146,14 +163,14 @@
                     <div class="form-group row">
                         <label for="newMatrics" class="col-md-2 col-form-label"><b>New Matrics No.</b></label>
                         <div class="col-md-2">
-                            <input id="newMatrics" name="NewMatrics" class="form-control" type="text" pattern=".{10,10}" required />
+                            <input id="newMatrics" name="NewMatrics" class="form-control" type="text" <?php if(isEmpty($NewMatrics)==false){ echo "value= '$NewMatrics'";} ?>pattern=".{10,10}" required />
                             <small id="newMatricsHelp" class="form-text text-muted">Eg. 17166000/1 <br>(10 characters)</small>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="IC" class="col-md-2 col-form-label">IC/Passport No.</label>
                         <div class="col-md-3">
-                            <input id="IC" name="IC" class="form-control" type="text" placeholder="IC / PASSPORT NUMBER" />
+                            <input id="IC" name="IC" class="form-control" type="text" <?php if(isEmpty($IC)==false){ echo "value= '$IC'";} ?> placeholder="IC / PASSPORT NUMBER" />
                             <small id="passportHelp" class="form-text text-muted">Enter without "-" or any special character</small>
                         </div>
                     </div>
@@ -182,7 +199,7 @@
                     <div class="form-group row">
                         <label for="birthday" class="col-md-2 col-form-label">Date of Birth</label>
                         <div class="col-md-3">
-                            <input id="birthday" name="Birthday" class="form-control" type="date" />
+                            <input id="birthday" name="Birthday" class="form-control" <?php if(isEmpty($Birthday)==false){ echo "value= '$Birthday'";} ?> type="date" />
                         </div>
                     </div>
                     <div class="form-group row">
@@ -231,9 +248,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-1">
-                            <button type="submit" class="btn btn-primary" id="updatePersonal">
-                                Update
-                            </button>
+                            <button type="submit" class="btn btn-primary" id="updatePersonal">Update</button>
                         </div>
                         <div class="col-md-3">
                             <button type="button" class="btn btn-primary" id="skipPersonal">Next</button>
@@ -351,13 +366,13 @@
         }
 
         document.getElementById("skipPersonal").addEventListener("click", function() {
-            var skip = window.confirm("Proceed to update academic detail?");
-            if (skip) {
-                window.location.href = "updateAcademic.php";
-            } else {
-                return false;
-            }
-        })
+      var skip = window.confirm("Skip updating information of personal and proceed to update academic detail?");
+      if (skip) {
+        window.location.href = "updateAcademic.php";
+      } else {
+        return false;
+      }
+    })
 
         function validateForms() {
             var confirm = window.confirm("Confirm to update information of personal?");
@@ -366,7 +381,12 @@
             //var oldMatrics = document.getElementById("oldMatrics");
             var newMatrics = document.getElementById("newMatrics");
             var IC = document.getElementById("IC");
-
+            
+            if (confirm) {
+                return true;
+            }else{
+            	return false;
+            }
             if (picture.style.backgroundColor == "red") {
                 alert("The input at red-colored background is invalid.")
                 return false;
@@ -387,12 +407,18 @@
                 alert("The input at red-colored border form is invalid.")
                 return false;
             }
-            if (confirm) {
-                return true;
-            }else{
-            	return false;
-            }
+
         }
+        <?php
+            function isEmpty($variable){
+                if($variable == ""){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        ?>
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>

@@ -60,9 +60,24 @@
             <h2>Update Academic Information</h2>
             <?php
             session_start();
+            include_once '../database.php';
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
-            	$user_email = $_SESSION['user_email'];
+                $user_email = $_SESSION['user_email'];
+                $id = $_SESSION['user_id'];
+
+                $sql = "SELECT * FROM contacttable WHERE id='$id'";
+                $result = $pdo->prepare($sql);
+                $result -> execute();
+
+                while($res = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $Address = $res['Address'];
+                    $Postcode = $res['Postcode'];
+                    $City = $res['City'];
+                    $State = $res['State'];
+                    $Phone = $res['Phone'];
+                }
+
             ?>
              <?php
                 $action=isset($_GET['action']) ? $_GET['action'] : "";
@@ -94,20 +109,20 @@
                     <div class="form-group row">
                         <label for="address" class="col-md-2 col-form-label">Address</label>
                         <div class="col-md-5">
-                            <input id="address" name="Address" class="form-control" type="text" placeholder="ADDRESS ">
+                            <input id="address" name="Address" class="form-control" type="text" <?php if(isEmpty($Address)==false){ echo "value= '$Address'";} ?> placeholder="ADDRESS ">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="postcode" class="col-md-2 col-form-label">Postcode</label>
                         <div class="col-md-2">
-                            <input id="postcode" name="Postcode" class="form-control" type="number" min="10000" max="100000" placeholder="POSTCODE">
+                            <input id="postcode" name="Postcode" class="form-control" type="number" min="10000" max="100000" <?php if(isEmpty($Postcode)==false){ echo "value= '$Postcode'";} ?> placeholder="POSTCODE">
                             <small id="postcodeHelp" class="form-text text-muted">With 5 digits only.</small>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="city" class="col-md-2 col-form-label">City</label>
                         <div class="col-md-3">
-                            <input id="city" name="City" class="form-control" type="text" placeholder="CITY" >
+                            <input id="city" name="City" class="form-control" type="text" <?php if(isEmpty($City)==false){ echo "value= '$City'";} ?> placeholder="CITY" >
                             <small id="cityHelp" class="form-text text-muted">Eg. KUANTAN</small>
                         </div>
                     </div>
@@ -138,7 +153,7 @@
                     <div class="form-group row">
                         <label for="phoneNo" class="col-md-2 col-form-label">Telephone No.</label>
                         <div class="col-md-3">
-                            <input id="phoneNo" name="Phone" class="form-control" type="number" placeholder="PHONE NUMBER" min="100000000" max="99999999999">
+                            <input id="phoneNo" name="Phone" class="form-control" type="number" placeholder="PHONE NUMBER" min="100000000" max="99999999999" <?php if(isEmpty($Phone)==false){ echo "value= '$Phone'";} ?>>
                             <small id="phoneNoHelp" class="form-text text-muted">Numbers with 10 or 11 digits only without "-"</small>
                         </div>
                         <div class="col-md-3"></div>
@@ -216,6 +231,16 @@
                 return false;
             }
         }
+        <?php
+        function isEmpty($variable){
+            if($variable == ""){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        ?>
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
