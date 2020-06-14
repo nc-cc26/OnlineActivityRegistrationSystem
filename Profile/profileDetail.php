@@ -35,10 +35,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="profileDetail.php">Detail<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="profileDetail.php">View details<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="updatePersonal.php">Update</a>
+                        <a class="nav-link" href="updatePersonal.php">Update details</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-1">
@@ -87,7 +87,6 @@
                 while ($res = $result->fetch(PDO::FETCH_ASSOC)) {
                     $ID = $res['ID'];
                     $ProfilePicture = $res['ProfilePicture'];
-                    $Name = $res['Name'];
                     $NewMatrics = $res['NewMatrics'];
                     $IC = $res['IC'];
                     $Nationality = $res['Nationality'];
@@ -96,6 +95,12 @@
                     $Race = $res['Race'];
                     $Religion = $res['Religion'];
                     $Marital = $res['Marital'];
+                }
+                $sql1 = "SELECT Name FROM user WHERE id='$id'";
+                $result1 = $pdo->prepare($sql1);
+                $result1 -> execute();
+                while ($res1 = $result1->fetch(PDO::FETCH_ASSOC)) {
+                    $Name = $res1['Name'];
                 }
             ?>
                 <div class="text-center">

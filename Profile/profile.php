@@ -35,10 +35,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="profileDetail.php">Detail</a>
+                        <a class="nav-link" href="profileDetail.php">View details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="updatePersonal.php">Update</a>
+                        <a class="nav-link" href="updatePersonal.php">Update details</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-1">
@@ -64,13 +64,18 @@
                 $id = $_SESSION['user_id'];
                 $Email = $_SESSION['user_email'];
 
-                $sqlPer = "SELECT ProfilePicture,Name,NewMatrics FROM personaltable WHERE id='$id'";
+                $sqlPer = "SELECT ProfilePicture,NewMatrics FROM personaltable WHERE id='$id'";
                 $resultPer = $pdo->prepare($sqlPer);
                 $resultPer -> execute();
                 while($resPer = $resultPer->fetch(PDO::FETCH_ASSOC)) {
                     $ProfilePicture = $resPer['ProfilePicture'];
-                    $Name = $resPer['Name'];
                     $NewMatrics = $resPer['NewMatrics'];
+                }
+                $sqlPer1 = "SELECT Name FROM user WHERE id='$id'";
+                $resultPer1 = $pdo->prepare($sqlPer1);
+                $resultPer1 -> execute();
+                while($resPer1 = $resultPer1->fetch(PDO::FETCH_ASSOC)) {
+                    $Name = $resPer1['Name'];
                 }
             ?>
                 <div class="text-center">

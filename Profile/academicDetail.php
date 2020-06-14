@@ -35,10 +35,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="profileDetail.php">Detail<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="profileDetail.php">View details<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="updatePersonal.php">Update</a>
+                        <a class="nav-link" href="updatePersonal.php">Update details</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-1">
@@ -115,7 +115,7 @@
                     <tr><th scope="row" class="w-25 p-3">Faculty:</th><td><?php echo $Faculty; ?> </td></tr>
                     <tr><th scope="row" class="w-25 p-3">Course:</th><td><?php echo $Course; ?> </td></tr>
                     <tr><th scope="row" class="w-25 p-3">Entry Year:</th><td><?php echo $EntryYear; ?></td></tr>
-                    <tr><th scope="row" class="w-25 p-3">Duration:</th><td><?php echo $Duration . " years"; ?></td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Duration:</th><td><?php echo $Duration; ?></td></tr>
                     <tr><th scope="row" class="w-25 p-3">Mode:</th><td><?php echo $Mode; ?></td></tr>
                 </table>
                 <div class="text-left">

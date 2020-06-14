@@ -35,10 +35,10 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="profileDetail.php">Detail</a>
+            <a class="nav-link" href="profileDetail.php">View details</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="updatePersonal.php">Update <span class="sr-only">(current)</span>
+            <a class="nav-link" href="updatePersonal.php">Update details<span class="sr-only">(current)</span>
             </a>
           </li>
         </ul>
@@ -91,9 +91,9 @@
             ?>
         <form method="post" action="processAcademic.php" onsubmit="return validateForms()" class="jumbotron mt-3">
           <div class="form-group row">
-            <label for="faculty" class="col-md-2 col-form-label"><b>*Faculty</b></label>
+            <label for="faculty" class="col-md-2 col-form-label">Faculty</label>
             <div class="col-md-4">
-              <select id="faculty" name="Faculty" class="form-control" required>
+              <select id="faculty" name="Faculty" class="form-control" >
                 <option selected disabled value="">Choose...</option>
                 <option value="Faculty Of Arts & Social Science">Faculty Of Arts & Social Science</option>
                 <option value="Faculty Of Built Environmet">Faculty Of Built Environmet</option>
@@ -112,16 +112,16 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="course" class="col-md-2 col-form-label"><b>*Course</b></label>
+            <label for="course" class="col-md-2 col-form-label">Course</label>
             <div class="col-md-4">
-              <input id="course" name="Course" class="form-control" type="text" placeholder="COURSE" required />
+              <input id="course" name="Course" class="form-control" type="text" placeholder="COURSE"  />
               <small id="courseHelp" class="form-text text-muted">Eg. SOFTWARE ENGINEERING</small>
             </div>
           </div>
           <div class="form-group row">
-            <label for="entryYear" class="col-md-2 col-form-label"><b>*Entry Year</b></label>
+            <label for="entryYear" class="col-md-2 col-form-label">Entry Year</label>
             <div class="col-md-2">
-              <select id="entryYear" name="EntryYear" class="form-control" requried>
+              <select id="entryYear" name="EntryYear" class="form-control" >
                 <script>
                   document.write(
                     "<option selected disabled value=''>Choose...</option>"
@@ -139,9 +139,9 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="duration" class="col-md-2 col-form-label"><b>*Duration</b></label>
+            <label for="duration" class="col-md-2 col-form-label">Duration</label>
             <div class="col-md-2">
-              <select id="duration" name="Duration" class="form-control" required="">
+              <select id="duration" name="Duration" class="form-control" >
                 <script>
                   document.write(
                     "<option selected disabled value=''>Choose...</option>"
@@ -150,7 +150,7 @@
                   for (var i = 1; i <= 7; i++) {
                     var dur = dur1.toFixed(1);
                     document.write(
-                      "<option value='" + dur + "'>" + dur + " years</option>"
+                      "<option value='" + dur + " years'>" + dur + " years</option>"
                     );
                     dur1 = dur1 + 0.5;
                   }
@@ -159,9 +159,9 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="modeStudy" class="col-md-2 col-form-label"><b>*Mode Of Study</b></label>
+            <label for="modeStudy" class="col-md-2 col-form-label">Mode Of Study</label>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Mode" id="undergraduate" value="Undergraduate" required="" />
+              <input class="form-check-input" type="radio" name="Mode" id="undergraduate" value="Undergraduate"  />
               <label class="form-check-label" for="inlineRadio1">Undergraduate</label>
             </div>
             <div class="form-check form-check-inline">
@@ -180,7 +180,7 @@
             </div>
           </div>
           <p>#Form marked with asterisk (*) and bolded is required field. <br>
-            #Update all information given or skip to the next section.</p>
+            #Update the information or skip to the next section.</p>
         </form>
       <?php
       } else { ?>
@@ -201,7 +201,7 @@
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script type="text/javascript">
     document.getElementById("skipAcademic").addEventListener("click", function() {
-      var skip = window.confirm("Confirm to update information of academic?");
+      var skip = window.confirm("Skip updating information of academic and proceed to update contact detail?");
       if (skip) {
         window.location.href = "updateContact.php";
       } else {

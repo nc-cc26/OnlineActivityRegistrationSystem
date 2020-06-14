@@ -35,10 +35,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="profileDetail.php">Detail<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="profileDetail.php">View details<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="updatePersonal.php">Update</a>
+                        <a class="nav-link" href="updatePersonal.php">Update details</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-1">

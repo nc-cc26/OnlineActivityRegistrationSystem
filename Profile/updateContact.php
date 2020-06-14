@@ -34,10 +34,10 @@
             <div class="collapse navbar-collapse " id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto ">
                     <li class="nav-item ">
-                        <a class="nav-link" href="profileDetail.php">Detail</a>
+                        <a class="nav-link" href="profileDetail.php">View details</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link " href="updatePersonal.php">Update <span class="sr-only">(current)</span> </a>
+                        <a class="nav-link " href="updatePersonal.php">Update details<span class="sr-only">(current)</span> </a>
                     </li>
 
                 </ul>
@@ -92,29 +92,29 @@
                 </nav>
                 <form method="post" action="processContact.php" onsubmit="return validateForms()" id="form" class="jumbotron mt-3">
                     <div class="form-group row">
-                        <label for="address" class="col-md-2 col-form-label"><b>*Address</b></label>
+                        <label for="address" class="col-md-2 col-form-label">Address</label>
                         <div class="col-md-5">
-                            <input id="address" name="Address" class="form-control" type="text" placeholder="ADDRESS " required>
+                            <input id="address" name="Address" class="form-control" type="text" placeholder="ADDRESS ">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="postcode" class="col-md-2 col-form-label"><b>*Postcode</b></label>
+                        <label for="postcode" class="col-md-2 col-form-label">Postcode</label>
                         <div class="col-md-2">
-                            <input id="postcode" name="Postcode" class="form-control" type="number" min="10000" max="100000" placeholder="POSTCODE" required>
+                            <input id="postcode" name="Postcode" class="form-control" type="number" min="10000" max="100000" placeholder="POSTCODE">
                             <small id="postcodeHelp" class="form-text text-muted">With 5 digits only.</small>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="city" class="col-md-2 col-form-label"><b>*City</b></label>
+                        <label for="city" class="col-md-2 col-form-label">City</label>
                         <div class="col-md-3">
-                            <input id="city" name="City" class="form-control" type="text" placeholder="CITY" required>
+                            <input id="city" name="City" class="form-control" type="text" placeholder="CITY" >
                             <small id="cityHelp" class="form-text text-muted">Eg. KUANTAN</small>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="state" class="col-md-2 col-form-label"><b>*State</b></label>
+                        <label for="state" class="col-md-2 col-form-label">State</label>
                         <div class="col-md-3">
-                            <select id="faculty" name="State" class="form-control" required="">
+                            <select id="faculty" name="State" class="form-control">
                                 <option selected disabled value="">Choose...</option>
                                 <option value="Johor">Johor</option>
                                 <option value="Kedah">Kedah</option>
@@ -136,9 +136,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="phoneNo" class="col-md-2 col-form-label"><b>*Telephone No.</b></label>
+                        <label for="phoneNo" class="col-md-2 col-form-label">Telephone No.</label>
                         <div class="col-md-3">
-                            <input id="phoneNo" name="Phone" class="form-control" type="number" placeholder="PHONE NUMBER" min="100000000" max="99999999999" required>
+                            <input id="phoneNo" name="Phone" class="form-control" type="number" placeholder="PHONE NUMBER" min="100000000" max="99999999999">
                             <small id="phoneNoHelp" class="form-text text-muted">Numbers with 10 or 11 digits only without "-"</small>
                         </div>
                         <div class="col-md-3"></div>

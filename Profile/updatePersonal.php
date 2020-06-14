@@ -55,10 +55,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="profileDetail.php">Detail</a>
+                        <a class="nav-link" href="profileDetail.php">View details</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="updatePersonal.php">Update <span class="sr-only">(current)</span>
+                        <a class="nav-link" href="updatePersonal.php">Update details<span class="sr-only">(current)</span>
                         </a>
                     </li>
                 </ul>
@@ -116,7 +116,7 @@
                     <div class="form-group row">
                         <label for="picture" class="col-md-2 col-form-label"><b>*Profile Picture</b></label>
                         <div class="col-md-3">
-                            <input style="background-color:red" type="file" class="form-control-file" id="picture" name="ProfilePicture" accept="image/jpeg,image/gif,image/png,application/pdf" required>
+                            <input style="background-color:red" type="file" class="form-control-file" id="picture" name="ProfilePicture" accept="image/jpeg,image/gif,image/png,application/pdf" require>
                             <small id="pictureHelp" class="form-text text-muted">Insert only format <b>.jpg .jpeg .png .gif .pdf</b>
                                 with <b>size not exceeding 2MB</b></small>
                         </div>
@@ -137,30 +137,30 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="oldMatrics" class="col-md-2 col-form-label"><b>*Old Matrics No.</b></label>
+                        <label for="oldMatrics" class="col-md-2 col-form-label">Old Matrics No.</label>
                         <div class="col-md-2">
                             <input id="oldMatrics" name="OldMatrics" class="form-control" type="text" pattern=".{9,9}" value="<?php echo $id; ?>" readonly />
                             <small id="oldMatricsHelp" class="form-text text-muted">Fixed user id. <br>Not changeable.</small>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="newMatrics" class="col-md-2 col-form-label"><b>*New Matrics No.</b></label>
+                        <label for="newMatrics" class="col-md-2 col-form-label"><b>New Matrics No.</b></label>
                         <div class="col-md-2">
                             <input id="newMatrics" name="NewMatrics" class="form-control" type="text" pattern=".{10,10}" required />
                             <small id="newMatricsHelp" class="form-text text-muted">Eg. 17166000/1 <br>(10 characters)</small>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="IC" class="col-md-2 col-form-label"><b>*IC/Passport No.</b></label>
+                        <label for="IC" class="col-md-2 col-form-label">IC/Passport No.</label>
                         <div class="col-md-3">
-                            <input id="IC" name="IC" class="form-control" type="text" placeholder="IC / PASSPORT NUMBER" required />
+                            <input id="IC" name="IC" class="form-control" type="text" placeholder="IC / PASSPORT NUMBER" />
                             <small id="passportHelp" class="form-text text-muted">Enter without "-" or any special character</small>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="nationality" class="col-md-2 col-form-label"><b>*Nationality.</b></label>
+                        <label for="nationality" class="col-md-2 col-form-label">Nationality.</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="malaysian" name="Nationality" value="Malaysian" required />
+                            <input class="form-check-input" type="radio" id="malaysian" name="Nationality" value="Malaysian" />
                             <label class="form-check-label" for="inlineRadio1">Malaysian</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -169,9 +169,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="gender" class="col-md-2 col-form-label"><b>*Gender.</b></label>
+                        <label for="gender" class="col-md-2 col-form-label">Gender.</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="male" name="Gender" value="Male" required="" />
+                            <input class="form-check-input" type="radio" id="male" name="Gender" value="Male" />
                             <label class="form-check-label" for="inlineRadio1">Male</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -180,15 +180,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="birthday" class="col-md-2 col-form-label"><b>*Date of Birth</b></label>
+                        <label for="birthday" class="col-md-2 col-form-label">Date of Birth</label>
                         <div class="col-md-3">
-                            <input id="birthday" name="Birthday" class="form-control" type="date" required />
+                            <input id="birthday" name="Birthday" class="form-control" type="date" />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="race" class="col-md-2 col-form-label"><b>*Race</b></label>
+                        <label for="race" class="col-md-2 col-form-label">Race</label>
                         <div class="col-md-2">
-                            <select id="race" name="Race" class="form-control" required>
+                            <select id="race" name="Race" class="form-control">
                                 <option selected disabled value="">Choose...</option>
                                 <option value="Bumiputera">Bumiputera</option>
                                 <option value="Chinese">Chinese</option>
@@ -198,9 +198,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="religion" class="col-md-2 col-form-label"><b>*Religion</b></label>
+                        <label for="religion" class="col-md-2 col-form-label">Religion</label>
                         <div class="col-md-2">
-                            <select id="religion" name="Religion" class="form-control" required>
+                            <select id="religion" name="Religion" class="form-control">
                                 <option selected disabled value="">Choose...</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Buddhism">Buddhism</option>
@@ -211,9 +211,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="marital" class="col-md-2 col-form-label"><b>*Marital Status</b></label>
+                        <label for="marital" class="col-md-2 col-form-label">Marital Status</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="single" name="Marital" value="Single" required />
+                            <input class="form-check-input" type="radio" id="single" name="Marital" value="Single" />
                             <label class="form-check-label" for="inlineRadio1">Single</label>
                         </div>
                         <div class="form-check form-check-inline">

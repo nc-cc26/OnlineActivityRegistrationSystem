@@ -27,13 +27,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `academictable`
 --
 
-CREATE TABLE `academictable` (
-  `ID` varchar(9) NOT NULL,
-  `Faculty` varchar(254) DEFAULT NULL,
-  `Course` varbinary(254) DEFAULT NULL,
-  `EntryYear` int(4) DEFAULT NULL,
-  `Duration` varchar(9) DEFAULT NULL,
-  `Mode` varchar(13) DEFAULT NULL
+CREATE TABLE `academicTable` (
+    `ID` varchar(9) NOT NULL,
+    `Faculty` varchar(254) NULL DEFAULT NULL,
+    `Course` varchar(254) NULL DEFAULT NULL,
+    `EntryYear` varchar(4) NULL DEFAULT NULL,
+    `Duration` varchar(4) NULL DEFAULT NULL,
+    `Mode` varchar(13) NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -49,22 +49,22 @@ INSERT INTO `academictable` (`ID`, `Faculty`, `Course`, `EntryYear`, `Duration`,
 -- Table structure for table `contacttable`
 --
 
-CREATE TABLE `contacttable` (
-  `ID` varchar(9) NOT NULL,
-  `Address` varchar(254) DEFAULT NULL,
-  `Postcode` int(5) DEFAULT NULL,
-  `City` varchar(20) DEFAULT NULL,
-  `State` varchar(30) DEFAULT NULL,
-  `Phone` int(11) DEFAULT NULL,
-  `Email` varchar(9) DEFAULT NULL
+CREATE TABLE `contactTable` (
+    `ID` varchar(9) NOT NULL,
+    `Address` varchar(254) NULL DEFAULT NULL,
+    `Postcode` varchar(5) NULL DEFAULT NULL,
+    `City` varchar(20) NULL DEFAULT NULL,
+    `State` varchar(30) NULL DEFAULT NULL,
+    `Phone` varchar(11) NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Dumping data for table `contacttable`
 --
 
-INSERT INTO `contacttable` (`ID`, `Address`, `Postcode`, `City`, `State`, `Phone`, `Email`) VALUES
-('WIF180049', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `contacttable` (`ID`, `Address`, `Postcode`, `City`, `State`, `Phone`) VALUES
+('WIF180049', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -72,24 +72,25 @@ INSERT INTO `contacttable` (`ID`, `Address`, `Postcode`, `City`, `State`, `Phone
 -- Table structure for table `personaltable`
 --
 
-CREATE TABLE `personaltable` (
+CREATE TABLE `personalTable` (
   `ID` varchar(9) NOT NULL,
-  `ProfilePicture` longblob DEFAULT NULL,
-  `Name` varchar(254) DEFAULT NULL,
-  `IC` varchar(20) DEFAULT NULL,
-  `Nationality` varchar(13) DEFAULT NULL,
-  `Gender` varchar(6) DEFAULT NULL,
-  `Birthday` varchar(254) DEFAULT NULL,
-  `Race` varchar(10) DEFAULT NULL,
-  `Religion` varchar(12) DEFAULT NULL,
-  `Marital` varchar(10) DEFAULT NULL
+  `ProfilePicture` longblob NULL,
+  `NewMatrics` varchar(10) NULL DEFAULT NULL,
+  `IC` varchar(20) NULL DEFAULT NULL,
+  `Nationality` varchar(13) NULL DEFAULT NULL,
+  `Gender` varchar(6) NULL DEFAULT NULL,
+  `Birthday` varchar(254) NULL DEFAULT NULL,
+  `Race` varchar(10) NULL DEFAULT NULL,
+  `Religion` varchar(12) NULL DEFAULT NULL,
+  `Marital` varchar(10) NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Dumping data for table `personaltable`
 --
 
-INSERT INTO `personaltable` (`ID`, `ProfilePicture`, `Name`, `IC`, `Nationality`, `Gender`, `Birthday`, `Race`, `Religion`, `Marital`) VALUES
+INSERT INTO `personaltable` (`ID`, `ProfilePicture`, `NewMatrics`, `IC`, `Nationality`, `Gender`, `Birthday`, `Race`, `Religion`, `Marital`) VALUES
 ('WIF180049', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
