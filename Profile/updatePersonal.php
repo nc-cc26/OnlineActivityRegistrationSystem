@@ -247,9 +247,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-md-1">
+                        <!--<div class="col-md-1">
                             <button type="submit" class="btn btn-primary" id="updatePersonal">Update</button>
-                        </div>
+                        </div>-->
                         <div class="col-md-3">
                             <button type="button" class="btn btn-primary" id="skipPersonal">Next</button>
                         </div>
@@ -366,6 +366,7 @@
         }
 
         document.getElementById("skipPersonal").addEventListener("click", function() {
+            alert("Hi");
       var skip = window.confirm("Skip updating information of personal and proceed to update academic detail?");
       if (skip) {
         window.location.href = "updateAcademic.php";
