@@ -247,9 +247,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <!--<div class="col-md-1">
+                        <div class="col-md-1">
                             <button type="submit" class="btn btn-primary" id="updatePersonal">Update</button>
-                        </div>-->
+                        </div>
                         <div class="col-md-3">
                             <button type="button" class="btn btn-primary" id="skipPersonal">Next</button>
                         </div>
@@ -383,10 +383,8 @@
             var newMatrics = document.getElementById("newMatrics");
             var IC = document.getElementById("IC");
             
-            if (confirm) {
-                return true;
-            }else{
-            	return false;
+            if (!confirm) {
+                return false;
             }
             if (picture.style.backgroundColor == "red") {
                 alert("The input at red-colored background is invalid.")

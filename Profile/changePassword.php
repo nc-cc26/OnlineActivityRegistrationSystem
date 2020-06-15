@@ -63,16 +63,22 @@
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
                 $id = $_SESSION['user_id'];
-                $Email = $_SESSION['user_email'];
-                $passwordCheck = "SELECT `Password` FROM `user` WHERE `ID`='$id'";
-                $stmt = $pdo->prepare($passwordCheck);
-                $stmt->execute();
-                while ($row = $stmt->fetch()) {
-                    $hashPassword = $row['Password'];
-                }
 
             ?>
-                <form method="post" action="processContact.php" onsubmit="return validateForms()" id="form" class="jumbotron mt-3">
+            <?php
+                $action=isset($_GET['action']) ? $_GET['action'] : "";
+                if($action == "passwordChanged"){
+                    echo "<div class='alert alert-success alert-dismissible'>
+            <h4><i class='icon fa fa-check'></i> Password is successfully changed! <br><a href='profile.php'>Back to User Profile</a> now!
+            </div>";
+                }else if($action == "invalidPassword"){
+                    echo "<div class='alert alert-danger alert-dismissible'>
+            <h4><i class='icon fa fa-check'></i> You entered a wrong password! <br>Please try again.
+            </div>";
+                }
+            ?>
+
+                <form method="post" action="processPassword.php" onsubmit="return validateForms()" id="form" class="jumbotron mt-3">
                     <div class="form-group row">
                         <label for="password" class="col-md-3 col-form-label"><b>*Current Password </b></label>
                         <div class="col-md-3">
@@ -83,13 +89,15 @@
                     <div class="form-group row">
                         <label for="newpassword" class="col-md-3 col-form-label"><b>*New Password </b></label>
                         <div class="col-md-3">
-                            <input id="newpassword" name="newpassword" class="form-control" type="text" placeholder="NEW PASSWORD" required>
+                            <input id="newpassword" name="newpassword" class="form-control" type="password" placeholder="NEW PASSWORD" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="repeatpassword" class="col-md-3 col-form-label"><b>*Repeat Password </b></label>
                         <div class="col-md-3">
-                            <input id="repeatpassword" name="repeatpassword" class="form-control" type="text" placeholder="REPEAT PASSWORD" required>
+                            <input onkeyup="samePassword()" id="repeatpassword" name="repeatpassword" class="form-control" type="password" placeholder="REPEAT PASSWORD" required>
+                            <small id="checkSame" class="form-text text-muted" >Repeat the new password again.</small>
+                            <p id="result"></p>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -126,37 +134,51 @@
                 x.type = "password";
             }
         }
+
+        function samePassword(){
+            var npass = document.getElementById("newpassword");
+            var rpass = document.getElementById("repeatpassword");
+            var y = document.getElementById("checkSame");
+            y.innerHTML = '';
+            var x = document.getElementById("result");
+            
+            if(npass.value != rpass.value){
+                x.innerHTML = "The password does not match.";
+                x.style.backgroundColor = "lightpink";
+            }else{
+                x.innerHTML = "<b>The password is matched.<b>";
+                x.style.backgroundColor = "#A4B2F7";
+            }
+        }
+
         document.getElementById("cancel").addEventListener("click", function() {
             window.location.href = "profile.php";
         })
         <?php
         function validatePassword($password, $hashPassword)
         {
-            $salt = "roA&h2u!PoaWr2u";
+            //$salt = "roA&h2u!PoaWr2u";
 
-            $password = hash("sha256", $password . $salt);
+            //$password = hash("sha256", $password . $salt);
 
-            if ($password = $hashPassword) {
+            //if ($password == $hashPassword) {
+            if(password_verify($password,$hashPassword)){
                 return true;
             } else {
+                echo 'alert("Original password entered is wrong.");';
                 return false;
             }
         }
         ?>
 
         function validateForms() {
+            var x = document.getElementById("result");
             var confirm = window.confirm("Confirm to update information of contact?");
-            if (confirm) {
-                return true;
-            } else {
+            if (!confirm) {
                 return false;
             }
-            $password = $_POST['Password'];
-            var password = validatePassword($password, $hashPassword)
-            if (password == true) {
-                return true;
-            } else {
-                alert("The password is not matched.")
+            if(x.style.backgroundColor == "lightpink"){
+                alert("Please repeat your new password correctly.");
                 return false;
             }
         }
