@@ -321,7 +321,7 @@ button.clear {
   font-family: "Font Awesome 5 Free";
   cursor: pointer;
   position: relative;
-  left: 180px;
+  left: 160px;
   top: 23px;
   content: '\f070';
 }
@@ -334,7 +334,7 @@ button.clear {
   font-family: "Font Awesome 5 Free";
   cursor: pointer;
   position: relative;
-  left: 180px;
+  left: 160px;
   top: 23px;
   content: '\f06e';
 }

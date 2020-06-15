@@ -39,7 +39,7 @@
                     <div class="d-flex justify-content-center"></div>
 
                     <div>
-                        <label for="new-ID">ID: </label>
+                        <label for="new-ID"><i class="fas fa-id-badge">  ID: </i></label>
                         <input id="new-ID" name="newID" type="text" class="input-field" placeholder="Enter Matric Number" required />
                     </div>
 
@@ -50,7 +50,7 @@
                     </div>
 
                     <div>
-                        <label for="email">Email: </label>
+                        <label for="email"><i class="fas fa-envelope"> Email: </i></label>
                         <input id="email" name="email" type="email" class="input-field" placeholder="Enter Siswamail" required />
                     </div>
 
@@ -61,12 +61,12 @@
                     </div>
 
                     <div>
-                        <label for="new-name">Name: </label>
+                        <label for="new-name"><i class="fas fa-user"> Name: </i></label>
                         <input id="new-name" name="newName" type="text" class="input-field" placeholder="Enter Name" required />
                     </div>
 
                     <div>
-                        <label for="new-pw">Password: </label>
+                        <label for="new-pw"><i class="fas fa-key"> Password: </i></label>
                         <span id="register-eye" class="slashed"></span>
                         <input id="new-pw" name="newPW" type="password" class="input-field" placeholder="Enter Password" required />
                     </div>
@@ -84,31 +84,36 @@
                         <label for id="reg-checkbox" class="checkbox-text">I agree to the <a href="TermsAndConditions.php">terms & conditions</a>.</label>
                     </div>
 
-                    <input id="reg-btn" class="d-flex justify-content-center submit-btn text-light fas fa-key" type="submit" name="register" value="&#xf084 Register" />
+                    <input id="reg-btn" class="d-flex justify-content-center submit-btn text-light fas fa-key" type="submit" name="register" value="&#xf2f6 Register" />
                 </form>
 
                 <form id="login" method="post" action="ProcessForm.php" class="input-grp">
                     <div>
-                        <label for=" ID">ID: </label>
+                        <label for=" ID"><i class="fas fa-id-badge"> ID: </i></label>
                         <input id="ID" name="ID" type="text" class="input-field" placeholder="Enter Matric Number" required />
                     </div>
 
                     <div>
-                        <label for="pw">Password: </label>
+                        <label for="pw"><i class="fas fa-key"> Password: </i></label>
                         <span id="login-eye" class="slashed"></span>
                         <input id="pw" name="pw" type="password" class="input-field" placeholder="Enter Password" required />
                     </div>
 
                     <div class="mb-2">
-                        <p class="m-0">Forgot ID?</p>
+                        <p class="m-0"><i class="fas fa-id-card"> Forgot ID?</i></p>
                         <a href="RequestID.php">Click Me</a>
+                    </div>
+
+                    <div class="mb-2">
+                        <p class="m-0"><i class="fas fa-envelope"> Forgot Password?</i></p>
+                        <a href="ResetPassword.php">Click Me</a>
                     </div>
 
                     <!-- <div>
                         <input id="checkbox" type="checkbox" class="checkbox" name="checkbox" /><label for="checkbox" class="checkbox-text ml-1">Keep me logged in</label>
                     </div> -->
 
-                    <input id="login-btn" class="d-flex justify-content-center submit-btn text-light fas fa-sign-in-alt" type="submit" name="login" value="&#xf2f6 Log In" />
+                    <input id="login-btn" class="d-flex justify-content-center submit-btn text-light fas fa-sign-in-alt" type="submit" name="login" value="&#xf09c Log In" />
                 </form>
             </div>
         </div>
