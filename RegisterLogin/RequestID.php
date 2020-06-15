@@ -22,31 +22,46 @@ if (isset($_GET['email'])) {
     $stmt->execute();
     $row = $stmt->fetch();
 
-    if ($row) {
-        extract($row);
+?><div class="container-fluid">
+        <header class="blog-header py-3">
+            <h1 class="headingfont" align="center">
+                <img class="mr-1 mb-2" src="../imgs/8th.png" alt="college logo" width="45" height="45" />MyCollege
+            </h1>
+        </header>
+        <div class="jumbotron"><?php if ($row) {
+                                    extract($row);
 
-        echo "<div class='alert alert-info alert-dismissible'>
+                                    echo "<div class='alert alert-info alert-dismissible'>
                     <h4><i class='fas fa-search'> Here's what we found!</i></i></h4><p>The ID for <strong>$email</strong> is <strong>$ID</strong>.</p>
                     <a href='RegisterLogin.php'>Log In</a> now or <a href='RegisterLogin.php'>register</a> using another email.";
-    } else {
-        echo "<div class='alert alert-danger alert-dismissible'>
+                                } else {
+                                    echo "<div class='alert alert-danger alert-dismissible'>
                     <h4><i class='fas fa-question'> The email is not registered.</i></h4><p>The <strong>$email</strong>  seems to be missing in the database.</p>
                     <a href='RegisterLogin.php'>Register</a> now or <a href='RegisterLogin.php'>log in</a> using another email.";
-    }
-} else { ?>
+                                }
+                                ?></div>
+    </div><?php
+        } else { ?>
     <div class="container-fluid">
-        <form method="get" action="RequestID.php">
-            <div>
-                <label for="email">Enter your email here: </label>
-                <input id="email" name="email" type="email" class="input-field" placeholder="Enter email" required />
-                <span id="new-email-err" style="color: red;"></span>
-            </div>
+        <header class="blog-header py-3">
+            <h1 class="headingfont" align="center">
+                <img class="mr-1 mb-2" src="../imgs/8th.png" alt="college logo" width="45" height="45" />MyCollege
+            </h1>
+        </header>
+        <div class="jumbotron">
+            <form method="get" action="RequestID.php">
+                <div>
+                    <label for="email">Enter your email here: </label>
+                    <input id="email" name="email" type="email" class="input-field" placeholder="Enter email" required />
+                    <span id="new-email-err" style="color: red;"></span>
+                </div>
 
-            <input class="submit-btn fas fa-image text-light" type="submit" value="&#xf1d8 Submit" />
-        </form>
+                <input class="submit-btn fas fa-image text-light" type="submit" value="&#xf1d8 Submit" />
+            </form>
+        </div>
     </div>
 <?php
-}
+        }
 
 
 ?>
