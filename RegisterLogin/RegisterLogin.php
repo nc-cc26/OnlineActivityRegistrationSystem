@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="mb-2">
-                        <p class="m-0"><i class="fas fa-envelope"> Forgot Password?</i></p>
+                        <p class="m-0"><i class="fas fa-lock"> Forgot Password?</i></p>
                         <a href="ResetPassword.php">Click Me</a>
                     </div>
 
