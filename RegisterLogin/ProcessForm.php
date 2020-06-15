@@ -19,8 +19,10 @@ if (isset($_POST['register'])) {
         $ID = $_POST['newID'];
         $ID = strtoupper($ID);
         $Email = $_POST['email'];
+        $Email = strtoupper($Email);
         $pw = $_POST['newPW'];
         $name = $_POST['newName'];
+        $name = strtoupper($name);
 
         $salt = "roA&h2u!PoaWr2u";
 
@@ -54,21 +56,22 @@ if (isset($_POST['register'])) {
             </div>";
             }
         } else {
-            $sql = "INSERT INTO `user` (`ID`, `Email`, `Name`, `Password`) 
+            $sql0 = "INSERT INTO `user` (`ID`, `Email`, `Name`, `Password`) 
         VALUES ('$ID', '$Email', '$name', '$hash')";
             $sql1 = "INSERT INTO `personaltable`(`ID`) VALUES ('$ID')";
             $sql2 = "INSERT INTO `contacttable`(`ID`) VALUES ('$ID')";
             $sql3 = "INSERT INTO `academictable`(`ID`) VALUES ('$ID')";
 
             try {
-                $idValidate = $pdo->prepare($sql);
-                $idValidate1 = $pdo->prepare($sql1);
-                $idValidate2 = $pdo->prepare($sql2);
-                $idValidate3 = $pdo->prepare($sql3);
-                $idValidate->execute();
-                $idValidate1->execute();
-                $idValidate2->execute();
-                $idValidate3->execute();
+                $stmt0 = $pdo->prepare($sql0);
+                $stmt1 = $pdo->prepare($sql1);
+                $stmt2 = $pdo->prepare($sql2);
+                $stmt3 = $pdo->prepare($sql3);
+
+                $stmt0->execute();
+                $stmt1->execute();
+                $stmt2->execute();
+                $stmt3->execute();
 
                 echo "<div class='alert alert-success alert-dismissible'>
             <h4><i class='icon fa fa-check'></i> Great, thanks for signing up!</h4>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2020 at 07:07 AM
+-- Generation Time: Jun 13, 2020 at 06:24 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.5
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,6 @@ CREATE TABLE `academictable` (
 --
 
 INSERT INTO `academictable` (`ID`, `Faculty`, `Course`, `EntryYear`, `Duration`, `Mode`) VALUES
-('NATOYT99', NULL, NULL, NULL, NULL, NULL),
 ('WIF180049', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -65,7 +64,6 @@ CREATE TABLE `contacttable` (
 --
 
 INSERT INTO `contacttable` (`ID`, `Address`, `Postcode`, `City`, `State`, `Phone`, `Email`) VALUES
-('NATOYT99', NULL, NULL, NULL, NULL, NULL, NULL),
 ('WIF180049', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -92,7 +90,6 @@ CREATE TABLE `personaltable` (
 --
 
 INSERT INTO `personaltable` (`ID`, `ProfilePicture`, `Name`, `IC`, `Nationality`, `Gender`, `Birthday`, `Race`, `Religion`, `Marital`) VALUES
-('NATOYT99', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 ('WIF180049', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -107,6 +104,13 @@ CREATE TABLE `user` (
   `Name` varchar(255) NOT NULL,
   `Password` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`ID`, `Email`, `Name`, `Password`) VALUES
+('WIF180049', 'WIF180049@SISWA.UM.EDU.MY', 'NATHANIEL ONG YII TAK', '82a4dfdccd1dc4e98cc4099d20e0279565b96d579b5cc708ae30ea11f1bda8b7');
 
 --
 -- Indexes for dumped tables
