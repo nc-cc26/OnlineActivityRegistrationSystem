@@ -90,7 +90,7 @@
                 <form id="login" method="post" action="ProcessForm.php" class="input-grp">
                     <div>
                         <label for=" ID">ID: </label>
-                        <input id="ID" name="ID" type="text" class="input-field" placeholder="Non-empty ID" required />
+                        <input id="ID" name="ID" type="text" class="input-field" placeholder="Enter Matric Number" required />
                     </div>
 
                     <div>

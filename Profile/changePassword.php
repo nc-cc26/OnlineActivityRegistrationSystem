@@ -66,34 +66,33 @@
                 $Email = $_SESSION['user_email'];
                 $passwordCheck = "SELECT `Password` FROM `user` WHERE `ID`='$id'";
                 $stmt = $pdo->prepare($passwordCheck);
-                $stmt -> execute();
-                $row = $stmt->fetch();
-                while($row){
+                $stmt->execute();
+                while ($row = $stmt->fetch()) {
                     $hashPassword = $row['Password'];
                 }
 
             ?>
                 <form method="post" action="processContact.php" onsubmit="return validateForms()" id="form" class="jumbotron mt-3">
-                <div class="form-group row">
-                    <label for="password" class="col-md-3 col-form-label"><b>*Current Password </b></label>
-                    <div class="col-md-3">
-                        <input id="password" name="password" class="form-control" type="password" placeholder="PASSWORD" required>
-                        <input type="checkbox" onclick="myFunction()"> Show Password
+                    <div class="form-group row">
+                        <label for="password" class="col-md-3 col-form-label"><b>*Current Password </b></label>
+                        <div class="col-md-3">
+                            <input id="password" name="password" class="form-control" type="password" placeholder="PASSWORD" required>
+                            <input type="checkbox" onclick="myFunction()"> Show Password
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="newpassword" class="col-md-3 col-form-label"><b>*New Password </b></label>
-                    <div class="col-md-3">
-                        <input id="newpassword" name="newpassword" class="form-control" type="text" placeholder="NEW PASSWORD" required>
+                    <div class="form-group row">
+                        <label for="newpassword" class="col-md-3 col-form-label"><b>*New Password </b></label>
+                        <div class="col-md-3">
+                            <input id="newpassword" name="newpassword" class="form-control" type="text" placeholder="NEW PASSWORD" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="repeatpassword" class="col-md-3 col-form-label"><b>*Repeat Password </b></label>
-                    <div class="col-md-3">
-                        <input id="repeatpassword" name="repeatpassword" class="form-control" type="text" placeholder="REPEAT PASSWORD" required>
+                    <div class="form-group row">
+                        <label for="repeatpassword" class="col-md-3 col-form-label"><b>*Repeat Password </b></label>
+                        <div class="col-md-3">
+                            <input id="repeatpassword" name="repeatpassword" class="form-control" type="text" placeholder="REPEAT PASSWORD" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
+                    <div class="form-group row">
                         <div class="col-md-1">
                             <button type="submit" class="btn btn-primary" id="confirm">Confirm</button>
                         </div>
@@ -101,14 +100,14 @@
                             <button type="button" class="btn btn-primary" id="cancel">Cancel</button>
                         </div>
                     </div>
-            <?php
+                <?php
             } else { ?>
-                <div class="alert alert-info" role="alert">
-                    <h4>Sorry, only authenticated user can access this page.</h4>
-                    <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
-                </div><?php
-                    }
-                        ?>
+                    <div class="alert alert-info" role="alert">
+                        <h4>Sorry, only authenticated user can access this page.</h4>
+                        <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+                    </div><?php
+                        }
+                            ?>
         </main>
 
         <footer class="container text-center font-italic py-2">
@@ -120,38 +119,43 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script type="text/javascript">
         function myFunction() {
-        var x = document.getElementById("password");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
         }
         document.getElementById("cancel").addEventListener("click", function() {
-                window.location.href = "profile.php";
+            window.location.href = "profile.php";
         })
         <?php
-        function validatePassword($password,$hashPassword){
+        function validatePassword($password, $hashPassword)
+        {
+            $salt = "roA&h2u!PoaWr2u";
 
-            if(password_verify($password,$hashPassword)){
+            $password = hash("sha256", $password . $salt);
+
+            if ($password = $hashPassword) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
         ?>
+
         function validateForms() {
             var confirm = window.confirm("Confirm to update information of contact?");
             if (confirm) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
             $password = $_POST['Password'];
-            var password = validatePassword($password,$hashPassword)
-            if(password == true){
+            var password = validatePassword($password, $hashPassword)
+            if (password == true) {
                 return true;
-            }else{
+            } else {
                 alert("The password is not matched.")
                 return false;
             }
