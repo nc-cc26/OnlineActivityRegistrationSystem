@@ -40,6 +40,10 @@
             $salt = "roA&h2u!PoaWr2u";
             $hash = hash("sha256", $pw . $salt);
 
+            if(!$row){
+                exit('Link expired!');
+            }
+
             $email = $row['Email'];
 
             try {
