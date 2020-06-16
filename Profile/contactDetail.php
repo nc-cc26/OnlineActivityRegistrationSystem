@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    include_once '../database.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -7,12 +11,22 @@
     <link rel="stylesheet" href="../css/style.css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
     <link rel="icon" href="../imgs/8th.png" type="image/icon type" />
     <title>Contact Detail</title>
+    <style>
+        .dropright:hover 
+        .dropdown-menu
+        {display: block;}
+        .dropdown:hover
+        .dropdown-menu
+        {display: block;}
+
+        h2 {text-align: center;}
+
+    </style>
 </head>
 
 <body>
@@ -33,12 +47,40 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="profileDetail.php">View details<span class="sr-only">(current)</span></a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View Details
+                    <span class="sr-only">(current)</span>
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                            <a class="nav-link" href="profileDetail.php">Personal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="academicDetail.php">Academic</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link bg-light" href="contactDetail.php">Contact<span class="sr-only">(current)</span></a>
+                            </li>
+                        </ul>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="updatePersonal.php">Update details</a>
+                    <li class="nav-item dropright">
+                    <a  class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Update Details</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="updatePersonal.php">Personal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="updateAcademic.php">Academic</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="updateContact.php">Contact</a>
+                            </li>
+                        </ul>
+                        </div>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-1">
@@ -56,27 +98,9 @@
             </div>
         </nav>
         <main class="jumbotron mt-2">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="profileDetail.php">Personal</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="academicDetail.php">Academic</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="contactDetail.php">Contact <span class="sr-only">(current)</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <h2>Contact Detail</h2><br>
+
             <?php
-            session_start();
-            include_once '../database.php';
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
                 $id = $_SESSION['user_id'];

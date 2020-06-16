@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    include_once '../database.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -12,6 +16,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="icon" href="../imgs/8th.png" type="image/icon type">
     <title>Update Contact Information</title>
+    <style>
+        .dropright:hover 
+        .dropdown-menu
+        {display: block;}
+        .dropdown:hover
+        .dropdown-menu
+        {display: block;}
+
+        
+    </style>
 </head>
 
 <body>
@@ -32,14 +46,42 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="collapsibleNavbar">
-                <ul class="navbar-nav mr-auto ">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="profileDetail.php">View details</a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View Details
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                            <a class="nav-link" href="profileDetail.php">Personal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="academicDetail.php">Academic</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="contactDetail.php">Contact</a>
+                            </li>
+                        </ul>
+                        </div>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link " href="updatePersonal.php">Update details<span class="sr-only">(current)</span> </a>
+                    <li class="nav-item active dropright">
+                    <a  class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Update Details
+                    <span class="sr-only">(current)</span>
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="updatePersonal.php">Personal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="updateAcademic.php">Academic</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link bg-light" href="updateContact.php">Contact<span class="sr-only">(current)</span></a>
+                            </li>
+                        </ul>
+                        </div>
                     </li>
-
                 </ul>
                 <ul class="navbar-nav mr-1">
                     <li class="nav-item dropdown">
@@ -57,10 +99,8 @@
             </div>
         </nav>
         <main class="jumbotron mt-2">
-            <h2>Update Academic Information</h2>
+            <h2>Update Contact Information</h2>
             <?php
-            session_start();
-            include_once '../database.php';
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
                 $user_email = $_SESSION['user_email'];
@@ -87,24 +127,6 @@
             </div>";
                 }
             ?>
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="updatePersonal.php">Personal</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="updateAcademic.php">Academic</span></a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="updateContact.php">Contact <span class="sr-only">(current)</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
                 <form method="post" action="processContact.php" onsubmit="return validateForms()" id="form" class="jumbotron mt-3">
                     <div class="form-group row">
                         <label for="address" class="col-md-2 col-form-label">Address</label>
@@ -225,9 +247,7 @@
         function validateForms() {
             var confirm = window.confirm("Confirm to update information of contact?");
 
-            if (confirm) {
-                return true;
-            }else{
+            if (!confirm) {
                 return false;
             }
         }
