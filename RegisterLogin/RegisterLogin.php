@@ -39,7 +39,7 @@
                     <div class="d-flex justify-content-center"></div>
 
                     <div>
-                        <label for="new-ID"><i class="fas fa-id-badge">  ID: </i></label>
+                        <label for="new-ID"><i class="fas fa-id-badge"> ID: </i></label>
                         <input id="new-ID" name="newID" type="text" class="input-field" placeholder="Enter Matric Number" required />
                     </div>
 
@@ -94,7 +94,7 @@
                     </div>
 
                     <div>
-                        <label for="pw"><i class="fas fa-key"> Password: </i></label>
+                        <label for="pw"><i class="fas fa-key"> New Password: </i></label>
                         <span id="login-eye" class="slashed"></span>
                         <input id="pw" name="pw" type="password" class="input-field" placeholder="Enter Password" required />
                     </div>
@@ -106,7 +106,7 @@
 
                     <div class="mb-2">
                         <p class="m-0"><i class="fas fa-lock"> Forgot Password?</i></p>
-                        <a href="ResetPassword.php">Click Me</a>
+                        <a href="ResetPassword.php">Reset Password</a>
                     </div>
 
                     <!-- <div>

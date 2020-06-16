@@ -40,7 +40,7 @@ if (isset($_GET['email'])) {
                 extract($row);
 
                 echo "<div class='alert alert-info alert-dismissible'>
-                    <h4><i class='fas fa-search'> Here's what we found!</i></i></h4><p>The ID for <strong>$email</strong> is <strong>$ID</strong>.</p>
+                    <h4><i class='fas fa-search'> Here's what we found!</i></h4><p>The ID for <strong>$email</strong> is <strong>$ID</strong>.</p>
                     <a href='RegisterLogin.php'>Log In</a> now or <a href='RegisterLogin.php'>register</a> using another email.";
             } else {
                 echo "<div class='alert alert-danger alert-dismissible'>

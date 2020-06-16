@@ -117,7 +117,6 @@ if (isset($_POST['login'])) {
     $pw = $_POST['pw'];
 
     $salt = "roA&h2u!PoaWr2u";
-
     $hash = hash("sha256", $pw . $salt);
 
     $check = "SELECT * FROM `user` WHERE `ID`='$ID' AND `Password` = '$hash'";

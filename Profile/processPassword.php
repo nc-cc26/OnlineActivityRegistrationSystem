@@ -5,7 +5,7 @@ include_once('../database.php');
 if(isset($_SESSION['logged_in']) && $_SESSION['user_id'] 
 && $_SESSION['user_email'] && $_SESSION['logged_in'] == true){
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $ID = $_SESSION['user_id'];
+        $id = $_SESSION['user_id'];
         if(isset($_POST['password']) && isset($_POST['newpassword'])
         && isset($_POST['repeatpassword']) ){
 
