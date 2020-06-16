@@ -313,16 +313,26 @@ button.clear {
   content: "\f00d";
 }
 
+#register-eye {
+  cursor: pointer;
+  position: relative;
+  left: 150px;
+  top: 23px;
+}
+
+#login-eye {
+  cursor: pointer;
+  position: relative;
+  left: 120px;
+  top: 23px;
+}
+
 .slashed {
   color: #999;
 }
 
 .slashed:before {
   font-family: "Font Awesome 5 Free";
-  cursor: pointer;
-  position: relative;
-  left: 160px;
-  top: 23px;
   content: '\f070';
 }
 
@@ -334,7 +344,7 @@ button.clear {
   font-family: "Font Awesome 5 Free";
   cursor: pointer;
   position: relative;
-  left: 160px;
+  left: 150px;
   top: 23px;
   content: '\f06e';
 }

@@ -32,9 +32,7 @@
             $code = $_POST['code'];
 
             $stmt = $pdo->prepare("SELECT * FROM `reset_password` WHERE `Code`='$code'");
-
             $stmt->execute();
-
             $row = $stmt->fetch();
 
             $pw = $_POST['password'];
@@ -45,7 +43,9 @@
             $email = $row['Email'];
 
             try {
-                $updatePW = $pdo->prepare("UPDATE `user` SET `Password`='$hash' WHERE `Email`='$email'")->execute();
+                $pdo->prepare("UPDATE `user` SET `Password`='$hash' WHERE `Email`='$email'")->execute();
+
+                $pdo->prepare("DELETE FROM `reset_password` WHERE `Code` = '$code'")->execute();
 
                 echo "<div class='alert alert-success alert-dismissible'>
             <h4><i class='icon fa fa-check'> Done updating password.</i></h4>
