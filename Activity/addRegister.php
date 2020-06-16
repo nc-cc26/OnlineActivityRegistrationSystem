@@ -50,7 +50,11 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
                <a href='history.php'>Registration History</a> or back to <a href='Activity.php'>Activity page.</a>
                </div>";
                }catch (Exception $e){
-                echo "Error: " . $e;
+                echo "<div class='alert alert-danger alert-dismissible'>
+                <h4><i class='icon fa fa-exclamation-circle'> You have registered before!</i></h4>
+                <a href='register.php'>Register</a> again or <a href='Activity.php'>Cancel</a> registration.
+                </div>";
+                exit("You have registered in this year and sem, please "."<a href='history.php'>check</a>"." your history.");
                 }
               }
               //if one activity(Activity 2 will be entered to Activity 1 column)
@@ -65,7 +69,11 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
                <a href='history.php'>Registration History</a> or back to <a href='Activity.php'>Activity page.</a>
                </div>";
                }catch (Exception $e){
-                echo "Error: " . $e;
+                echo "<div class='alert alert-danger alert-dismissible'>
+                <h4><i class='icon fa fa-exclamation-circle'> You have registered before!</i></h4>
+                <a href='register.php'>Register</a> again or <a href='Activity.php'>Cancel</a> registration.
+                </div>";
+                exit("You have registered in this year and sem, please "."<a href='history.php'>check</a>"." your history.");
                 }
               }
 
@@ -81,7 +89,11 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
                <a href='history.php'>Registration History</a> or back to <a href='Activity.php'>Activity page.</a>
                </div>";
                }catch (Exception $e){
-                echo "Error: " . $e;
+                echo "<div class='alert alert-danger alert-dismissible'>
+                <h4><i class='icon fa fa-exclamation-circle'> You have registered before!</i></h4>
+                <a href='register.php'>Register</a> again or <a href='Activity.php'>Cancel</a> registration.
+                </div>";
+                exit("You have registered in this year and sem, please "."<a href='history.php'>check</a>"." your history.");
                 }
               }
 
@@ -106,7 +118,11 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
                <a href='history.php'>Registration History</a> or back to <a href='Activity.php'>Activity page.</a>
                </div>";
                }catch (Exception $e){
-                echo "Error: " . $e;
+                echo "<div class='alert alert-danger alert-dismissible'>
+                <h4><i class='icon fa fa-exclamation-circle'> You have registered before!</i></h4>
+                <a href='register.php'>Register</a> again or <a href='Activity.php'>Cancel</a> registration.
+                </div>";
+                exit("You have registered in this year and sem, please "."<a href='history.php'>check</a>"." your history.");
                 }
               }
 
@@ -132,7 +148,11 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
                <a href='history.php'>Registration History</a> or back to <a href='Activity.php'>Activity page.</a>
                </div>";
                }catch (Exception $e){
-                echo "Error: " . $e;
+                echo "<div class='alert alert-danger alert-dismissible'>
+                <h4><i class='icon fa fa-exclamation-circle'> You have registered before!</i></h4>
+                <a href='register.php'>Register</a> again or <a href='Activity.php'>Cancel</a> registration.
+                </div>";
+                exit("You have registered in this year and sem, please "."<a href='history.php'>check</a>"." your history.");
                 }
               }
 
@@ -159,7 +179,11 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
                <a href='history.php'>Registration History</a> or back to <a href='Activity.php'>Activity page.</a>
                </div>";
                }catch (Exception $e){
-                echo "Error: " . $e;
+                echo "<div class='alert alert-danger alert-dismissible'>
+                <h4><i class='icon fa fa-exclamation-circle'> You have registered before!</i></h4>
+                <a href='register.php'>Register</a> again or <a href='Activity.php'>Cancel</a> registration.
+                </div>";
+                exit("You have registered in this year and sem, please "."<a href='history.php'>check</a>"." your history.");
                 }
               }
 
@@ -176,7 +200,11 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
               <a href='history.php'>Registration History</a> or back to <a href='Activity.php'>Activity page.</a>
               </div>";
               }catch (Exception $e){
-                echo "Error: " . $e;
+                echo "<div class='alert alert-danger alert-dismissible'>
+                <h4><i class='icon fa fa-exclamation-circle'> You have registered before!</i></h4>
+                <a href='register.php'>Register</a> again or <a href='Activity.php'>Cancel</a> registration.
+                </div>";
+                exit("You have registered in this year and sem, please "."<a href='history.php'>check</a>"." your history.");
               }
             }
 
