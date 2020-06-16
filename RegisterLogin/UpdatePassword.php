@@ -58,7 +58,7 @@
         } else if (isset($_GET['code'])) {
             $code = $_GET["code"];
         ?>
-            <form method="post" class="form-group">
+            <form onsubmit="return checkForm(this);" method="post" class="form-group">
                 <input type="hidden" name="code" value="<?php echo $code ?>">
 
                 <label for="password">
@@ -66,8 +66,84 @@
                 </label>
                 <input class="form-control" id="password" type="password" name="password" placeholder="Enter new password">
 
+                <div id="message" style="display: none;">
+                    <h4 style="font-size: medium;">Password must contain the following:</h4>
+                    <p style="font-size: small;" id="letter" class="invalid pl-5">A <b>lowercase</b> letter</p>
+                    <p style="font-size: small;" id="capital" class="invalid pl-5">A <b>capital (uppercase)</b> letter</p>
+                    <p style="font-size: small;" id="number" class="invalid pl-5">A <b>number</b></p>
+                    <p style="font-size: small;" id="length" class="invalid pl-5">Minimum <b>8 characters</b></p>
+                </div>
+
                 <input id="reg-btn" class="m-3 d-flex justify-content-center submit-btn text-light fas fa-key" type="submit" name="reset-password" value="&#xf1d8 Submit" />
             </form>
+
+            <script>
+                let myInput = document.querySelector("#password");
+
+                let letter = document.querySelector("#letter");
+                let capital = document.querySelector("#capital");
+                let number = document.querySelector("#number");
+                let length = document.querySelector("#length");
+
+                // When the user moves cursor onto the password field, show the message box
+                myInput.onmouseover = function() {
+                    document.getElementById("message").style.display = "block";
+                }
+
+                // When the user moves cursor outside of the password field, hide the message box
+                myInput.onmouseout = function() {
+                    document.getElementById("message").style.display = "none";
+                }
+
+                // When the user starts to type something inside the password field
+                myInput.onkeyup = function() {
+                    // Validate lowercase letters
+                    var lowerCaseLetters = /[a-z]/g;
+                    if (this.value.match(lowerCaseLetters)) {
+                        letter.classList.remove("invalid");
+                        letter.classList.add("valid");
+                    } else {
+                        letter.classList.remove("valid");
+                        letter.classList.add("invalid");
+                    }
+                    // Validate capital letters
+                    var upperCaseLetters = /[A-Z]/g;
+                    if (this.value.match(upperCaseLetters)) {
+                        capital.classList.remove("invalid");
+                        capital.classList.add("valid");
+                    } else {
+                        capital.classList.remove("valid");
+                        capital.classList.add("invalid");
+                    }
+
+                    // Validate numbers
+                    var numbers = /[0-9]/g;
+                    if (myInput.value.match(numbers)) {
+                        number.classList.remove("invalid");
+                        number.classList.add("valid");
+                    } else {
+                        number.classList.remove("valid");
+                        number.classList.add("invalid");
+                    }
+
+                    // Validate length
+                    if (myInput.value.length >= 8) {
+                        length.classList.remove("invalid");
+                        length.classList.add("valid");
+                    } else {
+                        length.classList.remove("valid");
+                        length.classList.add("invalid");
+                    }
+                }
+
+                function checkForm() {
+                    let allValid = capital.classList.contains('valid') && letter.classList.contains('valid') && number.classList.contains('valid') && length.classList.contains('valid');
+                    if (!allValid) {
+                        alert('Please follow the requested formats, thank you.');
+                    }
+                    return allValid;
+                }
+            </script>
         <?php
         } else {
         }
