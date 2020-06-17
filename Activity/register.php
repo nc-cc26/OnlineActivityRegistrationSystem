@@ -55,63 +55,75 @@
         </nav>
         <main class="jumbotron mt-2">
             <h2 class="font-weight-bold">Registration for Activities</h2>
+            <text>*You should only choose maximum 3 activities at one time to prevent clashing.*</text>
             <?php
             session_start();
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
             ?>
                 <div class="jumbotron mt-8">
-                    <form action="#" method="post" id="form_id">
-                        <div>
-                            <label for="Name">Name:</label><br />
-                            <input type="text" class="form-control" id="name" />
-                        </div>
-
-                        <div>
-                            <br /><label for="Matricnumber">Matric Number:</label><br />
-                            <input type="text" class="form-control" id="matricnumber" />
-                        </div>
+                    <form action="addRegister.php" method="post" id="activityReg">
 
                         <div>
                             <br /><label for="Year">Year:</label><br />
-                            <input type="text" class="form-control" id="year" />
+                            <input type="text" class="form-control" id="year" name="Year" style="width: 20%" required/>
                         </div>
 
                         <div>
                             <br /><label for="Semester">Semester:</label><br />
-                            <input type="text" class="form-control" id="semester" />
+                            <input type="text" class="form-control" id="semester" name="Sem" style="width: 20%" required/>
                         </div>
 
                         <div>
-                            <br /><label for="activities">Select your activities:</label><br />
-                            <input type="checkbox" id="olympics" name="olympics" value="Olympics" required />
-                            <label for="olympics"> MyCollege Olympics</label>
+                            <br /><label for="activities" style="font-size: 150%"><b>Select your activities:</b></label>
+                           
+                            <br /><br>                            
+                            <label for="Activity 1"> Activity 1:</label>
+                            <select id="a1" name="a1" class="form-control" style="width: 20%">
+                                <option selected>-</option>
+                                <option value="MyCollege Olympics">MyCollege Olympics</option>
+                                <option value="Gamers Guild">Gamers Guild</option>
+                                <option value="Language and Culture Class">Language and Culture Class</option>
+                                <option value="MyCollege Got Talent">MyCollege Got Talent</option>
+                                <option value="Photography Club">Photography Club</option>
+                            </select>
                             <p></p>
                             <br />
 
-                            <input type="checkbox" id="game" name="game" value="Game" />
-                            <label for="game"> Gamers Guild</label>
+                           
+                            <label for="Activity 2"> Activity 2:</label>
+                            <select id="a2" name="a2" class="form-control" style="width: 20%">
+                                <option selected>-</option>
+                                <option value="MyCollege Olympics">MyCollege Olympics</option>
+                                <option value="Gamers Guild">Gamers Guild</option>
+                                <option value="Language and Culture Class">Language and Culture Class</option>
+                                <option value="MyCollege Got Talent">MyCollege Got Talent</option>
+                                <option value="Photography Club">Photography Club</option>
+                            </select>
                             <p></p>
                             <br />
+                            </div>
 
-                            <input type="checkbox" id="language" name="language" value="Language" />
-                            <label for="language"> Language and Culture Class</label><br />
+                            
+                            <label for="Activity 3"> Activity 3:</label>
+                            <select id="a3" name="a3" class="form-control" style="width: 20%">
+                                <option selected>-</option>
+                                <option value="MyCollege Olympics">MyCollege Olympics</option>
+                                <option value="Gamers Guild">Gamers Guild</option>
+                                <option value="Language and Culture Class">Language and Culture Class</option>
+                                <option value="MyCollege Got Talent">MyCollege Got Talent</option>
+                                <option value="Photography Club">Photography Club</option>
+                            </select>
                             <p></p>
                             <br />
+                           
 
-                            <input type="checkbox" id="talent" name="talent" value="Talent" />
-                            <label for="talent"> MyCollege Got Talent</label><br />
-                            <p></p>
-                            <br />
-
-                            <input type="checkbox" id="photography" name="photography" value="Photography" />
-                            <label for="photography"> Photography Club</label><br />
-                            <p></p>
-                            <br />
                         </div>
                         <div style="text-align:center">
-                            <input type="button" class="btn btn-success" id="submit" value="Submit" />
-                            <input type="button" class="btn btn-danger" id="cancel" value="Cancel" />
+                            <button type="submit" class="btn btn-primary" id="submit">
+                                Submit
+                            </button>
+                            <input type="button" class="btn btn-primary" id="cancel" value="Cancel" />
                         </div>
                     </form>
                 </div>
@@ -133,11 +145,13 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>
+      
+
         var sub = document.getElementById("submit");
         sub.addEventListener("click", function() {
-            var yes = window.confirm("Are you sure to submit the registration?");
+            var yes = window.confirm("Are you sure to submit the registration?\nNote: 'Once you have submitted, you are not allowed to change anymore.'");
             if (yes) {
-                window.location.href = "history.php";
+               
             } else {
                 return true;
             }

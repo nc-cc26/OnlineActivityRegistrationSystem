@@ -6,9 +6,9 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
 && $_SESSION['user_email'] && $_SESSION['logged_in'] == true){
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $ID = $_SESSION['user_id'];
-        if(isset($_POST['Faculty']) && isset($_POST['Course']) && 
-        isset($_POST['EntryYear']) && isset($_POST['Duration']) && 
-        isset($_POST['Mode']) ) {
+        //if(isset($_POST['Faculty']) && isset($_POST['Course']) && 
+        //isset($_POST['EntryYear']) && isset($_POST['Duration']) && 
+        //isset($_POST['Mode']) ) {
 
             $Faculty = $_POST['Faculty'];
             $Course = $_POST['Course'];
@@ -29,8 +29,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
             }catch (Exception $e){
                 echo "Error: " . $e;
             }
-        }
-//}
+        //}
 }
 }
 ?>

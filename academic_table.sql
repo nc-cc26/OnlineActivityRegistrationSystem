@@ -1,10 +1,10 @@
 CREATE TABLE `academicTable` (
     `ID` varchar(9) NOT NULL,
-    `Faculty` varchar(254) NOT NULL DEFAULT 'Null',
-    `Course` varchar(254) NOT NULL DEFAULT 'Null',
-    `EntryYear` int(4) NOT NULL DEFAULT 0000,
-    `Duration` int(4) NOT NULL DEFAULT 0,
-    `Mode` varchar(13) NOT NULL DEFAULT 'Null',
+    `Faculty` varchar(254) NULL DEFAULT NULL,
+    `Course` varchar(254) NULL DEFAULT NULL,
+    `EntryYear` varchar(4) NULL DEFAULT NULL,
+    `Duration` varchar(4) NULL DEFAULT NULL,
+    `Mode` varchar(13) NULL DEFAULT NULL,
     PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

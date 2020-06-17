@@ -7,9 +7,9 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $ID = $_SESSION['user_id'];
         $Email = $_SESSION['user_email'];
-        if(isset($_POST['Address']) && isset($_POST['Postcode']) && 
-        isset($_POST['City']) && isset($_POST['State']) && 
-        isset($_POST['Phone']) ) {
+        //if(isset($_POST['Address']) && isset($_POST['Postcode']) && 
+        //isset($_POST['City']) && isset($_POST['State']) && 
+        //isset($_POST['Phone']) ) {
 
             $Address = $_POST['Address'];
             $Postcode = $_POST['Postcode'];
@@ -30,8 +30,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
             }catch (Exception $e){
                 echo "Error: " . $e;
             }
-        }
-//}
+        //}
 }
 }
 ?>

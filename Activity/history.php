@@ -3,9 +3,8 @@
 
 <head>
     <style>
-        button:focus {
-            outline: none;
-            border: none;
+        table, td, th {
+            text-align: center;
         }
     </style>
     <meta charset="utf-8">
@@ -64,105 +63,68 @@
         <main class="jumbotron mt-2">
             <?php
             session_start();
-
+            include_once('../database.php');
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
             ?>
                 <div class="col-25">
                     <div class="container">
-                        <h4>Activities Registered</h4>
-                        <table class="table table-bordered ">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Name</th>
-                                    <th>Matric Number</th>
+                        <b><h2>Activities Registered</h2></b><br><br>
+   						<table class="table table-bordered">                   
+                    <tr style="background-color: #F8F8FF">
+                    	<th>Year</th>
+                    	<th>Semester</th>
+                    	<th>Activity 1</th>
+                    	<th>Activity 2</th>
+                    	<th>Activity 3</th>
+                    </tr>
+                       <?php
+							$ID = $_SESSION['user_id'];
+                                    
+                                     $display = "SELECT * FROM activitytable WHERE id='$ID'";
+                                     $stmt = $pdo->prepare($display);
+               						 $stmt -> execute(); 
 
-                                    <th>Year</th>
-                                    <th>Semester</th>
-                                    <th>Activities</th>
-                                    <th>Status</th>
-                                </tr>
-                            <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <th>Mark Clarence</th>
-                                    <th>WIF200001</th>
-                                    <th>1</th>
-                                    <th>1</th>
-                                    <th><a href="Activity.php#olympics">MyCollege Olympics</a><br><a href="Activity.php#game">Gamers
-                                            Guild</a></th>
-                                    <th><a onclick="confirmed()" href="#">Confirmed</a></button></th>
-                                </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <th>Mark Clarence</th>
-                                    <th>WIF200001</th>
-                                    <th>1</th>
-                                    <th>2</th>
-                                    <th><a href="Activity.php#talent">MyCollege Got Talent</a></th>
-                                    <th><a onclick="deleted()" href="#">Failed</a></th>
-                                </tr>
+							 		 $checkID = "SELECT `ID` FROM activitytable WHERE id='$ID'";
+							 		 $re = $pdo->prepare($checkID);
+							 		 $re -> execute();
+							 		 $check = $re->fetch(PDO::FETCH_ASSOC);
+							if($check){
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+								$Year = $row["Year"];
+        						$Semester = $row["Semester"];
+        						$Activity1 = $row["Activity 1"];
+        						$Activity2 = $row["Activity 2"];
+        						$Activity3 = $row["Activity 3"]; 
+              				
+        						echo "<td>".$Year."</td>";
+                    			echo "<td>".$Semester."</td>";
+								echo "<td>".$Activity1."</td>";
+								echo "<td>".$Activity2."</td>";
+								echo "<td>".$Activity3."</td>";
+                    			echo "</tr>";    
+                    		}
+                    		}
+                    		else{
 
-                                <tr>
-                                    <th>3</th>
-                                    <th>Mark Clarence</th>
-                                    <th>WIF200001</th>
-                                    <th>1</th>
-                                    <th>2</th>
-                                    <th><a href="Activity.php#photo">Photography Club</a></th>
-                                    <th><a id="click" href="#">Click to confirm</a><button id="delete" style="margin-left: 1.5em" id="delete"><img src="../imgs/bin.jpg" height="20" width="20"></button></th>
-                                </tr>
-                            </tbody>
-                            </thead>
-                        </table>
-
-
-
+                    			echo "<td>-</td>";
+                    			echo "<td>-</td>";
+								echo "<td>-</td>";
+								echo "<td>-</td>";
+								echo "<td>-</td>";
+                    			echo "</tr>";  
+                    			echo "<b><h5>You have not registered any activity yet.</h5><b>";  
+                    		}	             
+        					
+        				
+        				?>
+        		
+                     </table>	
 
 
 
                     </div>
                 </div>
-    </div>
 
-    <script>
-        function confirmed() {
-            alert("You have already confirmed this registration.");
-        }
-
-        function deleted() {
-            alert("You have already deleted this registration.");
-        }
-        var click = document.getElementById("click");
-        var delButton = document.getElementById("delete");
-        click.addEventListener("click", function() {
-            if (click.textContent == "Click to confirm") {
-                var yes = window.confirm("Are you sure to confirm this registration?");
-                if (yes) {
-                    click.textContent = "Confirmed";
-                    delButton.remove("button");
-                } else {
-                    return true;
-                }
-            }
-            if (click.textContent == "Confirmed") {
-                confirmed();
-            } else if (click.textContent == "Failed") {
-                deleted();
-            }
-        });
-
-        delButton.addEventListener("click", function() {
-            var deletemou = window.confirm("Are you sure to delete this registration?");
-            if (deletemou) {
-                deleted();
-                click.textContent = "Failed";
-                delButton.remove("button");
-            } else {
-                return true;
-            }
-        });
-    </script>
 <?php
             } else { ?>
     <div class="alert alert-info" role="alert">

@@ -9,12 +9,13 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
 && $_SESSION['user_email'] && $_SESSION['logged_in'] == true){
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $ID = $_SESSION['user_id'];
-        if(!empty($_FILES["ProfilePicture"]["name"]) && 
-        isset($_POST['Name']) && isset($_POST['NewMatrics']) && 
-        isset($_POST['IC']) && isset($_POST['Nationality']) && 
-        isset($_POST['Gender']) && isset($_POST['Birthday']) &&
-        isset($_POST['Race']) && isset($_POST['Religion']) &&
-        isset($_POST['Marital'])) {
+        if(isset($_POST['Name']) && isset($_POST['NewMatrics']) ){
+        //if(!empty($_FILES["ProfilePicture"]["name"]) && 
+        //isset($_POST['Name']) && isset($_POST['NewMatrics']) && 
+        //isset($_POST['IC']) && isset($_POST['Nationality']) && 
+        //isset($_POST['Gender']) && isset($_POST['Birthday']) &&
+        //isset($_POST['Race']) && isset($_POST['Religion']) &&
+        //isset($_POST['Marital'])) {
             //$ProfilePicture = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
 
             //$ProfilePicture = $_POST['ProfilePicture'];
@@ -30,16 +31,19 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
             $Religion = $_POST['Religion'];
             $Marital = $_POST['Marital'];
 
-            $sql = "UPDATE `personaltable` SET `ProfilePicture`='$imgContent', `Name`='$Name', 
+            $sql = "UPDATE `personaltable` SET `ProfilePicture`='$imgContent', 
             `IC`='$IC', `Nationality`='$Nationality', 
             `Gender`='$Gender', `Birthday`='$Birthday', 
             `Race`='$Race', `Religion`='$Religion', 
             `Marital`='$Marital', `NewMatrics`='$NewMatrics' 
             WHERE `ID`='$ID'";
+            $sql1 = "UPDATE `user` SET `Name`='$Name' WHERE `ID`='$ID'";
 
             try{
             $updateValue = $pdo->prepare($sql);
+            $updateValue1 = $pdo->prepare($sql1);
             $updateValue -> execute();
+            $updateValue1 -> execute();
             header("Location:../Profile/updatePersonal.php?action=updatePersonalSuccessful");
             
 

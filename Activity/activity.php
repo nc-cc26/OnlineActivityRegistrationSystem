@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -10,7 +11,99 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .flip-card {
+            background-color: transparent;
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+        }
 
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flip-card-front {
+            background-color: #bbb;
+            color: black;
+        }
+
+        .flip-card-back {
+            background-color: #008B8B;
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .button {
+            background-color: #20B2AA;
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            opacity: 0.6;
+            transition: 0.5s;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            opacity: 1
+        }
+
+        .container1 {
+            height: 300px;
+            position: relative;
+        }
+
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 43%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .buttonround {
+            border-radius: 50%;
+        }
+    </style>
     <link rel="icon" href="imgs/8th.png" type="image/icon type">
     <title>List of Activities</title>
 </head>
@@ -58,181 +151,143 @@
         <main class="jumbotron mt-2">
 
             <h2 class="font-weight-bold ">Activities of MyCollege</h2>
-
             <?php
-            session_start();
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
             ?>
-                <p class="spaceP">
-                    <a name="olympics" class="font-weight-bold ">
-                        <font size="5">MyCollege Olympics</font>
-                    </a>
-                    <p>
-                        <font size="2">&#42Date: 1st of Nov-1st of December</font>
-                    </p>
-                    <p>Remember when you were younger, and your school would have a Field Day? It was a day of friendly, whimsical
-                        challenges, followed by a celebratory meal. This is a Field Day for adults. It has various of sports:
-                        Basketball, Football, Rugby, Baseball, Ping Pong, Track and Field, Badminton, Tennis, Volleyball, Swimming,
-                        Rope Pull, Cycling, Cheerleading, and Handball, for the students to compete against each other. Students are
-                        divided into 4 groups, "Team Alpha", "Team Beta", "Team Gamma", "Team Delta", and the winner group will be
-                        receiving awards at the Awards Night! of MyCollege, which is held anually.</p>
-                    <br>
-                </p>
-                <div style="text-align:center">
-                    <img src="../imgs/cheerleading.jpg" alt="cheerleading"><br><br>
-                    <p>Cheerleading at MyCollege Olympics Opening Ceremony</p>
+                &emsp;<a href="history.php"><button class="button">View registration history</button></a>
+                <div class="row">
+                    <div class="column">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="../imgs/cheerleading.jpg" alt="cheerleading" style="width:300px;height:300px;">
+                                </div>
+                                <div class="flip-card-back">
+                                    <h1>MyCollege Olympics</h1>
+                                    <p>&#42Date: 1st of Nov-1st of December</p>
+                                    <a href="olympic.php"><button class="btn btn-primary">Click to view more details.</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="../imgs/midone.jpg" alt="midone" style="width:300px;height:300px;">
+                                </div>
+                                <div class="flip-card-back">
+                                    <h1>Gamers Guild</h1>
+                                    <p>&#42Available every week</p>
+                                    <a href="gamer.php"><button class="btn btn-primary">Click to view more details.</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="../imgs/photo.jpg" alt="midone" style="width:300px;height:300px;">
+                                </div>
+                                <div class="flip-card-back">
+                                    <h1>Photography Club</h1>
+                                    <p>&#42Available every week</p>
+                                    <a href="photo.php"><button class="btn btn-primary">Click to view more details.</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <p class="spaceP">
-                    <a name="game" class="font-weight-bold ">
-                        <font size="5">Gamers Guild</font>
-                    </a>
-                    <p>
-                        The Gamers Guild is a community of individuals united by their common interest in online gaming, board games,
-                        and video games. Whether you are looking for an entertaining match among friends, or a competitive tournament
-                        against the other Residential Colleges, the Gamers Guild is the group for you.
-                    </p>
-                    <div style="text-align:center">
-                        <img src="../imgs/midone.jpg" style="width:40%" id="gamerpics"><br><br>
-                        <button class="btn btn-primary" id="nextG">Next Photo</button>
+                <div class="row">
+                    <div class="column">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="../imgs/teaching.png" alt="teaching" style="width:300px;height:300px;">
+                                </div>
+                                <div class="flip-card-back">
+                                    <h1>Language and Culture Class</h1>
+                                    <p>&#42Available every week</p>
+                                    <a href="lang.php"><button class="btn btn-primary">Click to view more details.</button></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </p>
 
-                <p class="spaceP">
-                    <a name="language" class="font-weight-bold ">
-                        <font size="5">Language and Culture Class</font>
-                    </a>
-                    <p>
-                        Language and Culture Class is a class that gives an opportunity to the students for learning a new language.
-                        Languages like Korean, Japanese, Mandarin, German, France, Arabian, Spanish, Italian are available in this
-                        class. Students are welcomed to join this class if they have an interest in learning a new language or culture
-                        of other countries.
-                    </p>
-                    <div style="text-align:center">
-                        <img src="../imgs/japanese.png" style="width:40%" id="langpics"><br><br>
-                        <p>Language class taught by experienced linguists.</p><br>
-                        <button class="btn btn-primary" id="nextL">Next Photo</button>
-                </p>
-    </div>
-    <p class="spaceP">
-        <a name="talent" class="font-weight-bold ">
-            <font size="5">MyCollege Got Talent</font>
-        </a>
-        <p>
-            <font size="2">&#42Date: 1st of February</font>
-        </p>
-        <p>
-            MyCollege Got Talent is a talent competition that gives a chance to the students to show what they are best at!
-            Audiences both from in and out campus will be invited to watch the show. Well-known judges will be invited to
-            determine the most talented person in MyCollege!
-        </p>
-        <div style="text-align:center">
-            <img src="../imgs/joji.jpg" style="width:40%" id="talpics"><br><br>
-            <button class="btn btn-primary" id="nextT">Next Photo</button>
-        </div>
+                    <div class="column">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="../imgs/joji.jpg" alt="joji" style="width:300px;height:300px;">
+                                </div>
+                                <div class="flip-card-back">
+                                    <h1>MyCollege Got Talent</h1>
+                                    <p>&#42Date: 1st of February</p>
+                                    <a href="talent.php"><button class="btn btn-primary">Click to view more details.</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <p class="spaceP">
-            <a name="photo" class="font-weight-bold ">
-                <font size="5">Photography Club</font>
-            </a>
-            <p>
-                Photography Club give an opportunity to students to show their talent and creativity in taking attractive
-                photos. Tutorials for photography and editing for both pictures and video are provided to the beginners.
-                Students are able to take part in competition like Best Picture or Best Short Film. Huge prizes are awaiting for
-                the best photographer!
-            </p>
-        </p>
-
-        <br><br>
-
-        <p class="spaceP">
-            <div style="text-align:center">
-                <a href="register.php"><button class="btn btn-primary">Register Now</button></a> or <a href="history.php"><button class="btn btn-primary">View Register History</button></a>
-            </div>
-        </p>
+                    <div class="column">
+                        <div class="container1">
+                            <div class="center">
+                                <a href="register.php"><button class="button buttonround" style="width:200px;height:200px;"><text style="font-size: 30px; font-weight: bold">Register Now</text></button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         </main>
+    </div>
 
-        </div>
-    <?php } else { ?>
-        <div class="alert alert-info" role="alert">
-            <h4>Sorry, only authenticated user can access this page.</h4>
-            <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
-        </div><?php } ?>
+<?php } else { ?>
+    <div class="alert alert-info" role="alert">
+        <h4>Sorry, only authenticated user can access this page.</h4>
+        <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
+    </div><?php } ?>
 
-    <footer class="container text-center font-italic py-2">
-        Copyright © 2020 - XXX Residential College.
-    </footer>
+<footer class="container text-center font-italic py-2">
+    Copyright © 2020 - XXX Residential College.
+</footer>
 
-    <script>
-        var gamerpics = [
-            "../imgs/midone.jpg",
-            "../imgs/miracle.jpg",
-            "../imgs/boardgames.jpg"
-        ];
+<script>
+    var talpics = [
+        "../imgs/joji.jpg",
+        "../imgs/kinjaz.jpg",
+        "../imgs/magic.jpg"
+    ];
 
-        var btnG = document.getElementById("nextG");
-        var imgG = document.getElementById("gamerpics");
-        var counterG = 1;
+    var btnT = document.getElementById("nextT");
+    var imgT = document.getElementById("talpics");
+    var counterT = 1;
 
-        btnG.addEventListener("click", function() {
-            if (counterG === 3) {
-                counterG = 0;
-            }
-            imgG.src = gamerpics[counterG];
-            counterG++;
-        });
-
-        var langpics = [
-            "../imgs/japanese.png",
-            "../imgs/teaching.png",
-            "../imgs/anotherteaching.png"
-        ];
-
-        var btnL = document.getElementById("nextL");
-        var imgL = document.getElementById("langpics");
-        var counterL = 1;
-
-        btnL.addEventListener("click", function() {
-            if (counterL === 3) {
-                counterL = 0;
-            }
-            imgL.src = langpics[counterL];
-            counterL++;
-        });
-
-        var talpics = [
-            "../imgs/joji.jpg",
-            "../imgs/kinjaz.jpg",
-            "../imgs/magic.jpg"
-        ];
-
-        var btnT = document.getElementById("nextT");
-        var imgT = document.getElementById("talpics");
-        var counterT = 1;
-
-        btnT.addEventListener("click", function() {
-            if (counterT === 3) {
-                counterT = 0;
-            }
-            imgT.src = talpics[counterT];
-            counterT++;
-        });
-    </script>
+    btnT.addEventListener("click", function() {
+        if (counterT === 3) {
+            counterT = 0;
+        }
+        imgT.src = talpics[counterT];
+        counterT++;
+    });
+</script>
 
 
 
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
 </body>
 
 </html>

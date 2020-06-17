@@ -39,42 +39,44 @@
                     <div class="d-flex justify-content-center"></div>
 
                     <div>
-                        <label for="new-ID">ID: </label>
+                        <label for="new-ID"><i class="fas fa-id-badge"> ID: </i></label>
                         <input id="new-ID" name="newID" type="text" class="input-field" placeholder="Enter Matric Number" required />
                     </div>
 
-                    <div id="msg">
-                        <p style="font-size: small;" class="valid">Example: <strong>WIF180049</strong></p>
-                        <p style="font-size: small;" id="matric" class="invalid"><strong>Validity of ID input</strong></p>
+                    <div id="msg" style="display: none;">
+                        <h4 style="font-size: medium;">Please follow matric number's format.</h4>
+                        <p style="font-size: small;" class="valid pl-5"><strong>Example: WIF180049</strong></p>
+                        <p style="font-size: small;" id="matric" class="invalid pl-5"><strong>Validity of ID input</strong></p>
                     </div>
 
                     <div>
-                        <label for="email">Email: </label>
+                        <label for="email"><i class="fas fa-envelope"> Email: </i></label>
                         <input id="email" name="email" type="email" class="input-field" placeholder="Enter Siswamail" required />
                     </div>
 
-                    <div id="check">
-                        <p style="font-size: small;" class="valid">Example: <strong>wif180049@siswa.um.edu.my</strong></p>
-                        <p style="font-size: small;" id="matric" class="invalid"><strong>Validity of siswamail input</strong></p>
+                    <div id="check" style="display: none;">
+                        <h4 style="font-size: medium;">Please follow siswamail's format.</h4>
+                        <p style="font-size: small;" class="valid pl-5">Example: <strong>wif180049@siswa.um.edu.my</strong></p>
+                        <p style="font-size: small;" id="siswamail" class="invalid pl-5"><strong>Validity of siswamail input</strong></p>
                     </div>
 
                     <div>
-                        <label for="new-name">Name: </label>
+                        <label for="new-name"><i class="fas fa-user"> Name: </i></label>
                         <input id="new-name" name="newName" type="text" class="input-field" placeholder="Enter Name" required />
                     </div>
 
                     <div>
-                        <label for="new-pw">Password: </label>
+                        <label for="new-pw"><i class="fas fa-key"> Password: </i></label>
                         <span id="register-eye" class="slashed"></span>
                         <input id="new-pw" name="newPW" type="password" class="input-field" placeholder="Enter Password" required />
                     </div>
 
-                    <div id="message">
+                    <div id="message" style="display: none;">
                         <h4 style="font-size: medium;">Password must contain the following:</h4>
-                        <p style="font-size: small;" id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                        <p style="font-size: small;" id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                        <p style="font-size: small;" id="number" class="invalid">A <b>number</b></p>
-                        <p style="font-size: small;" id="length" class="invalid">Minimum <b>8 characters</b></p>
+                        <p style="font-size: small;" id="letter" class="invalid pl-5">A <b>lowercase</b> letter</p>
+                        <p style="font-size: small;" id="capital" class="invalid pl-5">A <b>capital (uppercase)</b> letter</p>
+                        <p style="font-size: small;" id="number" class="invalid pl-5">A <b>number</b></p>
+                        <p style="font-size: small;" id="length" class="invalid pl-5">Minimum <b>8 characters</b></p>
                     </div>
 
                     <div>
@@ -82,31 +84,36 @@
                         <label for id="reg-checkbox" class="checkbox-text">I agree to the <a href="TermsAndConditions.php">terms & conditions</a>.</label>
                     </div>
 
-                    <input id="reg-btn" class="d-flex justify-content-center submit-btn text-light fas fa-key" type="submit" name="register" value="&#xf084 Register" />
+                    <input id="reg-btn" class="d-flex justify-content-center submit-btn text-light fas fa-key" type="submit" name="register" value="&#xf2f6 Register" />
                 </form>
 
                 <form id="login" method="post" action="ProcessForm.php" class="input-grp">
                     <div>
-                        <label for=" ID">ID: </label>
-                        <input id="ID" name="ID" type="text" class="input-field" placeholder="Non-empty ID" required />
+                        <label for=" ID"><i class="fas fa-id-badge"> ID: </i></label>
+                        <input id="ID" name="ID" type="text" class="input-field" placeholder="Enter Matric Number" required />
                     </div>
 
                     <div>
-                        <label for="pw">Password: </label>
+                        <label for="pw"><i class="fas fa-key"> New Password: </i></label>
                         <span id="login-eye" class="slashed"></span>
                         <input id="pw" name="pw" type="password" class="input-field" placeholder="Enter Password" required />
                     </div>
 
                     <div class="mb-2">
-                        <p class="m-0">Forgot ID?</p>
+                        <p class="m-0"><i class="fas fa-id-card"> Forgot ID?</i></p>
                         <a href="RequestID.php">Click Me</a>
+                    </div>
+
+                    <div class="mb-2">
+                        <p class="m-0"><i class="fas fa-lock"> Forgot Password?</i></p>
+                        <a href="ResetPassword.php">Reset Password</a>
                     </div>
 
                     <!-- <div>
                         <input id="checkbox" type="checkbox" class="checkbox" name="checkbox" /><label for="checkbox" class="checkbox-text ml-1">Keep me logged in</label>
                     </div> -->
 
-                    <input id="login-btn" class="d-flex justify-content-center submit-btn text-light fas fa-sign-in-alt" type="submit" name="login" value="&#xf2f6 Log In" />
+                    <input id="login-btn" class="d-flex justify-content-center submit-btn text-light fas fa-sign-in-alt" type="submit" name="login" value="&#xf09c Log In" />
                 </form>
             </div>
         </div>

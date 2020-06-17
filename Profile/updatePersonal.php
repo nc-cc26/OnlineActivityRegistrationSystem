@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    include_once '../database.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,6 +18,16 @@
     <link rel="icon" href="../imgs/8th.png" type="image/icon type" />
     <title>Update Personal Information</title>
     <style>
+
+        .dropright:hover 
+        .dropdown-menu
+        {display: block;}
+
+        .dropdown:hover
+        .dropdown-menu
+        {display: block;}
+
+        
         .col-md-4 {
             max-width: 200px;
             max-height: 200px;
@@ -54,12 +68,40 @@
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="profileDetail.php">Detail</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View Details
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                            <a class="nav-link" href="profileDetail.php">Personal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="academicDetail.php">Academic</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="contactDetail.php">Contact</a>
+                            </li>
+                        </ul>
+                        </div>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="updatePersonal.php">Update <span class="sr-only">(current)</span>
-                        </a>
+                    <li class="nav-item active dropright">
+                    <a  class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Update Details
+                    <span class="sr-only">(current)</span>
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link bg-light" href="updatePersonal.php">Personal<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="updateAcademic.php">Academic</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="updateContact.php">Contact</a>
+                            </li>
+                        </ul>
+                        </div>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-1">
@@ -81,29 +123,26 @@
 
             <h2>Update Personal Information</h2>
             <?php
-            session_start();
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
                 $id = $_SESSION['user_id'];
+                $sql = "SELECT * FROM personaltable WHERE id='$id'";
+                $result = $pdo->prepare($sql);
+                $result -> execute();
+
+                while ($res = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $ID = $res['ID'];
+                    $NewMatrics = $res['NewMatrics'];
+                    $IC = $res['IC'];
+                    $Birthday = $res['Birthday'];
+                }
+                $sql1 = "SELECT Name FROM user WHERE id='$id'";
+                $result1 = $pdo->prepare($sql1);
+                $result1 -> execute();
+                while ($res1 = $result1->fetch(PDO::FETCH_ASSOC)) {
+                    $Name = $res1['Name'];
+                }
             ?>
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="updatePersonal.php">Personal <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="updateAcademic.php">Academic</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="updateContact.php">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
                 <?php
                 $action=isset($_GET['action']) ? $_GET['action'] : "";
                 if($action == "updatePersonalSuccessful"){
@@ -112,11 +151,11 @@
             </div>";
                 }
             ?>
-                <form method="post" action="processPersonal.php" name="personal" onsubmit="return validateForms()" class="jumbotron mt-3" enctype="multipart/form-data">
+                <form method="post" action="processPersonal.php" id="form" onsubmit="return validateForms()" class="jumbotron mt-3" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label for="picture" class="col-md-2 col-form-label"><b>*Profile Picture</b></label>
                         <div class="col-md-3">
-                            <input style="background-color:red" type="file" class="form-control-file" id="picture" name="ProfilePicture" accept="image/jpeg,image/gif,image/png,application/pdf" required>
+                            <input style="background-color:red" type="file" class="form-control-file" id="picture" name="ProfilePicture" accept="image/jpeg,image/gif,image/png,application/pdf" require>
                             <small id="pictureHelp" class="form-text text-muted">Insert only format <b>.jpg .jpeg .png .gif .pdf</b>
                                 with <b>size not exceeding 2MB</b></small>
                         </div>
@@ -131,36 +170,36 @@
                     <div class="form-group row">
                         <label for="Name" class="col-md-2 col-form-label"><b>*Name</b></label>
                         <div class="col-md-5">
-                            <input id="name" name="Name" class="form-control" type="text" required placeholder="FULL NAME" />
+                            <input id="name" name="Name" class="form-control" type="text" <?php if(isEmpty($Name)==false){ echo "value= '$Name'";} ?> required placeholder="FULL NAME" />
                             <small id="nameHelp" class="form-text text-muted">Enter your full name without any symbol or special
                                 characters.</small>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="oldMatrics" class="col-md-2 col-form-label"><b>*Old Matrics No.</b></label>
+                        <label for="oldMatrics" class="col-md-2 col-form-label">Old Matrics No.</label>
                         <div class="col-md-2">
                             <input id="oldMatrics" name="OldMatrics" class="form-control" type="text" pattern=".{9,9}" value="<?php echo $id; ?>" readonly />
                             <small id="oldMatricsHelp" class="form-text text-muted">Fixed user id. <br>Not changeable.</small>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="newMatrics" class="col-md-2 col-form-label"><b>*New Matrics No.</b></label>
+                        <label for="newMatrics" class="col-md-2 col-form-label"><b>New Matrics No.</b></label>
                         <div class="col-md-2">
-                            <input id="newMatrics" name="NewMatrics" class="form-control" type="text" pattern=".{10,10}" required />
+                            <input id="newMatrics" name="NewMatrics" class="form-control" type="text" <?php if(isEmpty($NewMatrics)==false){ echo "value= '$NewMatrics'";} ?>pattern=".{10,10}" required />
                             <small id="newMatricsHelp" class="form-text text-muted">Eg. 17166000/1 <br>(10 characters)</small>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="IC" class="col-md-2 col-form-label"><b>*IC/Passport No.</b></label>
+                        <label for="IC" class="col-md-2 col-form-label">IC/Passport No.</label>
                         <div class="col-md-3">
-                            <input id="IC" name="IC" class="form-control" type="text" placeholder="IC / PASSPORT NUMBER" required />
+                            <input id="IC" name="IC" class="form-control" type="text" <?php if(isEmpty($IC)==false){ echo "value= '$IC'";} ?> placeholder="IC / PASSPORT NUMBER" />
                             <small id="passportHelp" class="form-text text-muted">Enter without "-" or any special character</small>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="nationality" class="col-md-2 col-form-label"><b>*Nationality.</b></label>
+                        <label for="nationality" class="col-md-2 col-form-label">Nationality.</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="malaysian" name="Nationality" value="Malaysian" required />
+                            <input class="form-check-input" type="radio" id="malaysian" name="Nationality" value="Malaysian" />
                             <label class="form-check-label" for="inlineRadio1">Malaysian</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -169,9 +208,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="gender" class="col-md-2 col-form-label"><b>*Gender.</b></label>
+                        <label for="gender" class="col-md-2 col-form-label">Gender.</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="male" name="Gender" value="Male" required="" />
+                            <input class="form-check-input" type="radio" id="male" name="Gender" value="Male" />
                             <label class="form-check-label" for="inlineRadio1">Male</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -180,15 +219,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="birthday" class="col-md-2 col-form-label"><b>*Date of Birth</b></label>
+                        <label for="birthday" class="col-md-2 col-form-label">Date of Birth</label>
                         <div class="col-md-3">
-                            <input id="birthday" name="Birthday" class="form-control" type="date" required />
+                            <input id="birthday" name="Birthday" class="form-control" <?php if(isEmpty($Birthday)==false){ echo "value= '$Birthday'";} ?> type="date" />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="race" class="col-md-2 col-form-label"><b>*Race</b></label>
+                        <label for="race" class="col-md-2 col-form-label">Race</label>
                         <div class="col-md-2">
-                            <select id="race" name="Race" class="form-control" required>
+                            <select id="race" name="Race" class="form-control">
                                 <option selected disabled value="">Choose...</option>
                                 <option value="Bumiputera">Bumiputera</option>
                                 <option value="Chinese">Chinese</option>
@@ -198,9 +237,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="religion" class="col-md-2 col-form-label"><b>*Religion</b></label>
+                        <label for="religion" class="col-md-2 col-form-label">Religion</label>
                         <div class="col-md-2">
-                            <select id="religion" name="Religion" class="form-control" required>
+                            <select id="religion" name="Religion" class="form-control">
                                 <option selected disabled value="">Choose...</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Buddhism">Buddhism</option>
@@ -211,9 +250,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="marital" class="col-md-2 col-form-label"><b>*Marital Status</b></label>
+                        <label for="marital" class="col-md-2 col-form-label">Marital Status</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="single" name="Marital" value="Single" required />
+                            <input class="form-check-input" type="radio" id="single" name="Marital" value="Single" />
                             <label class="form-check-label" for="inlineRadio1">Single</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -231,9 +270,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-1">
-                            <button type="submit" class="btn btn-primary" id="updatePersonal">
-                                Update
-                            </button>
+                            <button type="submit" class="btn btn-primary" id="updatePersonal">Update</button>
                         </div>
                         <div class="col-md-3">
                             <button type="button" class="btn btn-primary" id="skipPersonal">Next</button>
@@ -290,7 +327,9 @@
             var picture = document.getElementById("picture");
             var abc = document.getElementById("validatePicture")
             var array = picture.value.split(".", 2);
-            var type = "." + array[1];
+            var type1 = "." + array[1];
+            var type = type1.toLowerCase();
+
             if (type == ".jpg" || type == ".jpeg" || type == ".png" || type == ".gif" || type == ".pdf") {
                 if (picture.files[0].size > 2097152) {
                     alert("File exceeded 2MB");
@@ -316,7 +355,7 @@
             IC.value = IC.value.toUpperCase();
         })
 
-        document.getElementById("form").addEventListener("keypress", ICfunction);
+        document.getElementById("form").addEventListener("keyup", ICfunction);
 
         function ICfunction() {
             var name = document.getElementById("name");
@@ -351,21 +390,22 @@
         }
 
         document.getElementById("skipPersonal").addEventListener("click", function() {
-            var skip = window.confirm("Proceed to update academic detail?");
+            var skip = window.confirm("Skip updating information of personal and proceed to update academic detail?");
             if (skip) {
                 window.location.href = "updateAcademic.php";
             } else {
-                return false;
+            return false;
             }
         })
 
         function validateForms() {
-            var confirm = window.confirm("Confirm to update information of personal?");
+
             var picture = document.getElementById("picture");
             var name = document.getElementById("name");
             //var oldMatrics = document.getElementById("oldMatrics");
             var newMatrics = document.getElementById("newMatrics");
             var IC = document.getElementById("IC");
+            
 
             if (picture.style.backgroundColor == "red") {
                 alert("The input at red-colored background is invalid.")
@@ -387,12 +427,21 @@
                 alert("The input at red-colored border form is invalid.")
                 return false;
             }
-            if (confirm) {
-                return true;
-            }else{
-            	return false;
+            var confirm = window.confirm("Confirm to update information of personal?");
+            if (!confirm) {
+                return false;
             }
         }
+        <?php
+            function isEmpty($variable){
+                if($variable == ""){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        ?>
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
