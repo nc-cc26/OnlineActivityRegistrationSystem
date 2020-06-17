@@ -184,11 +184,10 @@
                                 <p id="report_sum">Description: <textarea class="w-100" style="border: none; resize: none;" id="description"></textarea></p>
                                 <p id="report_sum">Status:</p>
                                     <p id="Status"></p>
-                                
-                                    
-                                        <p>
-                                            <button class="btn btn-primary" id="edit" href="editReport.php">Edit</button>
-                                            <a style="float:right" class="btn btn-primary" id="cancel" href="#popup2">Cancel</a></p>
+    
+                                <p>
+                                    <button class="btn btn-primary" id="edit" href="editReport.php">Edit</button>
+                                    <a style="float:right" class="btn btn-primary" id="cancel" href="#popup2">Cancel</a></p>
                                  
                                
 
