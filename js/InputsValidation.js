@@ -15,12 +15,12 @@ let number = document.querySelector("#number");
 let length = document.querySelector("#length");
 
 // When the user moves cursor onto the ID field, show the message box
-matricInput.onmouseover = function () {
+matricInput.onfocus = function () {
     document.getElementById("msg").style.display = "block";
 }
 
 // When the user moves cursor outside of the ID field, hide the message box
-matricInput.onmouseout = function () {
+matricInput.onblur = function () {
     document.getElementById("msg").style.display = "none";
 }
 
@@ -38,12 +38,12 @@ matricInput.onkeyup = function () {
 }
 
 // When the user moves cursor onto the Email field, show the message box
-siswamailInput.onmouseover = function () {
+siswamailInput.onfocus = function () {
     document.getElementById("check").style.display = "block";
 }
 
 // When the user moves cursor outside of the Email field, hide the message box
-siswamailInput.onmouseout = function () {
+siswamailInput.onblur = function () {
     document.getElementById("check").style.display = "none";
 }
 
@@ -91,12 +91,12 @@ loginEye.onclick = function () {
 }
 
 // When the user moves cursor onto the password field, show the message box
-myInput.onmouseover = function () {
+myInput.onfocus = function () {
     document.getElementById("message").style.display = "block";
 }
 
 // When the user moves cursor outside of the password field, hide the message box
-myInput.onmouseout = function () {
+myInput.onblur = function () {
     document.getElementById("message").style.display = "none";
 }
 

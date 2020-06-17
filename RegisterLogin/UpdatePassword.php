@@ -90,12 +90,12 @@
                 let length = document.querySelector("#length");
 
                 // When the user moves cursor onto the password field, show the message box
-                myInput.onmouseover = function() {
+                myInput.onfocus = function() {
                     document.getElementById("message").style.display = "block";
                 }
 
                 // When the user moves cursor outside of the password field, hide the message box
-                myInput.onmouseout = function() {
+                myInput.onblur = function() {
                     document.getElementById("message").style.display = "none";
                 }
 
