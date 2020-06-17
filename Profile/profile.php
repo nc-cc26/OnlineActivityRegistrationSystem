@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    include_once '../database.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -13,6 +17,18 @@
 
     <link rel="icon" href="../imgs/8th.png" type="image/icon type" />
     <title>My Profile</title>
+    <style>
+        .dropright:hover 
+        .dropdown-menu
+        {display: block;}
+        .dropdown:hover
+        .dropdown-menu
+        {display: block;}
+
+        h2 {text-align: center;}
+
+        
+    </style>
 </head>
 
 <body>
@@ -34,11 +50,37 @@
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="profileDetail.php">View details</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View Details</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="profileDetail.php">Personal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="academicDetail.php">Academic</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contactDetail.php">Contact</a>
+                            </li>
+                        </ul>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="updatePersonal.php">Update details</a>
+                    <li class="nav-item dropright">
+                    <a  class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Update Details</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="updatePersonal.php">Personal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="updateAcademic.php">Academic</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="updateContact.php">Contact</a>
+                            </li>
+                        </ul>
+                        </div>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-1">
@@ -56,9 +98,9 @@
             </div>
         </nav>
         <main class="jumbotron mt-2">
+            <h2>My Profile</h2><br>
             <?php
-            session_start();
-            include_once '../database.php';
+
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
                 $id = $_SESSION['user_id'];

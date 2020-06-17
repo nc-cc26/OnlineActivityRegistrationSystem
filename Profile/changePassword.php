@@ -89,7 +89,11 @@
                     <div class="form-group row">
                         <label for="newpassword" class="col-md-3 col-form-label"><b>*New Password </b></label>
                         <div class="col-md-3">
-                            <input id="newpassword" name="newpassword" class="form-control" type="password" placeholder="NEW PASSWORD" required>
+                            <input onkeyup="validatePassword()" id="newpassword" name="newpassword" class="form-control" type="password" placeholder="NEW PASSWORD" required>
+                            <small id="suitable" class="form-text text-muted" style="background-color: null;">#Include lowercase letters</small>
+                            <small id="suitable1" class="form-text text-muted" style="background-color: null;">#Include uppercase letter</small>
+                            <small id="suitable2" class="form-text text-muted" style="background-color: null;">#Include digits</small>
+                            <small id="suitable3" class="form-text text-muted" style="background-color: null;">#Password length greater or equal to 8.</small>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -97,7 +101,7 @@
                         <div class="col-md-3">
                             <input onkeyup="samePassword()" id="repeatpassword" name="repeatpassword" class="form-control" type="password" placeholder="REPEAT PASSWORD" required>
                             <small id="checkSame" class="form-text text-muted" >Repeat the new password again.</small>
-                            <p id="result"></p>
+                            <small id="result" class="form-text text-muted"></small>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -134,6 +138,62 @@
                 x.type = "password";
             }
         }
+        
+        function validatePassword(){
+        var lowercase = document.getElementById("newpassword");
+        var suitableLow = document.getElementById("suitable");
+        var uppercase = document.getElementById("newpassword");
+        var suitableUp = document.getElementById("suitable1");
+        var digit = document.getElementById("newpassword");
+        var suitableDigit = document.getElementById("suitable2");
+        var passwordLength = document.getElementById("newpassword");
+        var suitableLength = document.getElementById("suitable3");
+        suitableLow.innerHTML = "#Include lowercase letters";
+        suitableLow.style.backgroundColor = null;
+        suitableUp.innerHTML = "#Include uppercase letter";
+        suitableUp.style.backgroundColor = null;
+        suitableDigit.innerHTML = "#Include digits";
+        suitableDigit.style.backgroundColor = null;
+        suitableLength.innerHTML = "#Password length greater or equal to 8.";
+        suitableLength.style.backgroundColor = null;
+        for(x=0;x<lowercase.value.length;x++){
+            if(lowercase.value.charAt(x) >= 'a' && lowercase.value.charAt(x) <= 'z'){
+                suitableLow.innerHTML = "<b>&#10004;Included lowercase letter<b>";
+                suitableLow.style.backgroundColor = "Chartreuse";
+                break;
+            } else {
+                suitableLow.innerHTML = "Please include a lowercase letter";
+                suitableLow.style.backgroundColor = "lightpink";
+            }
+        }
+        for(x=0;x<uppercase.value.length;x++){
+            if(uppercase.value.charAt(x) >= 'A' && uppercase.value.charAt(x) <= 'Z'){
+                suitableUp.innerHTML = "<b>&#10004;Included uppercase letter<b>";
+                suitableUp.style.backgroundColor = "Chartreuse";
+                break;
+            } else {
+                suitableUp.innerHTML = "Please include an uppercase letter";
+                suitableUp.style.backgroundColor = "lightpink";
+            }
+        }
+        for(x=0;x<digit.value.length;x++){
+            if(digit.value.charAt(x) >= '0' && digit.value.charAt(x) <= '9'){
+                suitableDigit.innerHTML = "<b>&#10004;Included digit<b>";
+                suitableDigit.style.backgroundColor = "Chartreuse";
+                break;
+            } else {
+                suitableDigit.innerHTML = "Please include a digit";
+                suitableDigit.style.backgroundColor = "lightpink";
+            }
+        }
+        if(passwordLength.value.length >= 8){
+                suitableLength.innerHTML = "<b>&#10004;Password length suitable<b>";
+                suitableLength.style.backgroundColor = "Chartreuse";
+        } else if (passwordLength.value.length > 0) {
+            suitableLength.innerHTML = "Minimum password length is 8";
+            suitableLength.style.backgroundColor = "lightpink";
+        }
+        }
 
         function samePassword(){
             var npass = document.getElementById("newpassword");
@@ -146,39 +206,44 @@
                 x.innerHTML = "The password does not match.";
                 x.style.backgroundColor = "lightpink";
             }else{
-                x.innerHTML = "<b>The password is matched.<b>";
-                x.style.backgroundColor = "#A4B2F7";
+                x.innerHTML = "<b>&#10004;The password is matched.<b>";
+                x.style.backgroundColor = "Chartreuse";
             }
         }
 
         document.getElementById("cancel").addEventListener("click", function() {
             window.location.href = "profile.php";
         })
-        <?php
-        function validatePassword($password, $hashPassword)
-        {
-            //$salt = "roA&h2u!PoaWr2u";
-
-            //$password = hash("sha256", $password . $salt);
-
-            //if ($password == $hashPassword) {
-            if(password_verify($password,$hashPassword)){
-                return true;
-            } else {
-                echo 'alert("Original password entered is wrong.");';
-                return false;
-            }
-        }
-        ?>
 
         function validateForms() {
             var x = document.getElementById("result");
-            var confirm = window.confirm("Confirm to update information of contact?");
-            if (!confirm) {
+            var suitableLow = document.getElementById("suitable");
+            var suitableUp = document.getElementById("suitable1");
+            var suitableDigit = document.getElementById("suitable2");
+            var suitableLength = document.getElementById("suitable3");
+
+            if(suitableLow.style.backgroundColor == "lightpink"){
+                alert("Your new password must match the criteria given.");
+                return false;
+            }
+            if(suitableUp.style.backgroundColor == "lightpink"){
+                alert("Your new password must match the criteria given.");
+                return false;
+            }
+            if(suitableDigit.style.backgroundColor == "lightpink"){
+                alert("Your new password must match the criteria given.");
+                return false;
+            }
+            if(suitableLength.style.backgroundColor == "lightpink"){
+                alert("Your new password must match the criteria given.");
                 return false;
             }
             if(x.style.backgroundColor == "lightpink"){
                 alert("Please repeat your new password correctly.");
+                return false;
+            }
+            var confirm = window.confirm("Confirm to update information of contact?");
+            if (!confirm) {
                 return false;
             }
         }

@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    include_once '../database.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -13,6 +17,16 @@
 
   <link rel="icon" href="../imgs/8th.png" type="image/icon type" />
   <title>Update Academic Information</title>
+  <style>
+        .dropright:hover 
+        .dropdown-menu
+        {display: block;}
+        .dropdown:hover
+        .dropdown-menu
+        {display: block;}
+
+        
+    </style>
 </head>
 
 <body>
@@ -33,15 +47,43 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="profileDetail.php">View details</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="updatePersonal.php">Update details<span class="sr-only">(current)</span>
-            </a>
-          </li>
-        </ul>
+      <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View Details
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                            <a class="nav-link" href="profileDetail.php">Personal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="academicDetail.php">Academic</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="contactDetail.php">Contact</a>
+                            </li>
+                        </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item active dropright">
+                    <a  class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Update Details
+                    <span class="sr-only">(current)</span>
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="updatePersonal.php">Personal</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link bg-light" href="updateAcademic.php">Academic<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="updateContact.php">Contact</a>
+                            </li>
+                        </ul>
+                        </div>
+                    </li>
+                </ul>
         <ul class="navbar-nav mr-1">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../imgs/profile.png" width="18" height="18" />
@@ -58,27 +100,7 @@
     </nav>
     <main class="jumbotron mt-2">
       <h2>Update Academic Information</h2>
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="updatePersonal.php">Personal</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="updateAcademic.php">Academic <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="updateContact.php">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
       <?php
-      session_start();
-      include_once '../database.php';
 
       if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
         $id = $_SESSION['user_id'];
@@ -105,7 +127,7 @@
               <select id="faculty" name="Faculty" class="form-control" >
                 <option selected disabled value="">Choose...</option>
                 <option value="Faculty Of Arts & Social Science">Faculty Of Arts & Social Science</option>
-                <option value="Faculty Of Built Environmet">Faculty Of Built Environmet</option>
+                <option value="Faculty Of Built Environment">Faculty Of Built Environmet</option>
                 <option value="Faculty Of Business & Accountancy">Faculty Of Business & Accountancy</option>
                 <option value="Faculty Of Computer Science & Information Technology">Faculty Of Computer Science & Information Technology</option>
                 <option value="Faculty Of Dentistry">Faculty Of Dentistry</option>
@@ -226,8 +248,6 @@
       var confirm = window.confirm("Confirm to update information of academic?");
 
       if (confirm) {
-        return true;
-      }else{
         return false;
       }
     }
