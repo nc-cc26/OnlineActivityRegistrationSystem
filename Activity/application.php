@@ -38,7 +38,7 @@
           </li>
 
           <li class="nav-item">
-          <a class="nav-link" href="reportStatus.html">College Helpdesk</a>
+          <a class="nav-link" href="reportStatus.php">College Helpdesk</a>
           </li>
         </ul>
         <ul class="navbar-nav mr-1">
