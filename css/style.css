@@ -53,6 +53,20 @@ table.table-bordered>tbody>tr {
   margin-top: 25px;
 }
 
+#appbtn1 {
+  background-color: #c41c33;
+  /* Blue background */
+  border: none;
+  /* Remove borders */
+  color: white;
+  /* White text */
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  margin-bottom: 30px;
+  margin-top: 25px;
+}
+
 #yes {
   background-color: #00adb7;
   border: none;
@@ -101,6 +115,11 @@ button.clear {
   font-weight: bold;
 }
 
+#report_sum{
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
 /*pop out message */
 .box {
   width: 40%;
@@ -132,7 +151,7 @@ button.clear {
 
 .popup {
   margin: 70px auto;
-  padding: 20px;
+  padding: 10px;
   background: #fff;
   border-radius: 5px;
   width: 50%;

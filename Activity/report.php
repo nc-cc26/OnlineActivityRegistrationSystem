@@ -2,24 +2,26 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-
-    <link rel="stylesheet" href="../css/style.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta charset="utf-8" />
+      
+    <link rel="stylesheet" href="../css/style.css" />
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <link rel="icon" href="../imgs/8th.png" type="image/icon type">
-    <title>Report An Issue</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+      
+    <link rel="icon" href="../imgs/8th.png" type="image/icon type" />
+    <title>Report</title>
 </head>
 
 <body>
     <div class="container">
 
         <header class="blog-header py-3">
-            <h1 class="headingfont" align="center"><img class="mr-1 mb-2 " src="../imgs/8th.png" alt="college logo" width="45" height="45">MyCollege</h1>
+            <h1 class="headingfont" align="center"><img class="mr-1 mb-2 " src="../imgs/8th.png" alt="college logo"
+                    width="45" height="45">MyCollege</h1>
         </header>
 
 
@@ -38,14 +40,15 @@
                     </li>
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="Report.php">Report an Issue<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="reportStatus.php">College Helpdesk</a>
                     </li>
 
                 </ul>
                 <ul class="navbar-nav mr-1">
                     <li class="nav-item dropdown">
 
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="../imgs/profile.png" width="18" height="18">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -56,65 +59,57 @@
                 </ul>
             </div>
         </nav>
+
         <main class="jumbotron mt-2">
+            <h2>Report an Issue</h2>
+
             <?php
             session_start();
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
             ?>
-                <div class="banner">
-                    <h1 class="banner" align="center">
-                        <img class="banner" src="../imgs/report.png" alt="Report an Issue" width="1025" height="350">
+
+
+            <form method="post" class="jumbotron mt-3" >
+                <div class="form-group w-25">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Eg: Corona " required />
                 </div>
 
-        </main>
-
-        <main class="jumbotron mt-2">
-            <h2>Report an Issue</h2>
-
-            <form method="post" onsubmit="submit()" class="jumbotron mt-3">
-                <div>
-                    <label for="name: ">Name:</label>
-                    <input type="text" id="name" placeholder="Eg: Corona " />
+                <div class="form-group w-25">
+                    <label for="location">Location:</label>
+                    <input type="text" class="form-control" id="location" placeholder="Eg: Block B Wing A "required />
                 </div>
 
-                <div>
-                    <label for="roomnum">Room No.:</label>
-                    <input type="text" id="roomnum" placeholder="Eg: E308 " />
-                </div>
-
-                <div>
+                <div class="form-group w-25">
                     <label for="title">Issue title:</label>
-                    <input type="text" id="title" placeholder="Eg: Dirty toilet " />
+                    <input type="text" class="form-control" id="title" placeholder="Eg: Dirty toilet "required />
                 </div>
 
 
-                <div>
-                    <label for="select-choice">Select Common Issue type:</label>
-                    <select id="select-choice">
+                <div class="form-group w-25">
+                    <label for="type">Issue type:</label>
+                    <select id="type" class="form-control">
                         <option value="Safety issues">Safety issues</option>
                         <option value="Appliances issues">Appliances issues</option>
                         <option value="Toilet issues">Toilet issues</option>
                         <option value="Others">Others</option>
                     </select>
                 </div>
-                <div>
-                    <label for="Description">Description:</label>
-                    <textarea cols="70" rows="10" id="Description"></textarea>
+                <div class="form-group w-50">
+                    <label for="description">Description:</label>
+                    <textarea cols="70" class="form-control" rows="10" id="description" required></textarea>
                 </div>
+              
 
-
-                <form method="POST" enctype="multipart/form-data" action="uploaded issue evidence">
-                    <input type="file" name="file" />
-                    <input type="submit" value="Upload" />
-
-
-                    <div>
-                        <input type="submit" value="Submit" />
-                    </div>
-                </form>
+                <div>
+                    <br>
+                    <button type="submit" class="btn btn-primary" id="submit">
+                    Submit
+                    </button>
+                </div>
             </form>
-        <?php
+            <?php
             } else { ?>
             <div class="alert alert-info" role="alert">
                 <h4>Sorry, only authenticated user can access this page.</h4>
@@ -122,15 +117,67 @@
             </div><?php
                 }
                     ?>
-        </main>
 
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    var form = document.querySelector("form");
+    form.onsubmit = function(e) {
+      e.preventDefault();
+      var retrieve = localStorage.getItem("localreport_arr");
+      var Name1 = document.getElementById("name").value;
+      var Location1 = document.getElementById("location").value;
+      var Title1 = document.getElementById("title").value;
+      var Type1 = document.getElementById("type").value;
+      var Descrip1 = document.getElementById("description").value; 
+        var state = "Pending";
+        var submit_arr = [{
+          Name: Name1,
+          Location: Location1,
+          Title: Title1,
+          Type: Type1,
+          Description: Descrip1,
+          Status: state,
+        }, ];
+        if (retrieve == null) {
+          localStorage.setItem(
+            "localreport_arr",
+            JSON.stringify(submit_arr)
+          );
+        } else {
+          var report_arr = JSON.parse(retrieve);
+          Array.prototype.push.apply(submit_arr, report_arr);
 
-        <footer class="container text-center font-italic py-2">
-            Copyright © 2020 - XXX Residential College.
-        </footer>
+          localStorage.setItem(
+            "localreport_arr",
+            JSON.stringify(submit_arr)
+          );
+          console.log(report_arr);
+        }
+        window.location.href = "reportStatus.php";
+      
+    };
+
+  </script>
+
+</main>
+
+<footer class="container text-center font-italic py-2">
+Copyright © 2020 - XXX Residential College.
+</footer>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                    crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+                    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+                    crossorigin="anonymous"></script>
+
+                
 
 </body>
 
