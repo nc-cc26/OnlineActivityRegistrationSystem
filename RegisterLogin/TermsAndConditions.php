@@ -1064,7 +1064,14 @@ Calibri;color:#595959;mso-themecolor:text1;mso-themetint:166;">In order to resol
             </div>
             <div style="color: #595959;font-size: 14px;font-family: Arial;padding-top:16px;">These terms of use were created using <a style="color: rgb(48, 48, 241) !important;" href="https://termly.io/products/terms-and-conditions-generator/?ftseo">Termly’s Terms and Conditions Generator</a>.</div>
         </div>
+
+
     </div>
+
 </body>
+
+<footer class="container text-center font-italic py-2">
+    Copyright © 2020 - XXX Residential College.
+</footer>
 
 </html>
