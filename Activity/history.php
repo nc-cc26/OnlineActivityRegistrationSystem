@@ -112,7 +112,7 @@
 								echo "<td>-</td>";
 								echo "<td>-</td>";
                     			echo "</tr>";  
-                    			echo "<b><h5>You have not registered any activity yet.</h5><b>";  
+                    			echo "<b><h5>You have not registered any activity yet.</h5></b>";  
                     		}	             
         					
         				
