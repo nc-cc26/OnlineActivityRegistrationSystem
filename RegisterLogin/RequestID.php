@@ -35,19 +35,23 @@ if (isset($_GET['email'])) {
                 <img class="mr-1 mb-2" src="../imgs/8th.png" alt="college logo" width="45" height="45" />MyCollege
             </h1>
         </header>
-        <div class="jumbotron">
+        <div class="jumbotron my-3">
             <?php if ($row) {
                 extract($row);
 
                 echo "<div class='alert alert-info alert-dismissible'>
                     <h4><i class='fas fa-search'> Here's what we found!</i></h4><p>The ID for <strong>$email</strong> is <strong>$ID</strong>.</p>
-                    <a href='RegisterLogin.php'>Log In</a> now or <a href='RegisterLogin.php'>register</a> using another email.";
+                    <a href='RegisterLogin.php'>Log in</a> now or <a href='RegisterLogin.php'>register</a> using another email.
+                    <p>Not this email? <a href='RequestID.php'>Reenter email</a> here.</p></div>";
             } else {
                 echo "<div class='alert alert-danger alert-dismissible'>
                     <h4><i class='fas fa-question'> The email is not registered.</i></h4><p>The <strong>$email</strong>  seems to be missing in the database.</p>
-                    <a href='RegisterLogin.php'>Register</a> now or <a href='RegisterLogin.php'>log in</a> using another email.";
+                    <a href='RegisterLogin.php'>Register</a> now, <a href='RequestID.php'>find ID using a different email</a> or <a href='RegisterLogin.php'>log in</a> using another email.</div>";
             }
             ?></div>
+        <footer class="text-center font-italic py-2 m-0" style="width: 100%;">
+            Copyright © 2020 - XXX Residential College.
+        </footer>
     </div>
 <?php
 } else { ?>
@@ -57,7 +61,7 @@ if (isset($_GET['email'])) {
                 <img class="mr-1 mb-2" src="../imgs/8th.png" alt="college logo" width="45" height="45" />MyCollege
             </h1>
         </header>
-        <div class="jumbotron">
+        <div class="jumbotron my-3">
             <form method="get" action="RequestID.php">
                 <div>
                     <label for="email">Enter your email here: </label>
@@ -68,6 +72,9 @@ if (isset($_GET['email'])) {
                 <input class="submit-btn fas fa-image text-light" type="submit" value="&#xf1d8 Submit" />
             </form>
         </div>
+        <footer class="text-center font-italic py-2 m-0" style="width: 100%;">
+            Copyright © 2020 - XXX Residential College.
+        </footer>
     </div>
 <?php
 }

@@ -117,7 +117,11 @@
                 </form>
             </div>
         </div>
+        <footer class="text-center font-italic py-2 m-0" style="width: 100%;">
+            Copyright © 2020 - XXX Residential College.
+        </footer>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 

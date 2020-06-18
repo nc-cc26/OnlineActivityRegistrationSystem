@@ -107,6 +107,9 @@ if (isset($_POST['register'])) {
 
             ?>
         </div>
+        <footer class="text-center font-italic py-2 m-0" style="width: 100%;">
+            Copyright © 2020 - XXX Residential College.
+        </footer>
     </div>
 <?php
 }
