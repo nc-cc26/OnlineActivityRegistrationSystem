@@ -39,7 +39,7 @@
                         <a class="nav-link" href="Activity.php">Activity</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="Sembreak.php">Semester Break</a>
+                        <a class="nav-link " href="Sembreak.php">Accommodation Application</a>
                     </li>
 
                     <li class="nav-item">
