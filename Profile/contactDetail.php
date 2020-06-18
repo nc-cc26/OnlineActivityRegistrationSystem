@@ -89,7 +89,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="../Activity/Activity.php">Activity</a>
-                            <a class="dropdown-item" href="../Activity/Sembreak.php">Semester Break</a>
+                            <a class="dropdown-item" href="../Activity/Sembreak.php">Accommodation Application</a>
                             <a class="dropdown-item" href="../Activity/Report.php">Report an Issue</a>
                             <a class="dropdown-item" href="../RegisterLogin/Logout.php">Logout</a>
                         </div>
