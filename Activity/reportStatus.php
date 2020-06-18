@@ -64,7 +64,26 @@
         <main class="jumbotron mt-2">
             <h2>Report an Issue</h2>
             <?php
+            
             session_start();
+
+            if (isset($_GET["msg"])) {
+                if ($_GET["msg"] == "success") {
+                    echo "<div class='alert alert-success alert-dismissible'>
+                <h4><i class='icon fa fa-check'></i> Your application has been submitted successfully!</h4>You can click on the status to view, edit or cancel this application.
+                </div>";
+                    }
+                elseif ($_GET["msg"] == "cancelled") {
+                   echo "<div class='alert alert-success alert-dismissible'>
+                <h4><i class='icon fa fa-check'></i> Your application has been cancelled successfully!
+                </div>";
+                }
+                elseif ($_GET["msg"] == "edited") {
+                   echo "<div class='alert alert-success alert-dismissible'>
+                <h4><i class='icon fa fa-check'></i> Your application has been edited successfully!
+                </div>";
+                }
+                }
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
             ?>
@@ -76,7 +95,7 @@
                 <h4>Report History</h4>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered ">
+                    <table id="history" class="table table-bordered ">
                         <thead>
                             <tr>
                                 <th>No.</th>
@@ -89,161 +108,116 @@
                                 <th>Status</th>
                             </tr>
                         <tbody>
-                            <script type="text/javascript">
-                                var retrieve = localStorage.getItem("localreport_arr");
-                                var report = JSON.parse(retrieve);
-
-
-                                /*Sample input*/
-                               
-                                var selectedRep = localStorage.getItem("selectedRep");
-
-                                if (selectedRep == null) {
-
-                                    var re1 = [{
-                                        
-                                        Name: "Ahmad",
-                                        Location: "Block B wing A",
-                                        Title: "Unflushable toilet",
-                                        Type: "Toilet issue",
-                                        Description: "Unflushable and caused unwanted smell",
-                                        Status: "Pending"
-                                    }, {
-                                        
-                                        Name: "Lisa",
-                                        Location: "Block E wing B",
-                                        Title: "Strangers appear",
-                                        Type: "Safety issue",
-                                        Description: "Dark shadow appear these days outside the window of girls area",
-                                        Status: "In Progress"
-                                    }, {
-                                       
-                                        Name: "Sylvia",
-                                        Location: "Block E wing A E109",
-                                        Title: "Fan malfunction",
-                                        Type: "Appliances issue",
-                                        Description: "The fan is not working, please come to us ASAP",
-                                        Status: "Completed"
-                                    }];
-                                    if (report == null) {
-                                        report = re1;
-                                        localStorage.setItem("localreport_arr", JSON.stringify(report));
-
-                                    } else if (report.length == 1) {
-                                        Array.prototype.push.apply(report, re1);
-                                        localStorage.setItem("localreport_arr", JSON.stringify(report));
-
-                                    }
-
+                        <?php 
+                            include_once('../database.php');
+                            $ID=$_SESSION['user_id'];
+                            $sql="SELECT `reportno`,`Name`,`Location`,`Title`,`Type`,`status` FROM `report_table` WHERE (`ID`='$ID') ORDER BY `reportno` ASC";
+                            $reporthistory=$pdo->prepare($sql);
+                            $reporthistory->execute();
+                            $count=1;
+                            foreach ($reporthistory as $rep) {
+                                echo "<tr><td>".$count++."</td>
+                                
+                                <td>".$rep['Name']."</td>
+                                <td>".$rep['Location']."</td>
+                                <td>".$rep['Title']."</td>
+                                <td>".$rep['Type']."</td>";
+                                if($rep['status']=="Pending"){
+                                    echo "<td><div class='text-center '><button id='modalbtn' class='btn btn-sm btn-block btn-outline-primary' onclick='showDetails(this.value)'  value='".$rep['reportno']."'>".$rep['status']."</button></td></tr>";}
+                                elseif ($rep['status']=="Completed") {
+                                    echo "<td><div class='text-center '><button id='modalbtn' class='btn btn-sm btn-block btn-outline-success' onclick='showDetails(this.value)'value='".$rep['reportno']."'>".$rep['status']."</button></td></tr>";
                                 }
-
-
-
-
-
-
-                                for (var i = 0; i <= report.length - 1; i++) {
-                                    document.write("<tr>");
-                                    document.write("<td>" + (i + 1) + "</td>");
-                                    document.write("<td>" + report[i].Name + "</td>");
-
-                                    document.write("<td>" + report[i].Location + "</td>");
-                                    document.write("<td>" + report[i].Title + "</td>");
-                                    document.write("<td>" + report[i].Type + "</td>");
-                                    document.write("<td><a  class=' button' id='" + i + "' onclick='disp(" + i + ")' href='#popup1'>" +
-                                        report[i].Status + "</a></td>");
-                                    document.write("</tr>");
+                                else {
+                                    echo "<td><div class='text-center '><button id='modalbtn' class='btn btn-sm btn-block btn-outline-danger' onclick='showDetails(this.value)'' value='".$rep['reportno']."'>".$rep['status']."</button></td></tr>";
                                 }
-                            </script>
+                            }
+                            if($count==1){
+                                echo '
+                                    <tr>
+                                        <td colspan="7"><div class="text-center">No History Record</div></td>
+                                    </tr>';
+
+                            }
+                            ?>
 
                         </tbody>
-                        </thead>
+                        
                     </table>
 
-                    <!-- pop out report details -->
-                    <div id="popup1" class="overlay">
-
-                        <div class="popup">
-                            <h2>Report Summary</h2>
-                            <a class="close" href="#">&times;</a>
-                            <div class="content">
-                                <br>
-                                <p id="report_sum">Name: 
-                                    <p id="name"></p>
-                                </p>
-                                
-                                <p id="report_sum">Location: 
-                                    <p id="location"></p>
-                                </p>
-                                <p id="report_sum">Title: 
-                                    <p id="title"></p>
-                                </p>
-                                <p id="report_sum">Type:
-                                    <p id="type"></p>
-                                </p>
-                                <p id="report_sum">Description: <textarea class="w-100" style="border: none; resize: none;" id="description"></textarea></p>
-                                <p id="report_sum">Status:</p>
-                                    <p id="Status"></p>
-    
-                                <p>
-                                    <button class="btn btn-primary" id="edit" href="editReport.php">Edit</button>
-                                    <a style="float:right" class="btn btn-primary" id="cancel" href="#popup2">Cancel</a></p>
-                                 
-                               
-
-                                <script type="text/javascript">
-                                    var clicked;
-
-                                    function disp(no) {
-                                        clicked = no;
-                                        localStorage.setItem("selectedRep", no);
-                                        console.log(no);
-                                        document.getElementById("name").textContent = report[clicked].Name;
-                                        document.getElementById("location").textContent = report[clicked].Location;
-                                        document.getElementById("title").textContent = report[clicked].Title;
-                                        document.getElementById("type").textContent = report[clicked].Type;
-                                        document.getElementById("description").textContent = report[clicked].Description;
-                                        document.getElementById("Status").textContent = report[clicked].Status;
-                                        var edit = document.querySelector("#edit");
-                                        var cancel = document.querySelector("#cancel")
-                                        if (report[clicked].Status == "Pending") {
-                                            edit.textContent = "Edit";
-                                            cancel.textContent = "Cancel Report";
-                                        } else {
-                                            edit.textContent = "";
-                                            cancel.textContent = "";
-                                        }
-
-                                    }
-                                </script>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- pop out cancel report confirmation -->
-                    <div id="popup2" class="overlay">
-                        <div class="popup" id="yesno">
-                            <h2></h2>
-
-                            <div class="content">
-                                <br>
-                                </p></a>
-                                <p class="mb-5" align="center">Are you sure that you want to cancel this report?
-                                </p>
-                                <p align="right">
-                                    <a class="btn no" id="no" href="#">No</a>&nbsp;&nbsp;
-                                    <a class="btn" onclick="cancelrep()" id="yes">Yes</a></p>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
+                <div class="modal fade" aria-hidden="true" id="detailsModal" role="dialog" >
+                   <!-- Modal insdie processDetails.php -->
+                   <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content ">
+
+                            <div class="modal-header text-center " style="background-color: #F8F9FA;">
+                                <h4 class="modal-title w-100">Report Summary</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            
+                            <div id="details" class="modal-body">
+                                <p id="report_sum" >Report number:
+                                    <p style="font-weight: normal;"></p>
+                                </p>
+                                <p id="report_sum">Name:
+                                    <p style="font-weight: normal;"></p>
+                                <p id="report_sum">Location:
+                                    <p style="font-weight: normal;"></p> 
+                                </p>
+                                <p id="report_sum">Title:
+                                    <p style="font-weight: normal;"></p>
+                                </p>
+                                <p id="report_sum">Type:
+                                    <p style="font-weight: normal;"></p>
+                                </p>
+                                <p id="report_sum">Description:
+                                    <p style="font-weight: normal;"></p> 
+                                </p>
+                                <p id="report_sum">Status:
+                                    <p style="font-weight: normal;"></p>
+                                </p>
+                                </div>
+                                    <div class="modal-footer">
+                                                <p align="right">
+                                            <form action="editReport.php" method="post">
+                                                <button name="editNum" class="btn btn-primary" value="">Edit Report</button>
+                                            </form>
+                                            
+                                                <button class="btn btn-danger" data-toggle="modal" data-target="#cancelModal" value="">Cancel Report</button>
+                                            
+                                         </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal fade" id="cancelModal" tabindex="-1"   >
+                        <div class="modal-dialog modal-dialog-centered" >
+                            <div class="modal-content">
+
+                                <div class="modal-header text-center " style="background-color: #FF695E;">
+                                    <h4 class="modal-title w-100">Cancel Report Comfirmation</h4>
+                                    
+                                </div>
+                                
+                                <div  class="modal-body text-center">
+                                   Are you sure you want to cancel this report?
+                                   <br>
+                                   <br>
+                                </div>
+                                <div class="modal-footer">
+                                    <p align="right">
+                                        <form method="post" action="cancelRep.php">
+                                        <button class="btn btn-danger" name="cancelRep" value="">Yes</button>
+                                        </form>
+                                        <button data-dismiss="modal" class="btn btn-outline-danger" >No</button>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
                 <?php
             } else { ?>
                 <div class="alert alert-info" role="alert">
@@ -274,11 +248,41 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
+
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+    <!-- pagination and client-database -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://kit.fontawesome.com/5b8eaee5c3.js" crossorigin="anonymous"></script>
+
+
+    
+
+
     <script type="text/javascript">
-        function cancelrep() {
-            report.splice(clicked, 1);
-            localStorage.setItem("localreport_arr", JSON.stringify(report));
-            window.location.href = "reportStatus.php";
+        $(document).ready(function() {
+            $('#history').DataTable();
+        } );
+
+
+        
+
+        function showDetails(str) {
+          if (str=="") {
+            document.getElementById("detailsModal").innerHTML="";
+            return;
+          }
+          var xmlhttp=new XMLHttpRequest();
+          xmlhttp.onreadystatechange=function() {
+            if (this.readyState==4 && this.status==200) {
+              document.getElementById("detailsModal").innerHTML=this.responseText;
+              $("#detailsModal").modal("show");
+             }
+          }
+          xmlhttp.open("GET","repDetails.php?repNo="+str,true);
+          xmlhttp.send();
+       
+            
         }
     </script>
 </body>

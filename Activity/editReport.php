@@ -65,23 +65,30 @@
             <h2>Edit Report</h2>
             <?php
             session_start();
-
+            include_once('../database.php');
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+                $editNum=$_POST["editNum"];
+                $sql="SELECT `reportno`,`Name`,`Location`,`Title`,`Type`,`Description` FROM `report_table` WHERE (`reportno`='$editNum')";
+                $select=$pdo->prepare($sql);
+                $select->execute();
+                $editThis=$select->fetch(PDO::FETCH_ASSOC);
             ?>
-                <form method="post" class="jumbotron mt-3" >
+                <form method="post" action="saveReport.php" class="jumbotron mt-3" >
+                   
+                   
                     <div class="form-group w-25">
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Eg: Corona " required />
+                        <input type="text" class="form-control" id="name" placeholder="Eg: Corona " required <?php echo $editThis['Name']; ?>/>
                     </div>
     
                     <div class="form-group w-25">
                         <label for="location">Location:</label>
-                        <input type="text" class="form-control" id="location" placeholder="Eg: Block B Wing A "required />
+                        <input type="text" class="form-control" id="location" placeholder="Eg: Block B Wing A "required <?php echo $editThis['Type']; ?> />
                     </div>
     
                     <div class="form-group w-25">
                         <label for="title">Issue title:</label>
-                        <input type="text" class="form-control" id="title" placeholder="Eg: Dirty toilet "required />
+                        <input type="text" class="form-control" id="title" placeholder="Eg: Dirty toilet "required <?php echo $editThis['Title']; ?>/>
                     </div>
     
     
@@ -96,52 +103,37 @@
                     </div>
                     <div class="form-group w-50">
                         <label for="description">Description:</label>
-                        <textarea cols="70" class="form-control" rows="10" id="description" required></textarea>
+                        <textarea style="resize:none" name="description" class="form-control" rows="6" id="description" type="text"  required><?php echo $editThis['Description']; ?></textarea>
                     </div>
                   
     
                     <div>
                         <br>
                         <p>
-                            <button class="btn btn-primary" id="savechanges">Save Changes</button>
-                            <a class="btn btn-primary" id="cancel" href="#popup2">Cancel</a></p>
+                        <button class="btn btn-primary" id="saveEdit"  name="saveEdit" value="<?php echo $editNum; ?>">Save Changes</button>
+                        <button type="button" class="btn btn-outline-primary"  data-toggle="modal" data-target="#confirmModal">Cancel</button></p>
                     </div>
                 </form>
 
-    <script type="text/javascript">
-      var retrieve = localStorage.getItem("localreport_arr");
-                    var report = JSON.parse(retrieve);
-                    /*receive the key selected from previous page*/
-                    var selectedRep = localStorage.getItem("selectedRep");
-
-                    console.log(report[selectedRep].Name);
-                    document.getElementById("name").value = report[selectedRep].Name;
-                    document.getElementById("location").value = report[selectedRep].Location;
-                    document.getElementById("title").value = report[selectedRep].Title;
-
-                    document.getElementById("type").value = report[selectedRep].Type;
-                    document.getElementById("description").value = report[selectedRep].Description;
-
-                    var form = document.querySelector("form");
-                    form.onsubmit = function(e) {
-                        e.preventDefault();
-                        report[selectedRep].Name = document.getElementById("name").value;
-                        report[selectedRep].Location = document.getElementById("location").value;
-                        report[selectedRep].Title = document.getElementById("title").value;
-                        report[selectedRep].Type = document.getElementById("type").value;
-                        report[selectedRep].Description = document.getElementById("description").value;
-                        var Name1 = document.getElementById("name").value;
-                        var Location1 = document.getElementById("location").value;
-                        var Title1 = document.getElementById("title").value;
-                        var Type1 = document.getElementById("type").value;
-                        var Descrip1 = document.getElementById("description").value;  
-
-
-                            localStorage.setItem("localreport_arr", JSON.stringify(report));
-                            window.location.href = 'reportStatus.php';
-                        
-                    }
-  </script>
+                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header text-center " style="background-color: #F8F9FA;">
+                                <h4 class="modal-title w-100">Confirmation</h4>
+                                
+                            </div>
+                      <div class="modal-body text-center">
+                        Discard all changes and back to previous page?<br><br>
+                      </div>
+                      <div class="modal-footer">
+                        <p align="right">
+                            <a class="btn btn-primary" href="reportStatus.php" >Yes</a>
+                            <button data-dismiss="modal" class="btn btn-outline-primary" data-dismiss="modal" >No</button>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
 <?php
             } else { ?>
@@ -153,24 +145,6 @@
                         ?>
 </main>
 
-
- <!-- pop out cancel edit confirmation -->
- <div id="popup2" class="overlay">
-            <div class="popup" id="yesno">
-                <h2></h2>
-
-                <div class="content">
-                    <br>
-                    </p></a>
-                    <p class="mb-5" align="center">Discard all changes?
-                    </p>
-                    <p align="right">
-                        <a class="btn no" id="no" href="#">No</a>&nbsp;&nbsp;
-                        <a class="btn" href="reportStatus.php" id="yes">Yes</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
 
 <footer class="container text-center font-italic py-2">
 Copyright © 2020 - XXX Residential College.

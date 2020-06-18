@@ -70,7 +70,7 @@
             ?>
 
 
-            <form method="post" class="jumbotron mt-3" >
+            <form method="post" action="addReport.php" class="jumbotron mt-3" >
                 <div class="form-group w-25">
                     <label for="name">Name:</label>
                     <input type="text" class="form-control" id="name" placeholder="Eg: Corona " required />
@@ -118,45 +118,6 @@
                 }
                     ?>
 
-    <script type="text/javascript">
-    var form = document.querySelector("form");
-    form.onsubmit = function(e) {
-      e.preventDefault();
-      var retrieve = localStorage.getItem("localreport_arr");
-      var Name1 = document.getElementById("name").value;
-      var Location1 = document.getElementById("location").value;
-      var Title1 = document.getElementById("title").value;
-      var Type1 = document.getElementById("type").value;
-      var Descrip1 = document.getElementById("description").value; 
-        var state = "Pending";
-        var submit_arr = [{
-          Name: Name1,
-          Location: Location1,
-          Title: Title1,
-          Type: Type1,
-          Description: Descrip1,
-          Status: state,
-        }, ];
-        if (retrieve == null) {
-          localStorage.setItem(
-            "localreport_arr",
-            JSON.stringify(submit_arr)
-          );
-        } else {
-          var report_arr = JSON.parse(retrieve);
-          Array.prototype.push.apply(submit_arr, report_arr);
-
-          localStorage.setItem(
-            "localreport_arr",
-            JSON.stringify(submit_arr)
-          );
-          console.log(report_arr);
-        }
-        window.location.href = "reportStatus.php";
-      
-    };
-
-  </script>
 
 </main>
 

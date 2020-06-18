@@ -192,7 +192,7 @@
                             <div class="modal-content">
 
                                 <div class="modal-header text-center " style="background-color: #FF695E;">
-                                    <h4 class="modal-title w-100">Cancel Application Comformation</h4>
+                                    <h4 class="modal-title w-100">Cancel Application Comfirmation</h4>
                                     
                                 </div>
                                 
