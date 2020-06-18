@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="../css/style.css">
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -33,11 +33,11 @@
                         <a class="nav-link" href="Activity.php">Activity</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link " href="Sembreak.php">Semester Break <span class="sr-only">(current)</span></a>
+                        <a class="nav-link " href="Sembreak.php">Accommodation Application<span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link" href="reportStatus.php">College Helpdesk</a>
+                        <a class="nav-link" href="reportStatus.php">College Helpdesk</a>
                     </li>
 
                 </ul>
@@ -59,69 +59,57 @@
             <h2>Edit Application Details</h2>
             <?php
             session_start();
+            include_once('../database.php');
 
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+                $editAppNo=$_POST["editAppNo"];
+                $sql="SELECT `applicationNo`,`from`,`to`,`reason` FROM `accomodationapplicationtable` WHERE (`applicationNo`='$editAppNo')";
+                $select=$pdo->prepare($sql);
+                $select->execute();
+                $editThis=$select->fetch(PDO::FETCH_ASSOC);
             ?>
-                <form method="post" class="jumbotron mt-3">
+                <form method="post" action="processEditApplication.php" onsubmit="return checkDateRange()" class="jumbotron mt-3">
+                    <div class="form-group">Application Number: <?php echo $editThis['applicationNo']; ?></div>
+                    <div class="form-group">
 
-                    <div class="form-group w-25">
-
-                        <label for="Staying From">Staying From:</label>
-                        <input type="date" class="form-control" id="From" required>
+                        <label for="Staying From">Select the range of date you are going to stay:</label>
+                        <div >
+                            <input style="float: left;" autocomplete="off"  class="form-control w-50" type="text" name="daterange" id="daterange"  required />
+                            <span class="align-middle" style="color: red;" id="validate"></span>
+                        </div>
                     </div>
 
-                    <div class="form-group w-25">
-                        <label for="To">To:</label>
-                        <input type="date" class="form-control" id="To" required>
-                    </div>
+                    
                     <div class="form-group w-50">
                         <label for="Reason">Reason:</label>
-                        <textarea style="resize:none" value="" class="form-control" rows="4" id="Reason" type="text" required></textarea>
+                        <textarea style="resize:none" name="reason" class="form-control" rows="6" id="reason" type="text"  required><?php echo $editThis['reason']; ?></textarea>
+                        
                     </div>
                     <p>
-                        <button class="btn btn-primary" id="savechanges">Save Changes</button>
-                        <a class="btn btn-primary" id="acancel" href="#popup2">Cancel</a></p>
-
+                        <button class="btn btn-primary" id="saveEdit"  name="saveEdit" value="<?php echo $editAppNo; ?>">Save Changes</button>
+                        <button type="button" class="btn btn-outline-primary"  data-toggle="modal" data-target="#confirmModal">Cancel</button></p>
                 </form>
+                
 
-                <script type="text/javascript">
-                    var retrieve = localStorage.getItem("localapplication_arr");
-                    var application = JSON.parse(retrieve);
-                    /*receive the key selected from previous page*/
-                    var selectedApp = localStorage.getItem("selectedApp");
-
-                    console.log(application[selectedApp].Date);
-                    document.getElementById("From").value = application[selectedApp].From;
-                    document.getElementById("To").value = application[selectedApp].To;
-
-                    document.getElementById("Reason").value = application[selectedApp].Reason;
-
-                    var form = document.querySelector("form");
-                    form.onsubmit = function(e) {
-                        e.preventDefault();
-                        application[selectedApp].From = document.getElementById("From").value;
-                        application[selectedApp].To = document.getElementById("To").value;
-                        application[selectedApp].Reason = document.getElementById("Reason").value;
-                        var Fromdate = document.getElementById("From").value;
-                        var Todate = document.getElementById("To").value;
-                        var Duration = calculateday(Fromdate, Todate);
-                        if (Duration <= 0) {
-                            window.alert("To: date must be greater than Staying From:");
-                        } else {
-                            application[selectedApp].Duration = Duration;
-
-
-                            localStorage.setItem("localapplication_arr", JSON.stringify(application));
-                            window.location.href = 'Sembreak.php';
-                        }
-                    }
-
-                    function calculateday(a, b) {
-                        var Fromdate = new Date(a);
-                        var Todate = new Date(b);
-                        return Math.floor((Todate - Fromdate) / (1000 * 60 * 60 * 24));
-                    }
-                </script>
+                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header text-center " style="background-color: #F8F9FA;">
+                                <h4 class="modal-title w-100">Confirmation</h4>
+                                
+                            </div>
+                      <div class="modal-body text-center">
+                        Discard all changes and back to previous page?<br><br>
+                      </div>
+                      <div class="modal-footer">
+                        <p align="right">
+                            <a class="btn btn-primary" href="sembreak.php" >Yes</a>
+                            <button data-dismiss="modal" class="btn btn-outline-primary" data-dismiss="modal" >No</button>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
             <?php
             } else { ?>
@@ -139,22 +127,7 @@
         </footer>
 
 
-        <!-- pop out cancel edit confirmation -->
-        <div id="popup2" class="overlay">
-            <div class="popup" id="yesno">
-                <h2></h2>
-
-                <div class="content">
-                    <br>
-                    </p></a>
-                    <p class="mb-5" align="center">Discard all changes?
-                    </p>
-                    <p align="right">
-                        <a class="btn no" id="no" href="#">No</a>&nbsp;&nbsp;
-                        <a class="btn" href="Sembreak.php" id="yes">Yes</a></p>
-                </div>
-            </div>
-        </div>
+        
     </div>
 
     <!-- Optional JavaScript -->
@@ -165,6 +138,54 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
+    <!-- daterange -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    
+    <script type="text/javascript">
+        var from='<?php echo  $editThis['from']; ?>';
+        var to='<?php echo  $editThis['to']; ?>';
+
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '/' + dd;
+             $(function() {
+                $('input[name="daterange"]').keydown(false);
+                $('input[name="daterange"]').daterangepicker({
+                  autoUpdateInput: false,
+                  locale: {
+                        format: 'YYYY-MM-DD',
+                      cancelLabel: 'Clear'
+                  },
+                  minDate: today,
+                  autoApply: true,
+                  startDate:from,
+                  endDate:to,
+                  autoUpdateInput: true
+                  
+              });
+
+              $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+                  $(this).val(picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD'));
+              });
+
+
+        });
+        function checkDateRange(){
+          var daterange = document.getElementById("daterange").value;
+          var date=daterange.split(" - ");
+          if(date[0]==date[1]){
+             document.getElementById("validate").innerText = "*Invalid range of date! Please select 2 different date.*";
+             return false;
+          }
+        }
+    </script>
+
+
 </body>
 
 </html>
