@@ -127,7 +127,7 @@
                         <a class="nav-link" href="Activity.php">Activity<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="Sembreak.php">Semester Break</a>
+                        <a class="nav-link " href="Sembreak.php">Accommodation Application</a>
                     </li>
 
                     <li class="nav-item">
