@@ -247,7 +247,7 @@
     function validateForms() {
       var confirm = window.confirm("Confirm to update information of academic?");
 
-      if (confirm) {
+      if (!confirm) {
         return false;
       }
     }

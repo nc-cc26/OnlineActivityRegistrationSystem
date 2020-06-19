@@ -141,17 +141,26 @@
                     <tr><th scope="row" class="w-25 p-3">User Access Level:</th><td>Student</td></tr>
                 </table>
                     </div>
-                <div class="text-right">
+                <div class="text-right"><br>
                     <button type="button" class="btn btn-primary btn-sm" id=changepw>Change Password</button>
-                    <button type="button" class="btn btn-danger btn-sm" id="delete" >Delete Account</button>
+                    <form action="delete.php" method="post" onsubmit="return validateForms()"><br>
+                    <input type="submit" class="btn btn-danger btn-sm" value="Delete Account" id="delete" >
+                    </form>
                 </div>
                 <script type="text/javascript">
-                    var button = document.getElementById("delete");
-                    button.addEventListener("click", function() {
+                function validateForms(){
+                    //var button = document.getElementById("delete");
+                    //button.addEventListener("click", function() {
                         var x = confirm("Are you sure to remove this account?");
-                        if (x) return true;
+                        if (x){
+                            var y = confirm("All data stored will be deleted permanently. Click \"ok\" to confirm the deletion.");
+                            if(!y){
+                                return false;
+                            }
+                        }
                         else return false;
-                    });
+                    //});
+                }
                     document.getElementById("changepw").addEventListener("click",function(){
                         var change = confirm("Change password?");
                         if (change){

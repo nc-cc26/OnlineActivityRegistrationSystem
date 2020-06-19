@@ -124,6 +124,7 @@
                     $State = $res['State'];
                     $Phone = $res['Phone'];
                 }
+
                 ?>
                 <div class="text-center">
                     <?php
@@ -143,7 +144,7 @@
                     <tr><th scope="row" class="w-25 p-3">Postcode:</th><td><?php echo $Postcode; ?> </td></tr>
                     <tr><th scope="row" class="w-25 p-3">City:</th><td><?php echo $City; ?></td></tr>
                     <tr><th scope="row" class="w-25 p-3">State:</th><td><?php echo $State; ?></td></tr>
-                    <tr><th scope="row" class="w-25 p-3">Phone:</th><td><?php echo $Phone; ?></td></tr>
+                    <tr><th scope="row" class="w-25 p-3">Phone:</th><td><?php echo substr("$Phone",0,3)."-".substr("$Phone",3,10); ?></td></tr>
                     <tr><th scope="row" class="w-25 p-3">Email:</th><td><?php echo $Email; ?></td></tr>
                 </table>
                 <div class="text-left">
