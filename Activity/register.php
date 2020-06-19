@@ -66,12 +66,12 @@
 
                         <div>
                             <br /><label for="Year">Year:</label><br />
-                            <input type="text" class="form-control" id="year" name="Year" style="width: 20%" required/>
+                            <input type="text" class="form-control" id="year" name="Year" style="width: 20%" placeholder="Eg: 1,2..." required/>
                         </div>
 
                         <div>
                             <br /><label for="Semester">Semester:</label><br />
-                            <input type="text" class="form-control" id="semester" name="Sem" style="width: 20%" required/>
+                            <input type="text" class="form-control" id="semester" name="Sem" style="width: 20%" placeholder="Eg: 1,2..." required/>
                         </div>
 
                         <div>
