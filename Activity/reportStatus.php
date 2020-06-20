@@ -70,17 +70,17 @@
             if (isset($_GET["msg"])) {
                 if ($_GET["msg"] == "success") {
                     echo "<div class='alert alert-success alert-dismissible'>
-                <h4><i class='icon fa fa-check'></i> Your application has been submitted successfully!</h4>You can click on the status to view, edit or cancel this application.
+                <h4><i class='icon fa fa-check'></i> Your report has been submitted successfully!</h4>You can click on the status to view, edit or cancel this application.
                 </div>";
                     }
                 elseif ($_GET["msg"] == "cancelled") {
                    echo "<div class='alert alert-success alert-dismissible'>
-                <h4><i class='icon fa fa-check'></i> Your application has been cancelled successfully!
+                <h4><i class='icon fa fa-check'></i> Your report has been cancelled successfully!
                 </div>";
                 }
                 elseif ($_GET["msg"] == "edited") {
                    echo "<div class='alert alert-success alert-dismissible'>
-                <h4><i class='icon fa fa-check'></i> Your application has been edited successfully!
+                <h4><i class='icon fa fa-check'></i> Your report has been edited successfully!
                 </div>";
                 }
                 }
@@ -99,7 +99,7 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Name</th>
+                                
                                 <th>Location</th>
 
                                 <th>Issue title</th>
@@ -111,14 +111,14 @@
                         <?php 
                             include_once('../database.php');
                             $ID=$_SESSION['user_id'];
-                            $sql="SELECT `reportno`,`Name`,`Location`,`Title`,`Type`,`status` FROM `report_table` WHERE (`ID`='$ID') ORDER BY `reportno` ASC";
+                            $sql="SELECT `reportno`,`Location`,`Title`,`Type`,`status` FROM `report_table` WHERE (`ID`='$ID') ORDER BY `reportno` ASC";
                             $reporthistory=$pdo->prepare($sql);
                             $reporthistory->execute();
                             $count=1;
                             foreach ($reporthistory as $rep) {
                                 echo "<tr><td>".$count++."</td>
                                 
-                                <td>".$rep['Name']."</td>
+                                
                                 <td>".$rep['Location']."</td>
                                 <td>".$rep['Title']."</td>
                                 <td>".$rep['Type']."</td>";
@@ -128,7 +128,7 @@
                                     echo "<td><div class='text-center '><button id='modalbtn' class='btn btn-sm btn-block btn-outline-success' onclick='showDetails(this.value)'value='".$rep['reportno']."'>".$rep['status']."</button></td></tr>";
                                 }
                                 else {
-                                    echo "<td><div class='text-center '><button id='modalbtn' class='btn btn-sm btn-block btn-outline-danger' onclick='showDetails(this.value)'' value='".$rep['reportno']."'>".$rep['status']."</button></td></tr>";
+                                    echo "<td><div class='text-center '><button id='modalbtn' class='btn btn-sm btn-block btn-outline-warning' onclick='showDetails(this.value)'' value='".$rep['reportno']."'>".$rep['status']."</button></td></tr>";
                                 }
                             }
                             if($count==1){
@@ -147,7 +147,7 @@
                 </div>
 
                 <div class="modal fade" aria-hidden="true" id="detailsModal" role="dialog" >
-                   <!-- Modal insdie processDetails.php -->
+                   <!-- Modal insdie repDetails.php -->
                    <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content ">
 
@@ -160,8 +160,7 @@
                                 <p id="report_sum" >Report number:
                                     <p style="font-weight: normal;"></p>
                                 </p>
-                                <p id="report_sum">Name:
-                                    <p style="font-weight: normal;"></p>
+                                
                                 <p id="report_sum">Location:
                                     <p style="font-weight: normal;"></p> 
                                 </p>

@@ -70,26 +70,23 @@
             ?>
 
 
-            <form method="post" action="addReport.php" class="jumbotron mt-3" >
-                <div class="form-group w-25">
-                    <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Eg: Corona " required />
-                </div>
+            <form method="post" action="addReport.php" onsubmit="submit()" class="jumbotron mt-3" >
+              
 
                 <div class="form-group w-25">
                     <label for="location">Location:</label>
-                    <input type="text" class="form-control" id="location" placeholder="Eg: Block B Wing A "required />
+                    <input type="text" class="form-control" name="location" placeholder="Eg: Block B Wing A "required />
                 </div>
 
                 <div class="form-group w-25">
                     <label for="title">Issue title:</label>
-                    <input type="text" class="form-control" id="title" placeholder="Eg: Dirty toilet "required />
+                    <input type="text" class="form-control" name="title" placeholder="Eg: Dirty toilet "required />
                 </div>
 
 
                 <div class="form-group w-25">
                     <label for="type">Issue type:</label>
-                    <select id="type" class="form-control">
+                    <select name="type" class="form-control">
                         <option value="Safety issues">Safety issues</option>
                         <option value="Appliances issues">Appliances issues</option>
                         <option value="Toilet issues">Toilet issues</option>
@@ -98,17 +95,18 @@
                 </div>
                 <div class="form-group w-50">
                     <label for="description">Description:</label>
-                    <textarea cols="70" class="form-control" rows="10" id="description" required></textarea>
+                    <textarea cols="70" class="form-control" rows="10" name="description" required></textarea>
                 </div>
               
 
                 <div>
                     <br>
-                    <button type="submit" class="btn btn-primary" id="submit">
+                    <button type="submit" class="btn btn-primary" name="submit">
                     Submit
                     </button>
                 </div>
             </form>
+            
             <?php
             } else { ?>
             <div class="alert alert-info" role="alert">
@@ -137,7 +135,11 @@ Copyright © 2020 - XXX Residential College.
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
                     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
                     crossorigin="anonymous"></script>
-
+                <script> 
+                function submit(){
+                    alert("The form was submitted");
+                }
+                </script>
                 
 
 </body>

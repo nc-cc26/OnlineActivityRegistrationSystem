@@ -68,7 +68,7 @@
             include_once('../database.php');
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
                 $editNum=$_POST["editNum"];
-                $sql="SELECT `reportno`,`Name`,`Location`,`Title`,`Type`,`Description` FROM `report_table` WHERE (`reportno`='$editNum')";
+                $sql="SELECT `reportno`,`Location`,`Title`,`Type`,`Description` FROM `report_table` WHERE (`reportno`='$editNum')";
                 $select=$pdo->prepare($sql);
                 $select->execute();
                 $editThis=$select->fetch(PDO::FETCH_ASSOC);
@@ -76,25 +76,22 @@
                 <form method="post" action="saveReport.php" class="jumbotron mt-3" >
                    
                    
-                    <div class="form-group w-25">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Eg: Corona " required <?php echo $editThis['Name']; ?>/>
-                    </div>
+                 
     
                     <div class="form-group w-25">
                         <label for="location">Location:</label>
-                        <input type="text" class="form-control" id="location" placeholder="Eg: Block B Wing A "required <?php echo $editThis['Type']; ?> />
+                        <input type="text" class="form-control" name="location" placeholder="Eg: Block B Wing A "required <?php echo $editThis['Type']; ?> />
                     </div>
     
                     <div class="form-group w-25">
                         <label for="title">Issue title:</label>
-                        <input type="text" class="form-control" id="title" placeholder="Eg: Dirty toilet "required <?php echo $editThis['Title']; ?>/>
+                        <input type="text" class="form-control" name="title" placeholder="Eg: Dirty toilet "required <?php echo $editThis['Title']; ?>/>
                     </div>
     
     
                     <div class="form-group w-25">
                         <label for="type">Issue type:</label>
-                        <select id="type" class="form-control">
+                        <select name="type" class="form-control">
                             <option value="Safety issues">Safety issues</option>
                             <option value="Appliances issues">Appliances issues</option>
                             <option value="Toilet issues">Toilet issues</option>
@@ -103,7 +100,7 @@
                     </div>
                     <div class="form-group w-50">
                         <label for="description">Description:</label>
-                        <textarea style="resize:none" name="description" class="form-control" rows="6" id="description" type="text"  required><?php echo $editThis['Description']; ?></textarea>
+                        <textarea style="resize:none" name="description" class="form-control" rows="6" name="description" type="text"  required><?php echo $editThis['Description']; ?></textarea>
                     </div>
                   
     
@@ -123,7 +120,7 @@
                                 
                             </div>
                       <div class="modal-body text-center">
-                        Discard all changes and back to previous page?<br><br>
+                        Discard all changes?<br><br>
                       </div>
                       <div class="modal-footer">
                         <p align="right">

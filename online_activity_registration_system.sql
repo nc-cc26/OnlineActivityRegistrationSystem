@@ -1,12 +1,11 @@
-
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2020 at 05:28 PM
+-- Generation Time: Jun 20, 2020 at 07:42 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.5
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,8 +31,8 @@ CREATE TABLE `academictable` (
   `ID` varchar(9) NOT NULL,
   `Faculty` varchar(254) DEFAULT NULL,
   `Course` varchar(254) DEFAULT NULL,
-  `EntryYear` int(4) UNSIGNED ZEROFILL DEFAULT NULL,
-  `Duration` varchar(9) DEFAULT NULL,
+  `EntryYear` varchar(4) DEFAULT NULL,
+  `Duration` varchar(4) DEFAULT NULL,
   `Mode` varchar(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -42,8 +41,7 @@ CREATE TABLE `academictable` (
 --
 
 INSERT INTO `academictable` (`ID`, `Faculty`, `Course`, `EntryYear`, `Duration`, `Mode`) VALUES
-('WIF180049', NULL, NULL, NULL, NULL, NULL),
-('WIF180064', NULL, NULL, NULL, NULL, NULL);
+('WIF180078', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -95,10 +93,10 @@ CREATE TABLE `activitytable` (
 CREATE TABLE `contacttable` (
   `ID` varchar(9) NOT NULL,
   `Address` varchar(254) DEFAULT NULL,
-  `Postcode` int(5) UNSIGNED ZEROFILL DEFAULT NULL,
+  `Postcode` varchar(5) DEFAULT NULL,
   `City` varchar(20) DEFAULT NULL,
   `State` varchar(30) DEFAULT NULL,
-  `Phone` int(11) UNSIGNED ZEROFILL DEFAULT NULL
+  `Phone` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -106,8 +104,7 @@ CREATE TABLE `contacttable` (
 --
 
 INSERT INTO `contacttable` (`ID`, `Address`, `Postcode`, `City`, `State`, `Phone`) VALUES
-('WIF180049', '', 00000, '', '', 00000000000),
-('WIF180064', NULL, NULL, NULL, NULL, NULL);
+('WIF180078', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -134,7 +131,32 @@ CREATE TABLE `personaltable` (
 
 INSERT INTO `personaltable` (`ID`, `ProfilePicture`, `NewMatrics`, `IC`, `Nationality`, `Gender`, `Birthday`, `Race`, `Religion`, `Marital`) VALUES
 ('WIF180049', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('WIF180064', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+('WIF180078', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `report_table`
+--
+
+CREATE TABLE `report_table` (
+  `reportno` int(254) NOT NULL,
+  `ID` varchar(9) DEFAULT NULL,
+  `Location` varchar(50) DEFAULT NULL,
+  `Title` varchar(20) NOT NULL,
+  `Type` varchar(20) NOT NULL,
+  `Description` text NOT NULL,
+  `status` varchar(12) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `report_table`
+--
+
+INSERT INTO `report_table` (`reportno`, `ID`, `Location`, `Title`, `Type`, `Description`, `status`) VALUES
+(1, 'WIF180078', 'Block B Wing A', 'Dirty toilet', 'Toilet Issue', 'Unflushable and caused disgusting smell', 'Completed'),
+(2, 'WIF180078', 'Parking Slot in front of kk', 'Stranger appears', 'Safety issue', 'Dark shadow appears outside the parking area during midnight', 'In Progress'),
+(3, 'WIF180078', 'B332', 'Fan malfunction', 'Appliances issue', 'Fan is not working', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -167,7 +189,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`ID`, `Email`, `Name`, `Password`) VALUES
 ('WIF180049', 'WIF180049@SISWA.UM.EDU.MY', 'NATHANIEL ONG YII TAK', '82a4dfdccd1dc4e98cc4099d20e0279565b96d579b5cc708ae30ea11f1bda8b7'),
-('WIF180064', 'WIF180064@SISWA.UM.EDU.MY', 'ONG PEI ZHI', 'e298327d625ea0faa3710eb2db6dc14fe35ccb6062df6eb4f0f854aed0742bab');
+('WIF180078', 'WIF180078@SISWA.UM.EDU.MY', 'YAP JING HONG', '696b3807c724f5c3acc975f506a116753d7d76abb86f2b685ae36859dd4ae364');
 
 --
 -- Indexes for dumped tables
@@ -208,17 +230,10 @@ ALTER TABLE `personaltable`
   ADD UNIQUE KEY `UP_ID` (`ID`);
 
 --
--- Indexes for table `reset_password`
+-- Indexes for table `report_table`
 --
-ALTER TABLE `reset_password`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD UNIQUE KEY `UC_ID` (`ID`),
-  ADD UNIQUE KEY `UC_Email` (`Email`);
+ALTER TABLE `report_table`
+  ADD PRIMARY KEY (`reportno`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -228,13 +243,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `accomodationapplicationtable`
 --
 ALTER TABLE `accomodationapplicationtable`
-  MODIFY `applicationNo` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `applicationNo` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
--- AUTO_INCREMENT for table `reset_password`
+-- AUTO_INCREMENT for table `report_table`
 --
-ALTER TABLE `reset_password`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `report_table`
+  MODIFY `reportno` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
