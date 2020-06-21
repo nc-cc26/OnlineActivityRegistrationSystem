@@ -68,7 +68,7 @@
 
                 <p class="spaceP">
                     <a name="lang" class="font-weight-bold ">
-                        <font size="5">Gamers Guild</font>
+                        <font size="5">Language and Culture Class</font>
                     </a>
                     <p>
                         <font size="2" style="font-weight: bold">&#42Available every week</font>
