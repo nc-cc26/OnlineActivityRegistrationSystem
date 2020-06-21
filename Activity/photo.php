@@ -66,7 +66,7 @@
             ?>
                 <p class="spaceP">
                     <a name="photo" class="font-weight-bold ">
-                        <font size="5">MyCollege Olympics</font>
+                        <font size="5">Photography Club</font>
                     </a>
                     <p>
                         <font size="2" style="font-weight: bold">&#42Available every week</font>
