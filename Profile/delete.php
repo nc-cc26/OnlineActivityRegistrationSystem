@@ -14,6 +14,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
         $sql3 = "DELETE FROM `personaltable` WHERE `ID`='$ID'";
         $sql4 = "DELETE FROM `activitytable` WHERE `ID`='$ID'";
         $sql5 = "DELETE FROM `accomodationapplicationtable` WHERE `ID`='$ID'";
+        $sql6 = "DELETE FROM `report_table` WHERE `ID`='$ID'";
         try{
             $stmt0 = $pdo->prepare($sql0);
             $stmt1 = $pdo->prepare($sql1);
@@ -21,6 +22,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
             $stmt3 = $pdo->prepare($sql3);
             $stmt4 = $pdo->prepare($sql4);
             $stmt5 = $pdo->prepare($sql5);
+            $stmt6 = $pdo->prepare($sql6);
             
             $stmt0->execute();
             $stmt1->execute();
@@ -28,6 +30,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
             $stmt3->execute();
             $stmt4->execute();
             $stmt5->execute();
+            $stmt6->execute();
             header('Location:deletedAccount.php');
         } catch (Exception $e) {
             echo "Error: " . $e;
