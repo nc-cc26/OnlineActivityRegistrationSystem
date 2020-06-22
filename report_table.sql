@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2020 at 06:27 PM
+-- Generation Time: Jun 22, 2020 at 04:30 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -64,7 +64,7 @@ ALTER TABLE `report_table`
 -- AUTO_INCREMENT for table `report_table`
 --
 ALTER TABLE `report_table`
-  MODIFY `reportno` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `reportno` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
