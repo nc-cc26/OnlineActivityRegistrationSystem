@@ -361,9 +361,5 @@ button.clear {
 
 .unslashed:before {
   font-family: "Font Awesome 5 Free";
-  cursor: pointer;
-  position: relative;
-  left: 150px;
-  top: 23px;
   content: '\f06e';
 }
