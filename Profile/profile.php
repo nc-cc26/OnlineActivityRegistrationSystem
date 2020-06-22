@@ -143,7 +143,7 @@
                     </div>
                 <div class="text-right"><br>
                     <button type="button" class="btn btn-primary btn-sm" id=changepw>Change Password</button>
-                    <form action="delete.php" method="post" onsubmit="return validateForms()"><br>
+                    <form action="validateDelete.php" method="post" onsubmit="return validateForms()"><br>
                     <input type="submit" class="btn btn-danger btn-sm" value="Delete Account" id="delete" >
                     </form>
                 </div>
@@ -152,13 +152,7 @@
                     //var button = document.getElementById("delete");
                     //button.addEventListener("click", function() {
                         var x = confirm("Are you sure to remove this account?");
-                        if (x){
-                            var y = confirm("All data stored will be deleted permanently. Click \"ok\" to confirm the deletion.");
-                            if(!y){
-                                return false;
-                            }
-                        }
-                        else return false;
+                        if (!x) return false;
                     //});
                 }
                     document.getElementById("changepw").addEventListener("click",function(){
