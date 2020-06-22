@@ -35,7 +35,7 @@
                 $id = $_SESSION['user_id'];
                 $Email = $_SESSION['user_email'];
                 echo "<div class='alert alert-success alert-dismissible'>
-            <h4><i class='icon fa fa-check'></i> Account with ID = $id is deleted successfully! <br><a href='../RegisterLogin/RegisterLogin.php'>Back to main page </a> now.
+            <h4><i class='icon fa fa-check'></i> Account with ID = $id is deleted successfully! <br><a href='../RegisterLogin/RegisterLogin.php'>Back to login page </a> now.
             </div>";
 
                 session_unset();

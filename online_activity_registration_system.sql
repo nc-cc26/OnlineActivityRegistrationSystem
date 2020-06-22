@@ -31,8 +31,8 @@ CREATE TABLE `academictable` (
   `ID` varchar(9) NOT NULL,
   `Faculty` varchar(254) DEFAULT NULL,
   `Course` varchar(254) DEFAULT NULL,
-  `EntryYear` varchar(4) DEFAULT NULL,
-  `Duration` varchar(4) DEFAULT NULL,
+  `EntryYear` int(4) UNSIGNED ZEROFILL NULL DEFAULT NULL,
+  `Duration` varchar(9) DEFAULT NULL,
   `Mode` varchar(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -93,10 +93,10 @@ CREATE TABLE `activitytable` (
 CREATE TABLE `contacttable` (
   `ID` varchar(9) NOT NULL,
   `Address` varchar(254) DEFAULT NULL,
-  `Postcode` varchar(5) DEFAULT NULL,
+  `Postcode` int(5) UNSIGNED ZEROFILL NULL DEFAULT NULL,
   `City` varchar(20) DEFAULT NULL,
   `State` varchar(30) DEFAULT NULL,
-  `Phone` varchar(11) DEFAULT NULL
+  `Phone` int(11) UNSIGNED ZEROFILL NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
