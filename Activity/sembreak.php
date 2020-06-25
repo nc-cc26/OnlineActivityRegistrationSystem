@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
-
-    <link rel="stylesheet" href="../css/style.css">
-    
+    <link rel="stylesheet" href="../css/style.css">    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -13,9 +10,6 @@
     <!-- Pagination -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
-
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- -->
 
     <link rel="icon" href="../imgs/8th.png" type="image/icon type">
     <title>Semester Break</title>
@@ -69,7 +63,7 @@
             <?php
             session_start();
 
-            // after successful apply for accomodation and redirect to this page, show message n parameter is deleted after execution
+            // show alert message on successful making, editing and deleting application
             if (isset($_GET["msg"])) {
             if ($_GET["msg"] == "success") {
                 echo "<div class='alert alert-success alert-dismissible'>
@@ -109,6 +103,7 @@
                             </tr>
                         <tbody>
                            <?php 
+                            //to retrive basic information of application history
                             include_once('../database.php');
                             $ID=$_SESSION['user_id'];
                             $sql="SELECT `applicationNo`,`date`,`from`,`to`,`reason`,`status` FROM `accomodationapplicationtable` WHERE (`ID`='$ID') ORDER BY `applicationNo` DESC";
@@ -121,6 +116,7 @@
                                 <td>".$app['applicationNo']."</td>
                                 <td>".$app['from']."</td>
                                 <td>".$app['to']."</td>";
+                                //different colour of status button
                                 if($app['status']=="Pending"){
                                     echo "<td><div class='text-center '><button id='modalbtn' class='btn btn-sm btn-block btn-outline-primary' onclick='showDetails(this.value)'  value='".$app['applicationNo']."'>".$app['status']."</button></td></tr>";}
                                 elseif ($app['status']=="Approved") {
@@ -131,6 +127,7 @@
                                 }
                             }
                             if($count==1){
+                                //if there is no history application record
                                 echo '
                                     <tr>
                                         <td colspan="7"><div class="text-center">No History Record</div></td>
@@ -144,9 +141,8 @@
                     </table>
 
                 </div>
-
+                <!-- Inner HTML processed by processDetails.php, this modal with no details will only show when db connection error -->
                 <div class="modal fade" aria-hidden="true" id="detailsModal" role="dialog" >
-                   <!-- Modal insdie processDetails.php -->
                    <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content ">
 
@@ -214,16 +210,6 @@
                         </div>
                     </div> 
                 </div> 
-                
-                
-
-                      
-
-
-
-
-
-
 
             <?php
             } else { ?>
@@ -248,29 +234,17 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-
-    
-
-
-
-    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
     <!-- pagination and client-database -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://kit.fontawesome.com/5b8eaee5c3.js" crossorigin="anonymous"></script>
 
-
-    
-
-
     <script type="text/javascript">
+        //Pagination
         $(document).ready(function() {
             $('#historyrecord').DataTable();
         } );
-
-
-        
-
+        //retrive application details modal from processDetails.php
         function showDetails(str) {
           if (str=="") {
             document.getElementById("detailsModal").innerHTML="";
@@ -284,12 +258,8 @@
              }
           }
           xmlhttp.open("GET","processDetails.php?appNo="+str,true);
-          xmlhttp.send();
-       
-            
+          xmlhttp.send();     
         }
     </script>
-
 </body>
-
 </html>
