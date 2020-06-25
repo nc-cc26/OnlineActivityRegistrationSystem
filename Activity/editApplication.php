@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
 
@@ -17,7 +16,6 @@
 
 <body>
     <div class="container">
-
         <header class="blog-header py-3">
             <h1 class="headingfont" align="center"><img class="mr-1 mb-2 " src="../imgs/8th.png" alt="college logo" width="45" height="45">MyCollege</h1>
         </header>
@@ -90,7 +88,6 @@
                         <button type="button" class="btn btn-outline-primary"  data-toggle="modal" data-target="#confirmModal">Cancel</button></p>
                 </form>
                 
-
                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -110,7 +107,6 @@
                     </div>
                   </div>
                 </div>
-
             <?php
             } else { ?>
                 <div class="alert alert-info" role="alert">
@@ -119,18 +115,11 @@
                 </div><?php
                     }
                         ?>
-
         </main>
-
         <footer class="container text-center font-italic py-2">
             Copyright © 2020 - XXX Residential College.
-        </footer>
-
-
-        
-    </div>
-
-    <!-- Optional JavaScript -->
+        </footer>      
+    </div>   
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
@@ -154,27 +143,24 @@
 
         today = yyyy + '-' + mm + '/' + dd;
              $(function() {
+                //prevent keyboard input in daterange column
                 $('input[name="daterange"]').keydown(false);
+                // date range picker
                 $('input[name="daterange"]').daterangepicker({
-                  autoUpdateInput: false,
                   locale: {
-                        format: 'YYYY-MM-DD',
-                      cancelLabel: 'Clear'
+                    format: 'YYYY-MM-DD',
+                    cancelLabel: 'Clear'
                   },
                   minDate: today,
                   autoApply: true,
                   startDate:from,
-                  endDate:to,
-                  autoUpdateInput: true
-                  
+                  endDate:to                 
               });
-
               $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
                   $(this).val(picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD'));
               });
-
-
         });
+        // validate the date range, date picked cannot be the same day
         function checkDateRange(){
           var daterange = document.getElementById("daterange").value;
           var date=daterange.split(" - ");
@@ -184,8 +170,5 @@
           }
         }
     </script>
-
-
 </body>
-
 </html>
