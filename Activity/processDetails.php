@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 </head>
 <body>
-
 <?php
-
 session_start();
 include_once('../database.php');
 if(isset($_SESSION['logged_in']) && $_SESSION['user_id'] 
 && $_SESSION['user_email'] && $_SESSION['logged_in'] == true){
     if ($_SERVER['REQUEST_METHOD'] === 'GET'){
-
         $appNo = intval($_GET['appNo']);
         $_SESSION["selectedAppNo"] = $appNo;;
         $sql = "SELECT * FROM `accomodationapplicationtable` WHERE (`applicationNo`='$appNo')";
@@ -20,15 +16,15 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
             $select = $pdo->prepare($sql);
             $select -> execute();
             $details=$select->fetch(PDO::FETCH_ASSOC);
+            //echo the innerHTML of detailsModal in sembreak.php
             echo 
             '   <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content ">
-
                             <div class="modal-header text-center " style="background-color: #F8F9FA;">
                                 <h4 class="modal-title w-100">Application Details</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
-                            
+
                             <div id="details" class="modal-body">
                                 <p id="application_details" >Application Number:
                                     <p style="font-weight: normal;">'.$details['applicationNo'].'</p>
@@ -42,7 +38,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
                                     <p style="font-weight: normal;">'.$details['to'].'</p>
                                 </p>
                                 <p id="application_details">Reason:
-                                    <p style="font-weight: normal;">'.$details['reason'].'</p> 
+                                    <p style="font-weight: normal;word-break: break-all;">'.$details['reason'].'</p> 
                                 </p>
                                 <p id="application_details">Status:
                                     <p style="font-weight: normal;">'.$details['status'].'</p>
@@ -59,9 +55,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
                                             
                                                 <button class="btn btn-danger" data-toggle="modal" data-target="#cancelModal" value="'.$appNo.'">Cancel Application</button>
                                             
-                                         </p>';
-                                         
-                                         
+                                         </p>';                                                                           
                               echo '      
                             </div>
 
@@ -93,53 +87,12 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
                             </div>
                         </div>
                     </div> 
-
-
-
-                                 
-
                     ';}
-
              }catch (Exception $e){
                 echo "Error: " . $e;
-            
         }
     }
 }
-
-
-
-
-// $q = intval($_GET['q']);
-
-// $con = mysqli_connect('localhost','peter','abc123','my_db');
-// if (!$con) {
-//   die('Could not connect: ' . mysqli_error($con));
-// }
-
-// mysqli_select_db($con,"ajax_demo");
-// $sql="SELECT * FROM user WHERE id = '".$q."'";
-// $result = mysqli_query($con,$sql);
-
-// echo "<table>
-// <tr>
-// <th>Firstname</th>
-// <th>Lastname</th>
-// <th>Age</th>
-// <th>Hometown</th>
-// <th>Job</th>
-// </tr>";
-// while($row = mysqli_fetch_array($result)) {
-//   echo "<tr>";
-//   echo "<td>" . $row['FirstName'] . "</td>";
-//   echo "<td>" . $row['LastName'] . "</td>";
-//   echo "<td>" . $row['Age'] . "</td>";
-//   echo "<td>" . $row['Hometown'] . "</td>";
-//   echo "<td>" . $row['Job'] . "</td>";
-//   echo "</tr>";
-// }
-// echo "</table>";
-// mysqli_close($con);
 ?>
 </body>
 </html>
