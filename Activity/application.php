@@ -95,12 +95,11 @@
 </footer>
 </div>
 
-<!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<!-- daterange -->
+<!-- daterange picker -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -111,27 +110,31 @@
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '/' + dd;
+  
         $(function() {
-         
+          //prevent keyboard input in daterange column
+          $('input[name="daterange"]').keydown(false);
+          // date range picker
           $('input[name="daterange"]').daterangepicker({
+
+              // empty input when page load
               autoUpdateInput: false,
               locale: {
-                    format: 'YYYY-MM-DD',
+                  format: 'YYYY-MM-DD',
                   cancelLabel: 'Clear'
               },
+              // date bfore today cannot be selected
               minDate: today,
+              // apply date when 2nd date is picked
               autoApply: true,
           });
 
           $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
 
               $(this).val(picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD'));
-
           });
-
-
         });
-
+        // validate the date range, date picked cannot be the same day
         function checkDateRange(){
           var daterange = document.getElementById("daterange").value;
           var date=daterange.split(" - ");
@@ -140,12 +143,6 @@
              return false;
           }
         }
-
     </script>
-
-
-
-
 </body>
-
 </html>
