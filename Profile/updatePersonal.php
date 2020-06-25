@@ -1,4 +1,5 @@
 <?php
+    //start a session and include database
     session_start();
     include_once '../database.php';
 ?>
@@ -18,7 +19,7 @@
     <link rel="icon" href="../imgs/8th.png" type="image/icon type" />
     <title>Update Personal Information</title>
     <style>
-
+        /* Display drop-down when hover  */
         .dropright:hover 
         .dropdown-menu
         {display: block;}
@@ -124,33 +125,44 @@
             <h2>Update Personal Information</h2>
             <?php
 
+            //check if user is logged in or not ($_SESSION has value)
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+                //set user_id in session to $id
                 $id = $_SESSION['user_id'];
+
+                //retrieve data from database
                 $sql = "SELECT * FROM personaltable WHERE id='$id'";
                 $result = $pdo->prepare($sql);
                 $result -> execute();
 
+                //assign variable for every data
                 while ($res = $result->fetch(PDO::FETCH_ASSOC)) {
                     $ID = $res['ID'];
                     $NewMatrics = $res['NewMatrics'];
                     $IC = $res['IC'];
                     $Birthday = $res['Birthday'];
                 }
+
+                //retrieve data from database
                 $sql1 = "SELECT Name FROM user WHERE id='$id'";
                 $result1 = $pdo->prepare($sql1);
                 $result1 -> execute();
+
+                //assign variable for every data
                 while ($res1 = $result1->fetch(PDO::FETCH_ASSOC)) {
                     $Name = $res1['Name'];
                 }
             ?>
                 <?php
                 $action=isset($_GET['action']) ? $_GET['action'] : "";
+                //if user successfully updated the form
                 if($action == "updatePersonalSuccessful"){
                     echo "<div class='alert alert-success alert-dismissible'>
-            <h4><i class='icon fa fa-check'></i> Personal information is updated successfully! <br><a href='profileDetail.php'>View updated information</a> now!
-            </div>";
+                    <h4><i class='icon fa fa-check'></i> Personal information is updated successfully! <br><a href='profileDetail.php'>View updated information</a> now!
+                    </div>";
                 }
             ?>
+                <!-- create a form (set enctype="multipart/form-data" to prevent data being encrypted)--> 
                 <form method="post" action="processPersonal.php" id="form" onsubmit="return validateForms()" class="jumbotron mt-3" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label for="picture" class="col-md-2 col-form-label"><b>*Profile Picture</b></label>
@@ -270,9 +282,11 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-1">
+                            <!-- Click this button to confirm updating the form and move to validation -->
                             <button type="submit" class="btn btn-primary" id="updatePersonal">Update</button>
                         </div>
                         <div class="col-md-3">
+                            <!-- Click this button to skip updating and navigate to updateAcademic.php -->
                             <button type="button" class="btn btn-primary" id="skipPersonal">Next</button>
                         </div>
                     </div>
@@ -282,6 +296,7 @@
             <?php
             } else { ?>
                 <div class="alert alert-info" role="alert">
+                    <!-- display error message if user is not logged in ($_SESSION is null)-->
                     <h4>Sorry, only authenticated user can access this page.</h4>
                     <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
                 </div><?php
@@ -302,6 +317,7 @@
         var previewImage = previewContainer.querySelector(".image-preview__image");
         var previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
 
+        //set a block to preview image for validation
         picture.addEventListener("change", function() {
             picture.style.backgroundColor = "red";
             var file = this.files[0];
@@ -322,7 +338,7 @@
                 previewImage.setAttribute("src", "");
             }
         })
-
+        //function to validate if user input a correct format of image
         document.getElementById("validatePicture").addEventListener("click", function() {
             var picture = document.getElementById("picture");
             var abc = document.getElementById("validatePicture")
@@ -330,6 +346,7 @@
             var type1 = "." + array[1];
             var type = type1.toLowerCase();
 
+            //only these type of files format is suitable
             if (type == ".jpg" || type == ".jpeg" || type == ".png" || type == ".gif" || type == ".pdf") {
                 if (picture.files[0].size > 2097152) {
                     alert("File exceeded 2MB");
@@ -343,29 +360,24 @@
                 picture.style.backgroundColor = "red";
             }
         })
-
+        //all string input is made to uppercase
         document.getElementById("form").addEventListener("change", function() {
             var name = document.getElementById("name");
-            //var oldMatrics = document.getElementById("oldMatrics");
             var newMatrics = document.getElementById("newMatrics");
             var IC = document.getElementById("IC");
             name.value = name.value.toUpperCase();
-            //oldMatrics.value = oldMatrics.value.toUpperCase();
             newMatrics.value = newMatrics.value.toUpperCase();
             IC.value = IC.value.toUpperCase();
         })
-
+        
         document.getElementById("form").addEventListener("keyup", ICfunction);
-
         function ICfunction() {
             var name = document.getElementById("name");
-            //var oldMatrics = document.getElementById("oldMatrics");
             var IC = document.getElementById("IC");
             specialSymbol(name);
-            //specialSymbol(oldMatrics);
             specialSymbol(IC);
         }
-
+        //function to check if user input a special symbol or not
         function specialSymbol(input) {
             var correct = new Boolean(false);
             for (var i = 0; i < input.value.length; i++) {
@@ -382,13 +394,14 @@
                     correct = true;
                 }
             }
+            //invalid if user entered a special symbol
             if (correct == false && input.value.length > 0) {
                 input.style.borderColor = "red";
             } else {
                 input.style.borderColor = "transparent";
             }
         }
-
+        //function when user clicked the button
         document.getElementById("skipPersonal").addEventListener("click", function() {
             var skip = window.confirm("Skip updating information of personal and proceed to update academic detail?");
             if (skip) {
@@ -397,12 +410,11 @@
             return false;
             }
         })
-
+        //validation of form
         function validateForms() {
 
             var picture = document.getElementById("picture");
             var name = document.getElementById("name");
-            //var oldMatrics = document.getElementById("oldMatrics");
             var newMatrics = document.getElementById("newMatrics");
             var IC = document.getElementById("IC");
             
@@ -415,10 +427,6 @@
                 alert("The input at red-colored border form is invalid.")
                 return false;
             }
-            //if (oldMatrics.style.borderColor == "red") {
-            //    alert("The input at red-colored border form is invalid.")
-            //    return false;
-            //}
             if (newMatrics.style.borderColor == "red") {
                 alert("The input at red-colored border form is invalid.")
                 return false;
@@ -433,6 +441,7 @@
             }
         }
         <?php
+            //check if there is data stored in variable
             function isEmpty($variable){
                 if($variable == ""){
                     return true;

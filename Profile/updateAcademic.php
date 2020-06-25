@@ -1,6 +1,7 @@
 <?php
-    session_start();
-    include_once '../database.php';
+  //start a session and include database
+  session_start();
+  include_once '../database.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,6 +19,7 @@
   <link rel="icon" href="../imgs/8th.png" type="image/icon type" />
   <title>Update Academic Information</title>
   <style>
+        /* Display drop-down when hover  */
         .dropright:hover 
         .dropdown-menu
         {display: block;}
@@ -102,24 +104,31 @@
       <h2>Update Academic Information</h2>
       <?php
 
+      //check if user is logged in or not ($_SESSION has value)
       if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+        //set user_id in session to $id
         $id = $_SESSION['user_id'];
+        
+        //retrieve data from database
         $sql = "SELECT `Course` FROM academictable WHERE id='$id'";
-                $result = $pdo->prepare($sql);
-                $result -> execute();
+        $result = $pdo->prepare($sql);
+        $result -> execute();
 
-                while($res = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $Course = $res['Course'];
-                }
+        //assign variable for every data
+        while($res = $result->fetch(PDO::FETCH_ASSOC)) {
+          $Course = $res['Course'];
+        }
       ?>
       <?php
                 $action=isset($_GET['action']) ? $_GET['action'] : "";
+                //if user successfully updated the form
                 if($action == "updateAcademicSuccessful"){
                     echo "<div class='alert alert-success alert-dismissible'>
-            <h4><i class='icon fa fa-check'></i> Academic information is updated successfully! <br><a href='academicDetail.php'>View updated information</a> now!
-            </div>";
+                    <h4><i class='icon fa fa-check'></i> Academic information is updated successfully! <br><a href='academicDetail.php'>View updated information</a> now!
+                    </div>";
                 }
             ?>
+        <!-- create a form -->    
         <form method="post" action="processAcademic.php" onsubmit="return validateForms()" class="jumbotron mt-3">
           <div class="form-group row">
             <label for="faculty" class="col-md-2 col-form-label">Faculty</label>
@@ -157,6 +166,8 @@
                   document.write(
                     "<option selected disabled value=''>Choose...</option>"
                   );
+                  //used javascript to modified that the selection of entry year 
+                  //between 10 years ago until current year
                   var currentYear = new Date().getFullYear();
                   currentYear = currentYear - 9;
                   for (var i = 1; i <= 10; i++) {
@@ -202,11 +213,13 @@
           </div>
           <div class="form-group row">
             <div class="col-md-1">
+              <!-- Click this button to confirm updating the form and move to validation -->
               <button type="submit" class="btn btn-primary" id="updateAcademic">
                 Update
               </button>
             </div>
             <div class="col-md-3">
+              <!-- Click this button to skip updating and navigate to updateAcademic.php -->
               <button type="button" class="btn btn-primary" id="skipAcademic">Next</button>
             </div>
           </div>
@@ -216,6 +229,7 @@
       <?php
       } else { ?>
         <div class="alert alert-info" role="alert">
+          <!-- display error message if user is not logged in ($_SESSION is null)-->
           <h4>Sorry, only authenticated user can access this page.</h4>
           <p><a href="/Assignment/RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
         </div><?php
@@ -231,6 +245,7 @@
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script type="text/javascript">
+    //function when user clicked the button
     document.getElementById("skipAcademic").addEventListener("click", function() {
       var skip = window.confirm("Skip updating information of academic and proceed to update contact detail?");
       if (skip) {
@@ -239,11 +254,12 @@
         return false;
       }
     })
+    //all string input is made to uppercase
     document.getElementById("course").addEventListener("change", function() {
       var course = document.getElementById("course");
       course.value = course.value.toUpperCase();
     })
-
+    //validation of form
     function validateForms() {
       var confirm = window.confirm("Confirm to update information of academic?");
 
@@ -252,6 +268,7 @@
       }
     }
     <?php
+      //check if there is data stored in variable
       function isEmpty($variable){
         if($variable == ""){
           return true;

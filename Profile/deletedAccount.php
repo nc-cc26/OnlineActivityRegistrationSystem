@@ -1,4 +1,5 @@
 <?php
+    //start a session
     session_start();
 ?>
 <!DOCTYPE html>
@@ -30,17 +31,21 @@
         <main class="jumbotron mt-2">
             <?php
 
-
+            //check if user is logged in or not ($_SESSION has value)
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+                //set user_id in session to $id and user_email to $Email
                 $id = $_SESSION['user_id'];
                 $Email = $_SESSION['user_email'];
+                //notified user that user account is deleted
                 echo "<div class='alert alert-success alert-dismissible'>
-            <h4><i class='icon fa fa-check'></i> Account with ID = $id is deleted successfully! <br><a href='../RegisterLogin/RegisterLogin.php'>Back to login page </a> now.
-            </div>";
+                <h4><i class='icon fa fa-check'></i> Account with ID = $id is deleted successfully! <br><a href='../RegisterLogin/RegisterLogin.php'>Back to main page </a> now.
+                </div>";
 
+                //destroy or unset all the session to null
                 session_unset();
             }else {?>
                 <div class="alert alert-info" role="alert">
+                    <!-- display error message if user is not logged in ($_SESSION is null)-->
                     <h4>Sorry, only authenticated user can access this page.</h4>
                     <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
                 </div><?php

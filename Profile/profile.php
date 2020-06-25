@@ -1,4 +1,5 @@
 <?php
+    //start a session and include database
     session_start();
     include_once '../database.php';
 ?>
@@ -18,6 +19,7 @@
     <link rel="icon" href="../imgs/8th.png" type="image/icon type" />
     <title>My Profile</title>
     <style>
+        /* Display drop-down when hover  */
         .dropright:hover 
         .dropdown-menu
         {display: block;}
@@ -25,6 +27,7 @@
         .dropdown-menu
         {display: block;}
 
+        /* Display paragraph to center */
         h2 {text-align: center;}
 
         
@@ -101,39 +104,50 @@
             <h2>My Profile</h2><br>
             <?php
 
-
+            //check if user is logged in or not ($_SESSION has value)
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+                //set user_id in session to $id and user_email to $Email
                 $id = $_SESSION['user_id'];
                 $Email = $_SESSION['user_email'];
 
+                //retrieve data from database
                 $sqlPer = "SELECT ProfilePicture,NewMatrics FROM personaltable WHERE id='$id'";
                 $resultPer = $pdo->prepare($sqlPer);
                 $resultPer -> execute();
+
+                //assign variable for every data
                 while($resPer = $resultPer->fetch(PDO::FETCH_ASSOC)) {
                     $ProfilePicture = $resPer['ProfilePicture'];
                     $NewMatrics = $resPer['NewMatrics'];
                 }
+
+                //retrieve data from database
                 $sqlPer1 = "SELECT Name FROM user WHERE id='$id'";
                 $resultPer1 = $pdo->prepare($sqlPer1);
                 $resultPer1 -> execute();
+
+                //assign variable for every data
                 while($resPer1 = $resultPer1->fetch(PDO::FETCH_ASSOC)) {
                     $Name = $resPer1['Name'];
                 }
             ?>
                 <div class="text-center">
                     <?php
+                        //check if there is image stored in database
                         if(empty($ProfilePicture)){
                     ?>
                             <img src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px; border: 1px solid Gray;"/>
                     <?php
                         }else{
                     ?>
+                    <!-- Image stored in database is in binary format, thus decode the data using base64_encode before display to the webpage-->
                     <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($ProfilePicture); ?>" alt="User profile picture" style="width: 200px; height: 200px; border: 1px solid Gray;"/>
                     <?php
                         }
                     ?>
                 
                 <table class="table table-striped">
+                    <!-- Display data from database to the webpage -->
                     <tr><th scope="row" class="w-25 p-3">ID:</th><td><?php echo $id; ?> </td></tr>
                     <tr><th scope="row" class="w-25 p-3">Name:</th><td><?php echo $Name; ?> </td></tr>
                     <tr><th scope="row" class="w-25 p-3">New Matrics No:</th><td><?php echo $NewMatrics; ?> </td></tr>
@@ -142,30 +156,38 @@
                 </table>
                     </div>
                 <div class="text-right"><br>
+                    <!-- Click this button to navigate to changePassword.php -->
                     <button type="button" class="btn btn-primary btn-sm" id=changepw>Change Password</button>
-                    <form action="validateDelete.php" method="post" onsubmit="return validateForms()"><br>
+                    <!-- Click this button to navigate to delete.php -->
+                    <form action="delete.php" method="post" onsubmit="return validateForms()"><br>
                     <input type="submit" class="btn btn-danger btn-sm" value="Delete Account" id="delete" >
                     </form>
                 </div>
                 <script type="text/javascript">
+                //validation for the form
                 function validateForms(){
-                    //var button = document.getElementById("delete");
-                    //button.addEventListener("click", function() {
                         var x = confirm("Are you sure to remove this account?");
-                        if (!x) return false;
-                    //});
-                }
-                    document.getElementById("changepw").addEventListener("click",function(){
-                        var change = confirm("Change password?");
-                        if (change){
-                        window.location.href = "changePassword.php";
-                        }else{
-                            return false;
+                        if (x){
+                            var y = confirm("All data stored will be deleted permanently. Click \"ok\" to confirm the deletion.");
+                            if(!y){
+                                return false;
+                            }
                         }
-                    })
+                        else return false;
+                }
+                //function used for button id="changepw"
+                document.getElementById("changepw").addEventListener("click",function(){
+                    var change = confirm("Change password?");
+                    if (change){
+                    window.location.href = "changePassword.php";
+                    }else{
+                        return false;
+                    }
+                })
                 </script>
             <?php
             } else { ?>
+                <!-- display error message if user is not logged in ($_SESSION is null)-->
                 <div class="alert alert-info" role="alert">
                     <h4>Sorry, only authenticated user can access this page.</h4>
                     <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>

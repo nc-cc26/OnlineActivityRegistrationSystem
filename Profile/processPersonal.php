@@ -1,24 +1,18 @@
 <?php
+//start a session and include database
 session_start();
 include_once('../database.php');
 
-//$image = $_FILES["ProfilePicture"]["name"];
-//$imgContent = addslashes(file_get_contents($image));
-
+//check if user is logged in or not ($_SESSION has value)
 if(isset($_SESSION['logged_in']) && $_SESSION['user_id'] 
 && $_SESSION['user_email'] && $_SESSION['logged_in'] == true){
+    //check if the form is post method
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+        //set user_id in session to $id
         $ID = $_SESSION['user_id'];
         if(isset($_POST['Name']) && isset($_POST['NewMatrics']) ){
-        //if(!empty($_FILES["ProfilePicture"]["name"]) && 
-        //isset($_POST['Name']) && isset($_POST['NewMatrics']) && 
-        //isset($_POST['IC']) && isset($_POST['Nationality']) && 
-        //isset($_POST['Gender']) && isset($_POST['Birthday']) &&
-        //isset($_POST['Race']) && isset($_POST['Religion']) &&
-        //isset($_POST['Marital'])) {
-            //$ProfilePicture = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
 
-            //$ProfilePicture = $_POST['ProfilePicture'];
+            //set all the data posted from form and define a variable
             $image = $_FILES["ProfilePicture"]["tmp_name"];
             $imgContent = addslashes(file_get_contents($image));
             $Name = $_POST['Name'];
@@ -31,6 +25,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
             $Religion = $_POST['Religion'];
             $Marital = $_POST['Marital'];
 
+            //update all data in database by matching the $ID with `ID`
             $sql = "UPDATE `personaltable` SET `ProfilePicture`='$imgContent', 
             `IC`='$IC', `Nationality`='$Nationality', 
             `Gender`='$Gender', `Birthday`='$Birthday', 
@@ -44,10 +39,12 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_id']
             $updateValue1 = $pdo->prepare($sql1);
             $updateValue -> execute();
             $updateValue1 -> execute();
+            //navigate to updatePersonal.php with action telling data successfully updated into database
             header("Location:../Profile/updatePersonal.php?action=updatePersonalSuccessful");
             
 
             }catch (Exception $e){
+                //echo the error if failed to update data into database
                 echo "Error: " . $e;
             }
         }

@@ -1,4 +1,5 @@
 <?php
+    //start a session and include database
     session_start();
     include_once '../database.php';
 ?>
@@ -17,6 +18,7 @@
     <link rel="icon" href="../imgs/8th.png" type="image/icon type">
     <title>Update Contact Information</title>
     <style>
+        /* Display drop-down when hover  */
         .dropright:hover 
         .dropdown-menu
         {display: block;}
@@ -102,14 +104,18 @@
             <h2>Update Contact Information</h2>
             <?php
 
+            //check if user is logged in or not ($_SESSION has value)
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+                //set user_id in session to $id and user_email to $user_email
                 $user_email = $_SESSION['user_email'];
                 $id = $_SESSION['user_id'];
 
+                //retrieve data from database
                 $sql = "SELECT * FROM contacttable WHERE id='$id'";
                 $result = $pdo->prepare($sql);
                 $result -> execute();
 
+                //assign variable for every data
                 while($res = $result->fetch(PDO::FETCH_ASSOC)) {
                     $Address = $res['Address'];
                     $Postcode = $res['Postcode'];
@@ -121,12 +127,14 @@
             ?>
              <?php
                 $action=isset($_GET['action']) ? $_GET['action'] : "";
+                //if user successfully updated the form
                 if($action == "updateContactSuccessful"){
                     echo "<div class='alert alert-success alert-dismissible'>
-            <h4><i class='icon fa fa-check'></i> Contact information is updated successfully! <br><a href='contactDetail.php'>View updated information</a> now!
-            </div>";
+                    <h4><i class='icon fa fa-check'></i> Contact information is updated successfully! <br><a href='contactDetail.php'>View updated information</a> now!
+                    </div>";
                 }
             ?>
+                <!-- create a form --> 
                 <form method="post" action="processContact.php" onsubmit="return validateForms()" id="form" class="jumbotron mt-3">
                     <div class="form-group row">
                         <label for="address" class="col-md-2 col-form-label">Address</label>
@@ -189,11 +197,13 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-1">
+                            <!-- Click this button to confirm updating the form and move to validation -->
                             <button type="submit" class="btn btn-primary" id="updateContact">
                                 Update
                             </button>
                         </div>
                         <div class="col-md-2">
+                            <!-- Click this button to skip updating and finish updating -->
                             <button type="button" class="btn btn-primary" id="skipContact">Finish</button>
                         </div>
                     </div>
@@ -203,6 +213,7 @@
             <?php
             } else { ?>
                 <div class="alert alert-info" role="alert">
+                    <!-- display error message if user is not logged in ($_SESSION is null)-->
                     <h4>Sorry, only authenticated user can access this page.</h4>
                     <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
                 </div><?php
@@ -218,6 +229,7 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script type="text/javascript">
+        //function when user clicked the button
         document.getElementById("skipContact").addEventListener("click", function() {
             var confirm = window.confirm("Finish updating?");
             if (confirm) {
@@ -227,7 +239,7 @@
                 return false;
             }
         })
-
+        //all string input is made to uppercase
         document.getElementById("form").addEventListener("change", function() {
             var address1 = document.getElementById("address1");
             var address2 = document.getElementById("address2");
@@ -238,12 +250,7 @@
             address3.value = address3.value.toUpperCase();
             city.value = city.value.toUpperCase();
         })
-
-        document.getElementById("email").addEventListener("change", function() {
-            var email = document.getElementById("email");
-            email.value = email.value.toLowerCase();
-        })
-
+        //validation of form
         function validateForms() {
             var confirm = window.confirm("Confirm to update information of contact?");
 
@@ -252,6 +259,7 @@
             }
         }
         <?php
+        //check if there is data stored in variable
         function isEmpty($variable){
             if($variable == ""){
                 return true;

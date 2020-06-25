@@ -58,26 +58,31 @@
         <main class="jumbotron mt-2">
             <h1>Change Password</h1>
             <?php
+            //start a session and include database
             session_start();
             include_once '../database.php';
 
+            //check if user is logged in or not ($_SESSION has value)
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+                //set user_id in session to $id
                 $id = $_SESSION['user_id'];
 
             ?>
             <?php
                 $action=isset($_GET['action']) ? $_GET['action'] : "";
+                //if user successfully updated the form
                 if($action == "passwordChanged"){
                     echo "<div class='alert alert-success alert-dismissible'>
             <h4><i class='icon fa fa-check'></i> Password is successfully changed! <br><a href='profile.php'>Back to User Profile</a> now!
             </div>";
+            //if user failed to updated the form
                 }else if($action == "invalidPassword"){
                     echo "<div class='alert alert-danger alert-dismissible'>
             <h4><i class='icon fa fa-check'></i> You entered a wrong password! <br>Please try again.
             </div>";
                 }
             ?>
-
+                <!-- create a form --> 
                 <form method="post" action="processPassword.php" onsubmit="return validateForms()" id="form" class="jumbotron mt-3">
                     <div class="form-group row">
                         <label for="password" class="col-md-3 col-form-label"><b>*Current Password </b></label>
@@ -106,15 +111,18 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-1">
+                            <!-- Click this button to confirm updating the form and move to validation -->
                             <button type="submit" class="btn btn-primary" id="confirm">Confirm</button>
                         </div>
                         <div class="col-md-2">
+                            <!-- Click this button to cancel from changing password -->
                             <button type="button" class="btn btn-primary" id="cancel">Cancel</button>
                         </div>
                     </div>
                 <?php
             } else { ?>
                     <div class="alert alert-info" role="alert">
+                        <!-- display error message if user is not logged in ($_SESSION is null)-->
                         <h4>Sorry, only authenticated user can access this page.</h4>
                         <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
                     </div><?php
@@ -130,6 +138,7 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script type="text/javascript">
+        //user can viewed the password by clicking the "Show Password" box
         function myFunction() {
             var x = document.getElementById("password");
             if (x.type === "password") {
@@ -138,7 +147,7 @@
                 x.type = "password";
             }
         }
-        
+        //all requirements for a new password (Nedd to fulfilled all)
         function validatePassword(){
         var lowercase = document.getElementById("newpassword");
         var suitableLow = document.getElementById("suitable");
@@ -194,7 +203,7 @@
             suitableLength.style.backgroundColor = "lightpink";
         }
         }
-
+        //check if user repeat the same new password
         function samePassword(){
             var npass = document.getElementById("newpassword");
             var rpass = document.getElementById("repeatpassword");
@@ -210,11 +219,11 @@
                 x.style.backgroundColor = "Chartreuse";
             }
         }
-
+        //navigate user back to profile.php if user does not want to change password
         document.getElementById("cancel").addEventListener("click", function() {
             window.location.href = "profile.php";
         })
-
+        //validate the form
         function validateForms() {
             var x = document.getElementById("result");
             var suitableLow = document.getElementById("suitable");

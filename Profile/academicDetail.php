@@ -1,4 +1,5 @@
 <?php
+    //start a session and include database
     session_start();
     include_once '../database.php';
 ?>
@@ -18,6 +19,7 @@
     <link rel="icon" href="../imgs/8th.png" type="image/icon type">
     <title>Academic Detail</title>
     <style>
+        /* Display drop-down when hover  */
         .dropright:hover 
         .dropdown-menu
         {display: block;}
@@ -25,6 +27,7 @@
         .dropdown-menu
         {display: block;}
 
+        /* Display paragraph to center */
         h2 {text-align: center;}
         
     </style>
@@ -102,19 +105,26 @@
             <h2>Academic Detail</h2><br>
             <?php
 
-
+            //check if user is logged in or not ($_SESSION has value)
             if (isset($_SESSION['logged_in']) && $_SESSION['user_id'] && $_SESSION['user_email'] && $_SESSION['logged_in'] == true) {
+                //set user_id in session to $id
                 $id = $_SESSION['user_id'];
+
+                //retrieve data from database
                 $sqlPicture = "SELECT ProfilePicture FROM personaltable WHERE id='$id'";
                 $resultPicture = $pdo->prepare($sqlPicture);
                 $resultPicture -> execute();
+                
+                //assign variable for every data
                 while($resPicture = $resultPicture->fetch()){
                     $ProfilePicture = $resPicture['ProfilePicture'];
                 }
+                //retrieve data from database
                 $sql = "SELECT * FROM academictable WHERE id='$id'";
                 $result = $pdo->prepare($sql);
                 $result -> execute();
-
+                
+                //assign variable for every data
                 while($res = $result->fetch(PDO::FETCH_ASSOC)) {
                     $Faculty = $res['Faculty'];
                     $Course = $res['Course'];
@@ -125,18 +135,21 @@
                 ?>
                 <div class="text-center">
                     <?php
+                        //check if there is image stored in database
                         if(empty($ProfilePicture)){
                     ?>
                             <img src="../imgs/profile.png" alt="User profile picture" style="width: 200px; height: 200px; border: 1px solid Gray;"/>
                     <?php
                         }else{
                     ?>
+                    <!-- Image stored in database is in binary format, thus decode the data using base64_encode before display to the webpage-->
                     <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($ProfilePicture); ?>" alt="User profile picture" style="width: 200px; height: 200px; border: 1px solid Gray;"/>
                     <?php
                         }
                     ?>
                 </div>
                 <table class="table table-striped">
+                    <!-- Display data from database to the webpage -->
                     <tr><th scope="row" class="w-25 p-3">Faculty:</th><td><?php echo $Faculty; ?> </td></tr>
                     <tr><th scope="row" class="w-25 p-3">Course:</th><td><?php echo $Course; ?> </td></tr>
                     <tr><th scope="row" class="w-25 p-3">Entry Year:</th><td><?php echo $EntryYear; ?></td></tr>
@@ -144,11 +157,13 @@
                     <tr><th scope="row" class="w-25 p-3">Mode:</th><td><?php echo $Mode; ?></td></tr>
                 </table>
                 <div class="text-left">
+                    <!-- Click this button to navigate to updateAcademic.php -->
                     <button id="confirm" type="button" class="btn btn-primary btn-sm">
                         Update Academic Information
                     </button>
                 </div>
                 <script type="text/javascript">
+                    //function used for button id="confirm"
                     var button = document.getElementById("confirm");
                     button.addEventListener("click", function() {
                         var x = confirm("Are you sure to update academic information?");
@@ -158,6 +173,7 @@
                 </script>
             <?php
             } else { ?>
+                <!-- display error message if user is not logged in ($_SESSION is null)-->
                 <div class="alert alert-info" role="alert">
                     <h4>Sorry, only authenticated user can access this page.</h4>
                     <p><a href="../RegisterLogin/RegisterLogin.php">Log in</a> now.</p>
