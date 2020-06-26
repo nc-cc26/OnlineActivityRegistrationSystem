@@ -146,7 +146,7 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>
       
-
+        //click submit button, and pass the value to the database via POST method
         var sub = document.getElementById("submit");
         sub.addEventListener("click", function() {
             var yes = window.confirm("Are you sure to submit the registration?\nNote: 'Once you have submitted, you are not allowed to change anymore.'");
@@ -156,7 +156,7 @@
                 return true;
             }
         });
-
+        //click cancel button to cancel and go back to activity page
         var can = document.getElementById("cancel");
         can.addEventListener("click", function() {
             var no = window.confirm("Are you sure to cancel the registration?");
