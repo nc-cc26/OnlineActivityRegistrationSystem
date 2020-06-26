@@ -256,25 +256,7 @@
     Copyright © 2020 - XXX Residential College.
 </footer>
 
-<script>
-    var talpics = [
-        "../imgs/joji.jpg",
-        "../imgs/kinjaz.jpg",
-        "../imgs/magic.jpg"
-    ];
 
-    var btnT = document.getElementById("nextT");
-    var imgT = document.getElementById("talpics");
-    var counterT = 1;
-
-    btnT.addEventListener("click", function() {
-        if (counterT === 3) {
-            counterT = 0;
-        }
-        imgT.src = talpics[counterT];
-        counterT++;
-    });
-</script>
 
 
 
