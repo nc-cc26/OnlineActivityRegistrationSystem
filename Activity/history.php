@@ -79,15 +79,16 @@
                     </tr>
                        <?php
 							$ID = $_SESSION['user_id'];
-                                    
+                                     //retrieve data from database
                                      $display = "SELECT * FROM activitytable WHERE id='$ID'";
                                      $stmt = $pdo->prepare($display);
                						 $stmt -> execute(); 
-
+									 //check if id exist in database
 							 		 $checkID = "SELECT `ID` FROM activitytable WHERE id='$ID'";
 							 		 $re = $pdo->prepare($checkID);
 							 		 $re -> execute();
 							 		 $check = $re->fetch(PDO::FETCH_ASSOC);
+		    					//if yes, retrieve data
 							if($check){
                             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 								$Year = $row["Year"];
